@@ -369,6 +369,23 @@ void start_napt66(void){
 }
 #endif
 
+#if defined(APP_KOOLPROXY)
+void stop_koolproxy(void){
+	eval("/usr/bin/koolproxy.sh","stop");
+}
+
+void start_koolproxy(void){
+	int koolproxy_mode = nvram_get_int("koolproxy_enable");
+	if ( koolproxy_mode == 1)
+		eval("/usr/bin/koolproxy.sh","start");
+}
+
+void restart_koolproxy(void){
+	stop_koolproxy();
+	start_koolproxy();
+}
+#endif
+
 void
 start_httpd(int restart_fw)
 {

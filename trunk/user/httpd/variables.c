@@ -257,6 +257,20 @@
 			{"aria_pport", "", NULL, EVM_RESTART_ARIA},
 			{"aria_rport", "", NULL, EVM_RESTART_ARIA},
 #endif
+#if defined(APP_KOOLPROXY)
+			{"koolproxy_enable", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"ad_change", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"ad_dir", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"adbyby_dir", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"adbyby_whost", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"adbyby_cpu", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_https", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"adbybyt.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"adbybym.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolpyt.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolpym.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
+#endif
+#endif
 #if (BOARD_NUM_UPHY_USB3 > 0)
 			{"usb3_disable", "", NULL, EVM_RESTART_REBOOT},
 #endif
@@ -1006,6 +1020,9 @@
 #endif
 #if defined(APP_ARIA)
 		{EVM_RESTART_ARIA,		EVT_RESTART_ARIA,		RCN_RESTART_ARIA,	EVM_RESTART_FIREWALL},
+#endif
+#if defined(APP_KOOLPROXY)
+		{EVM_RESTART_KOOLPROXY,		EVT_RESTART_KOOLPROXY,		RCN_RESTART_KOOLPROXY,	0},
 #endif
 #endif
 #if defined(APP_SCUT)

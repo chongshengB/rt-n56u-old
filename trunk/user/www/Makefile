@@ -177,6 +177,9 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS),y)
 	rm -f $(INSTALLDIR)/www/Shadowsocks_action.asp
 	rm -f $(INSTALLDIR)/www/Shadowsocks_log.asp
 endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_KOOLPROXY),y)
+	rm -f $(INSTALLDIR)/www/Advanced_koolproxy.asp
+endif
 
 clean:
 	@echo "Clean www romfs"

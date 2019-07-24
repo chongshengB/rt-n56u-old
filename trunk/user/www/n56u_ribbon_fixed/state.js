@@ -393,6 +393,9 @@ if (found_app_dnsforwarder()){
 if (found_app_shadowsocks()){
 	tabtitle[12] = new Array("", "<#menu5_1_1#>","<#menu5_16_20#>");
 }
+if (found_app_koolproxy()){
+	tabtitle[13] = new Array("", "<#menu5_18_1#>");
+}
 
 //Level 3 Tab title
 
@@ -418,6 +421,10 @@ if (found_app_shadowsocks()){
 	shadowsocks_array = new Array("","Shadowsocks.asp","Shadowsocks_log.asp");
 	tablink[12] = (shadowsocks_array);
 }
+if (found_app_koolproxy()){
+	shadowsocks_array = new Array("","Advanced_koolproxy.asp");
+	tablink[13] = (koolproxy_array);
+}
 
 //Level 2 Menu
 menuL2_title = new Array(15)
@@ -434,6 +441,10 @@ if (found_app_shadowsocks()){
 	menuL2_title.push("<#menu5_16#>");
 } else menuL2_title.push("");
 
+if (found_app_koolproxy()){
+	menuL2_title.push("<#menu5_18#>");
+} else menuL2_title.push("");
+
 
 menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], tablink[8][1], tablink[9][1]);
 if (found_app_scutclient()){
@@ -446,6 +457,10 @@ if (found_app_dnsforwarder()){
 
 if (found_app_shadowsocks()){
 	menuL2_link.push(shadowsocks_array[1]);
+} else menuL2_link.push("");
+
+if (found_app_koolproxy()){
+	menuL2_link.push(koolproxy_array[1]);
 } else menuL2_link.push("");
 
 //Level 1 Menu in Gateway, Router mode

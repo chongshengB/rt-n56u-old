@@ -91,7 +91,7 @@ typedef u_int8_t u8;
 #define EVM_RESTART_DNSFORWARDER	(1ULL << 47)
 #define EVM_RESTART_SHADOWSOCKS	(1ULL << 48)
 #define EVM_RESTART_SS_TUNNEL		(1ULL << 49)
-
+#define EVM_RESTART_KOOLPROXY		    (1ULL << 50)
 #define EVM_RESTART_REBOOT		(1ULL << 62)
 
 #define EVM_BLOCK_UNSAFE		(1ULL << 63) /* special case */
@@ -149,6 +149,7 @@ typedef u_int8_t u8;
 #define EVT_RESTART_SHADOWSOCKS	2
 #define EVT_RESTART_SS_TUNNEL		2
 #define EVT_RESTART_DNSFORWARDER	1
+#define EVT_RESTART_KOOLPROXY	3
 #define EVT_RESTART_REBOOT		40
 
 struct variable
