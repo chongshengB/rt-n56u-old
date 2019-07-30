@@ -422,7 +422,7 @@ if (found_app_shadowsocks()){
 	tablink[12] = (shadowsocks_array);
 }
 if (found_app_koolproxy()){
-	shadowsocks_array = new Array("","Advanced_koolproxy.asp");
+	koolproxy_array = new Array("","Advanced_koolproxy.asp");
 	tablink[13] = (koolproxy_array);
 }
 

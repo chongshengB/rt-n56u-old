@@ -257,20 +257,6 @@
 			{"aria_pport", "", NULL, EVM_RESTART_ARIA},
 			{"aria_rport", "", NULL, EVM_RESTART_ARIA},
 #endif
-#if defined(APP_KOOLPROXY)
-			{"koolproxy_enable", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"ad_change", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"ad_dir", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"adbyby_dir", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"adbyby_whost", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"adbyby_cpu", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"koolproxy_https", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"adbybyt.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
-			{"adbybym.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
-			{"koolpyt.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
-			{"koolpym.user.txt", "File", NULL, EVM_RESTART_KOOLPROXY},
-#endif
-#endif
 #if (BOARD_NUM_UPHY_USB3 > 0)
 			{"usb3_disable", "", NULL, EVM_RESTART_REBOOT},
 #endif
@@ -842,6 +828,27 @@
 	};
 #endif
 
+#if defined(APP_KOOLPROXY)
+    struct variable variables_KoolproxyConf[] = {
+			{"koolproxy_enable", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_set", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_cpu", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_https", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_video", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_prot", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_update", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"rules_list", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_txt", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"daily_txt", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"kp_dat", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"ss_DNS_Redirect_IP", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"scripts.koolproxy_rules_list.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"scripts.koolproxy_rules_script.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"scripts.ad_config_script.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{0,0,0,0}
+	};
+#endif
+
 	struct variable variables_WLANConfig11b[] = {
 			{"rt_ssid", "", NULL, EVM_RESTART_WIFI2},
 			{"rt_ssid2", "", NULL, EVM_RESTART_WIFI2},
@@ -958,6 +965,9 @@
 #if defined(APP_SHADOWSOCKS)
 		{"ShadowsocksConf",		variables_ShadowsocksConf},
 #endif
+#if defined(APP_KOOLPROXY)
+		{"KoolproxyConf",		variables_KoolproxyConf},
+#endif
 		{"LANGUAGE",			variables_Language},
 		{0,0}
 	};
@@ -1021,9 +1031,6 @@
 #if defined(APP_ARIA)
 		{EVM_RESTART_ARIA,		EVT_RESTART_ARIA,		RCN_RESTART_ARIA,	EVM_RESTART_FIREWALL},
 #endif
-#if defined(APP_KOOLPROXY)
-		{EVM_RESTART_KOOLPROXY,		EVT_RESTART_KOOLPROXY,		RCN_RESTART_KOOLPROXY,	0},
-#endif
 #endif
 #if defined(APP_SCUT)
 		{EVM_RESTART_SCUT,		EVT_RESTART_SCUT,		RCN_RESTART_SCUT,	0},
@@ -1040,6 +1047,9 @@
 #if defined(APP_SHADOWSOCKS)
 		{EVM_RESTART_SHADOWSOCKS,	EVT_RESTART_SHADOWSOCKS,	RCN_RESTART_SHADOWSOCKS,  0},
 		{EVM_RESTART_SS_TUNNEL,		EVT_RESTART_SS_TUNNEL,		RCN_RESTART_SS_TUNNEL,	  0},
+#endif
+#if defined(APP_KOOLPROXY)
+		{EVM_RESTART_KOOLPROXY,		EVT_RESTART_KOOLPROXY,		RCN_RESTART_KOOLPROXY,	0},
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)
 		{EVM_RESTART_NMBD,		EVT_RESTART_NMBD,		RCN_RESTART_NMBD,	0},

@@ -1,0 +1,49 @@
+# This file is a shell script that caches the results of configure
+# tests run on this system so they can be shared between configure
+# scripts and configure runs, see configure's option --config-cache.
+# It is not useful on other systems.  If it contains results you don't
+# want to keep, you may remove or edit it.
+#
+# config.status only pays attention to the cache file if you give it
+# the --recheck option to rerun configure.
+#
+# `ac_cv_env_foo' variables (set or unset) will be overridden when
+# loading this file, other *unset* `ac_cv_foo' will be assigned the
+# following values.
+
+ac_cv_build=${ac_cv_build=x86_64-pc-linux-gnu}
+ac_cv_build_alias=${ac_cv_build_alias=x86_64-pc-linux-gnu}
+ac_cv_c_compiler_gnu=${ac_cv_c_compiler_gnu=yes}
+ac_cv_env_CC_set=set
+ac_cv_env_CC_value='/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/xgcc -B/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib/ -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/include -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/sys-include'
+ac_cv_env_CFLAGS_set=set
+ac_cv_env_CFLAGS_value='-g -O2 -Wno-pointer-sign -Wno-trigraphs -Wno-format-security -Wno-unused-but-set-variable -Wno-sizeof-pointer-memaccess -fno-delete-null-pointer-checks -fgnu89-inline -minterlink-mips16  '
+ac_cv_env_CPPFLAGS_set=set
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_LDFLAGS_set=set
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_build_alias_set=set
+ac_cv_env_build_alias_value=x86_64-pc-linux-gnu
+ac_cv_env_host_alias_set=set
+ac_cv_env_host_alias_value=mipsel-linux-uclibc
+ac_cv_env_target_alias_set=set
+ac_cv_env_target_alias_value=mipsel-linux-uclibc
+ac_cv_host=${ac_cv_host=mipsel-unknown-linux-uclibc}
+ac_cv_host_alias=${ac_cv_host_alias=mipsel-linux-uclibc}
+ac_cv_objext=${ac_cv_objext=o}
+ac_cv_prog_AR=${ac_cv_prog_AR=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ar}
+ac_cv_prog_AWK=${ac_cv_prog_AWK=gawk}
+ac_cv_prog_CC=${ac_cv_prog_CC='/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/xgcc -B/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib/ -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/include -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/sys-include'}
+ac_cv_prog_CPP=${ac_cv_prog_CPP='/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/xgcc -B/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib/ -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/include -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/sys-include -E'}
+ac_cv_prog_LIPO=${ac_cv_prog_LIPO=mipsel-linux-uclibc-lipo}
+ac_cv_prog_NM=${ac_cv_prog_NM=/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap/./gcc/nm}
+ac_cv_prog_RANLIB=${ac_cv_prog_RANLIB=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ranlib}
+ac_cv_prog_STRIP=${ac_cv_prog_STRIP=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/strip}
+ac_cv_prog_cc_g=${ac_cv_prog_cc_g=yes}
+ac_cv_prog_cc_stdc=${ac_cv_prog_cc_stdc=}
+gcc_cv_have_cc_tls=${gcc_cv_have_cc_tls=yes}
+libgcc_cv_dfp=${libgcc_cv_dfp=no}
+libgcc_cv_fixed_point=${libgcc_cv_fixed_point=yes}
+libgcc_cv_hidden_visibility_attribute=${libgcc_cv_hidden_visibility_attribute=yes}

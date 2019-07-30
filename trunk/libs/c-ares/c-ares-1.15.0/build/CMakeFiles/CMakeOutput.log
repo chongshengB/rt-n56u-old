@@ -1,0 +1,2730 @@
+The target system is: Linux -  - 
+The host system is: Linux - 4.4.0-17763-Microsoft - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc 
+Build flags: -Os;-fomit-frame-pointer;-pipe;;-DEMBED;-I/opt/rt-n56u/trunk/stage/include;-Dlinux;-D__linux__;-Dunix;-Wall;-Wno-trigraphs;-Wno-strict-aliasing;-Wno-format-security;;;-Wno-pointer-sign;-ffunction-sections;-fdata-sections
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/3.10.2/CompilerIdC/a.out"
+
+Determining if the C compiler works passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_ad92d/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ad92d.dir/build.make CMakeFiles/cmTC_ad92d.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ad92d.dir/testCCompiler.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_ad92d.dir/testCCompiler.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_ad92d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad92d.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_ad92d.dir/testCCompiler.c.o  -o cmTC_ad92d 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_abaa8/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_abaa8.dir/build.make CMakeFiles/cmTC_abaa8.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_abaa8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abaa8.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections -v -rdynamic CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o  -o cmTC_abaa8 
+Using built-in specs.
+Target: mipsel-linux-uclibc
+Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++
+Thread model: posix
+gcc version 4.4.7 (GCC) 
+COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/
+LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/
+COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Dlinux' '-D__linux__' '-Dunix' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-Wno-pointer-sign' '-ffunction-sections' '-fdata-sections' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-rdynamic' '-o' 'cmTC_abaa8' '-mllsc' '-mno-shared'
+ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_abaa8 /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib --gc-sections CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(mipsel-linux-uclibc-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_abaa8/fast"]
+  ignore line: [make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp']
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_abaa8.dir/build.make CMakeFiles/cmTC_abaa8.dir/build]
+  ignore line: [make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_abaa8]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_abaa8.dir/link.txt --verbose=1]
+  ignore line: [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections -v -rdynamic CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o  -o cmTC_abaa8 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [Target: mipsel-linux-uclibc]
+  ignore line: [Configured with: ../gcc-4.4.7/configure --target=mipsel-linux-uclibc --prefix=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --with-gnu-ld --with-gnu-as --disable-shared --disable-multilib --enable-tls --enable-threads=posix --disable-libmudflap --disable-libssp --disable-sanity-checks --disable-werror --disable-lto --enable-ld=yes --enable-gold=no --disable-libgomp --disable-nls --with-sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --enable-languages=c++]
+  ignore line: [Thread model: posix]
+  ignore line: [gcc version 4.4.7 (GCC) ]
+  ignore line: [COMPILER_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/bin/]
+  ignore line: [LIBRARY_PATH=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib/:/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-Os' '-fomit-frame-pointer' '-pipe' '-DEMBED' '-I/opt/rt-n56u/trunk/stage/include' '-Dlinux' '-D__linux__' '-Dunix' '-Wall' '-Wno-trigraphs' '-Wno-strict-aliasing' '-Wno-format-security' '-Wno-pointer-sign' '-ffunction-sections' '-fdata-sections' '-L/opt/rt-n56u/trunk/stage/lib' '-v' '-rdynamic' '-o' 'cmTC_abaa8' '-mllsc' '-mno-shared']
+  link line: [ /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2 --sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x --eh-frame-hdr -EL -export-dynamic -dynamic-linker /lib/ld-uClibc.so.0 -o cmTC_abaa8 /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o -L/opt/rt-n56u/trunk/stage/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7 -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib -L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib --gc-sections CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o -lgcc -lc -lgcc /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/libexec/gcc/mipsel-linux-uclibc/4.4.7/collect2] ==> ignore
+    arg [--sysroot=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-EL] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib/ld-uClibc.so.0] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_abaa8] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crt1.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crti.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtbegin.o] ==> ignore
+    arg [-L/opt/rt-n56u/trunk/stage/lib] ==> dir [/opt/rt-n56u/trunk/stage/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib]
+    arg [-L/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+    arg [--gc-sections] ==> ignore
+    arg [CMakeFiles/cmTC_abaa8.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/crtend.o] ==> ignore
+    arg [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/crtn.o] ==> ignore
+  collapse library dir [/opt/rt-n56u/trunk/stage/lib] ==> [/opt/rt-n56u/trunk/stage/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7/../../../../mipsel-linux-uclibc/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib]
+  collapse library dir [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib] ==> [/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit libs: [gcc;c;gcc]
+  implicit dirs: [/opt/rt-n56u/trunk/stage/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib/gcc/mipsel-linux-uclibc/4.4.7;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib;/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/lib]
+  implicit fwks: []
+
+
+
+
+Detecting C [-std=c99] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_21748/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_21748.dir/build.make CMakeFiles/cmTC_21748.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_21748.dir/feature_tests.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -std=c99 -o CMakeFiles/cmTC_21748.dir/feature_tests.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_21748
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21748.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_21748.dir/feature_tests.c.o  -o cmTC_21748 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:1c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:1c_variadic_macros
+
+
+Detecting C [-std=c89] compiler features compiled with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_be694/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_be694.dir/build.make CMakeFiles/cmTC_be694.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_be694.dir/feature_tests.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -std=c89 -o CMakeFiles/cmTC_be694.dir/feature_tests.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_be694
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_be694.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_be694.dir/feature_tests.c.o  -o cmTC_be694 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+    Feature record: C_FEATURE:1c_function_prototypes
+    Feature record: C_FEATURE:0c_restrict
+    Feature record: C_FEATURE:0c_static_assert
+    Feature record: C_FEATURE:0c_variadic_macros
+Determining if the function gethostbyname exists in the nsl passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2bfc7/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2bfc7.dir/build.make CMakeFiles/cmTC_2bfc7.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2bfc7.dir/CheckFunctionExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTC_2bfc7.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_2bfc7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2bfc7.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DCHECK_FUNCTION_EXISTS=gethostbyname  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_2bfc7.dir/CheckFunctionExists.c.o  -o cmTC_2bfc7 -lnsl 
+CMakeFiles/cmTC_2bfc7.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text.main+0x14): warning: gethostbyname is obsolescent, use getnameinfo() instead.
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function clock_gettime exists in the rt passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_14abc/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_14abc.dir/build.make CMakeFiles/cmTC_14abc.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_14abc.dir/CheckFunctionExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DCHECK_FUNCTION_EXISTS=clock_gettime   -o CMakeFiles/cmTC_14abc.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_14abc
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_14abc.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DCHECK_FUNCTION_EXISTS=clock_gettime  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_14abc.dir/CheckFunctionExists.c.o  -o cmTC_14abc -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/types.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d39e8/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_d39e8.dir/build.make CMakeFiles/cmTC_d39e8.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d39e8.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_d39e8.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_d39e8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d39e8.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_d39e8.dir/CheckIncludeFiles.c.o  -o cmTC_d39e8 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/socket.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3dfde/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3dfde.dir/build.make CMakeFiles/cmTC_3dfde.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3dfde.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_3dfde.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_3dfde
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3dfde.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_3dfde.dir/CheckIncludeFiles.c.o  -o cmTC_3dfde 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files arpa/inet.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_93fdb/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_93fdb.dir/build.make CMakeFiles/cmTC_93fdb.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_93fdb.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_93fdb.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_93fdb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93fdb.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_93fdb.dir/CheckIncludeFiles.c.o  -o cmTC_93fdb 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files arpa/nameser_compat.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b6f7c/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b6f7c.dir/build.make CMakeFiles/cmTC_b6f7c.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b6f7c.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_b6f7c.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_b6f7c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6f7c.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_b6f7c.dir/CheckIncludeFiles.c.o  -o cmTC_b6f7c 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files arpa/nameser.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4c5e7/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4c5e7.dir/build.make CMakeFiles/cmTC_4c5e7.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4c5e7.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_4c5e7.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_4c5e7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c5e7.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_4c5e7.dir/CheckIncludeFiles.c.o  -o cmTC_4c5e7 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files assert.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9affb/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9affb.dir/build.make CMakeFiles/cmTC_9affb.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9affb.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_9affb.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_9affb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9affb.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_9affb.dir/CheckIncludeFiles.c.o  -o cmTC_9affb 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files errno.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_74ecb/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_74ecb.dir/build.make CMakeFiles/cmTC_74ecb.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_74ecb.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_74ecb.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_74ecb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74ecb.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_74ecb.dir/CheckIncludeFiles.c.o  -o cmTC_74ecb 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files fcntl.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_83f58/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_83f58.dir/build.make CMakeFiles/cmTC_83f58.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_83f58.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_83f58.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_83f58
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83f58.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_83f58.dir/CheckIncludeFiles.c.o  -o cmTC_83f58 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files inttypes.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9cd28/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9cd28.dir/build.make CMakeFiles/cmTC_9cd28.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9cd28.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_9cd28.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_9cd28
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9cd28.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_9cd28.dir/CheckIncludeFiles.c.o  -o cmTC_9cd28 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files limits.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_69384/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_69384.dir/build.make CMakeFiles/cmTC_69384.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_69384.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_69384.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_69384
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69384.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_69384.dir/CheckIncludeFiles.c.o  -o cmTC_69384 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files malloc.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_50b0f/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_50b0f.dir/build.make CMakeFiles/cmTC_50b0f.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_50b0f.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_50b0f.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_50b0f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50b0f.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_50b0f.dir/CheckIncludeFiles.c.o  -o cmTC_50b0f 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files memory.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5b4a1/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_5b4a1.dir/build.make CMakeFiles/cmTC_5b4a1.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5b4a1.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_5b4a1.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_5b4a1
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5b4a1.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_5b4a1.dir/CheckIncludeFiles.c.o  -o cmTC_5b4a1 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files netdb.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f0f27/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f0f27.dir/build.make CMakeFiles/cmTC_f0f27.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f0f27.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_f0f27.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_f0f27
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0f27.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_f0f27.dir/CheckIncludeFiles.c.o  -o cmTC_f0f27 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files netinet/in.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0e92c/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0e92c.dir/build.make CMakeFiles/cmTC_0e92c.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0e92c.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_0e92c.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_0e92c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0e92c.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_0e92c.dir/CheckIncludeFiles.c.o  -o cmTC_0e92c 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files netinet/tcp.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1cc5f/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_1cc5f.dir/build.make CMakeFiles/cmTC_1cc5f.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1cc5f.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_1cc5f.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_1cc5f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1cc5f.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_1cc5f.dir/CheckIncludeFiles.c.o  -o cmTC_1cc5f 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files net/if.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7ace5/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7ace5.dir/build.make CMakeFiles/cmTC_7ace5.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7ace5.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_7ace5.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_7ace5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7ace5.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_7ace5.dir/CheckIncludeFiles.c.o  -o cmTC_7ace5 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files signal.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_42719/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_42719.dir/build.make CMakeFiles/cmTC_42719.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_42719.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_42719.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_42719
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_42719.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_42719.dir/CheckIncludeFiles.c.o  -o cmTC_42719 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files stdbool.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_49bcb/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_49bcb.dir/build.make CMakeFiles/cmTC_49bcb.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_49bcb.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_49bcb.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_49bcb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49bcb.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_49bcb.dir/CheckIncludeFiles.c.o  -o cmTC_49bcb 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files stdint.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_faa48/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_faa48.dir/build.make CMakeFiles/cmTC_faa48.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_faa48.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_faa48.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_faa48
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_faa48.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_faa48.dir/CheckIncludeFiles.c.o  -o cmTC_faa48 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files stdlib.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c0851/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c0851.dir/build.make CMakeFiles/cmTC_c0851.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c0851.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_c0851.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_c0851
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0851.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_c0851.dir/CheckIncludeFiles.c.o  -o cmTC_c0851 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files strings.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_55c40/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_55c40.dir/build.make CMakeFiles/cmTC_55c40.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_55c40.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_55c40.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_55c40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_55c40.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_55c40.dir/CheckIncludeFiles.c.o  -o cmTC_55c40 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files string.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a8478/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a8478.dir/build.make CMakeFiles/cmTC_a8478.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a8478.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_a8478.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_a8478
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a8478.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_a8478.dir/CheckIncludeFiles.c.o  -o cmTC_a8478 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/ioctl.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6a4fd/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6a4fd.dir/build.make CMakeFiles/cmTC_6a4fd.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6a4fd.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_6a4fd.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_6a4fd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6a4fd.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_6a4fd.dir/CheckIncludeFiles.c.o  -o cmTC_6a4fd 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/param.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_66404/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_66404.dir/build.make CMakeFiles/cmTC_66404.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_66404.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_66404.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_66404
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66404.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_66404.dir/CheckIncludeFiles.c.o  -o cmTC_66404 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/select.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_57d26/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_57d26.dir/build.make CMakeFiles/cmTC_57d26.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_57d26.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_57d26.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_57d26
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_57d26.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_57d26.dir/CheckIncludeFiles.c.o  -o cmTC_57d26 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/stat.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_660d9/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_660d9.dir/build.make CMakeFiles/cmTC_660d9.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_660d9.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_660d9.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_660d9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_660d9.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_660d9.dir/CheckIncludeFiles.c.o  -o cmTC_660d9 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/time.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_7fdc5/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_7fdc5.dir/build.make CMakeFiles/cmTC_7fdc5.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_7fdc5.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_7fdc5.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_7fdc5
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7fdc5.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_7fdc5.dir/CheckIncludeFiles.c.o  -o cmTC_7fdc5 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files sys/uio.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5eeae/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_5eeae.dir/build.make CMakeFiles/cmTC_5eeae.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5eeae.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_5eeae.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_5eeae
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5eeae.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_5eeae.dir/CheckIncludeFiles.c.o  -o cmTC_5eeae 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files time.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e7297/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e7297.dir/build.make CMakeFiles/cmTC_e7297.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e7297.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_e7297.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_e7297
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e7297.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_e7297.dir/CheckIncludeFiles.c.o  -o cmTC_e7297 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files dlfcn.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_430ed/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_430ed.dir/build.make CMakeFiles/cmTC_430ed.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_430ed.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_430ed.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_430ed
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_430ed.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_430ed.dir/CheckIncludeFiles.c.o  -o cmTC_430ed 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Determining if files unistd.h exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2b1f8/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2b1f8.dir/build.make CMakeFiles/cmTC_2b1f8.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2b1f8.dir/CheckIncludeFiles.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc   -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_2b1f8.dir/CheckIncludeFiles.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTC_2b1f8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2b1f8.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_2b1f8.dir/CheckIncludeFiles.c.o  -o cmTC_2b1f8 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+
+Performing C SOURCE FILE Test HAVE_SOCKLEN_T succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2ed3b/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2ed3b.dir/build.make CMakeFiles/cmTC_2ed3b.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2ed3b.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SOCKLEN_T   -o CMakeFiles/cmTC_2ed3b.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_2ed3b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2ed3b.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SOCKLEN_T  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_2ed3b.dir/src.c.o  -o cmTC_2ed3b -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			socklen_t var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_BOOL_T succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_62b4b/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_62b4b.dir/build.make CMakeFiles/cmTC_62b4b.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_62b4b.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_BOOL_T   -o CMakeFiles/cmTC_62b4b.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_62b4b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_62b4b.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_BOOL_T  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_62b4b.dir/src.c.o  -o cmTC_62b4b -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			bool var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_SSIZE_T succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a7301/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a7301.dir/build.make CMakeFiles/cmTC_a7301.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a7301.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SSIZE_T   -o CMakeFiles/cmTC_a7301.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_a7301
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a7301.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SSIZE_T  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_a7301.dir/src.c.o  -o cmTC_a7301 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			ssize_t var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_LONGLONG succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_89e99/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_89e99.dir/build.make CMakeFiles/cmTC_89e99.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_89e99.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_LONGLONG   -o CMakeFiles/cmTC_89e99.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_89e99
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89e99.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_LONGLONG  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_89e99.dir/src.c.o  -o cmTC_89e99 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			long long var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_SIG_ATOMIC_T succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_58088/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_58088.dir/build.make CMakeFiles/cmTC_58088.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_58088.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SIG_ATOMIC_T   -o CMakeFiles/cmTC_58088.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_58088
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_58088.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SIG_ATOMIC_T  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_58088.dir/src.c.o  -o cmTC_58088 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			sig_atomic_t var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_STRUCT_ADDRINFO succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_78a5b/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_78a5b.dir/build.make CMakeFiles/cmTC_78a5b.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_78a5b.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_ADDRINFO   -o CMakeFiles/cmTC_78a5b.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_78a5b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_78a5b.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_ADDRINFO  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_78a5b.dir/src.c.o  -o cmTC_78a5b -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			struct addrinfo var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_STRUCT_IN6_ADDR succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a4931/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a4931.dir/build.make CMakeFiles/cmTC_a4931.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a4931.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_IN6_ADDR   -o CMakeFiles/cmTC_a4931.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_a4931
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a4931.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_IN6_ADDR  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_a4931.dir/src.c.o  -o cmTC_a4931 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			struct in6_addr var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_STRUCT_SOCKADDR_IN6 succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4bcba/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4bcba.dir/build.make CMakeFiles/cmTC_4bcba.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4bcba.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_SOCKADDR_IN6   -o CMakeFiles/cmTC_4bcba.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_4bcba
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4bcba.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_SOCKADDR_IN6  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_4bcba.dir/src.c.o  -o cmTC_4bcba -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			struct sockaddr_in6 var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_STRUCT_SOCKADDR_STORAGE succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2dffb/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2dffb.dir/build.make CMakeFiles/cmTC_2dffb.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2dffb.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_SOCKADDR_STORAGE   -o CMakeFiles/cmTC_2dffb.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_2dffb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2dffb.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_SOCKADDR_STORAGE  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_2dffb.dir/src.c.o  -o cmTC_2dffb -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			struct sockaddr_storage var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Performing C SOURCE FILE Test HAVE_STRUCT_TIMEVAL succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_67806/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_67806.dir/build.make CMakeFiles/cmTC_67806.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_67806.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_TIMEVAL   -o CMakeFiles/cmTC_67806.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_67806
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_67806.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_STRUCT_TIMEVAL  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_67806.dir/src.c.o  -o cmTC_67806 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+		#include <stdio.h>
+		#include <stdlib.h>
+	
+		#include <stdbool.h>
+		#include <sys/types.h>
+		#include <arpa/inet.h>
+		#include <arpa/nameser.h>
+		#include <netdb.h>
+		#include <net/if.h>
+		#include <netinet/in.h>
+		#include <netinet/tcp.h>
+		#include <signal.h>
+		#include <stdlib.h>
+		#include <string.h>
+		#include <strings.h>
+		#include <sys/ioctl.h>
+		#include <sys/select.h>
+		#include <sys/socket.h>
+		#include <sys/time.h>
+		#include <sys/uio.h>
+		#include <time.h>
+		#include <fcntl.h>
+		#include <unistd.h>
+		int main() {
+			struct timeval var_exists;
+			(void)var_exists;
+			return 0;
+		}
+	
+Determining if the AF_INET6 exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f3db6/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f3db6.dir/build.make CMakeFiles/cmTC_f3db6.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f3db6.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_f3db6.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_f3db6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f3db6.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_f3db6.dir/CheckSymbolExists.c.o  -o cmTC_f3db6 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef AF_INET6
+  return ((int*)(&AF_INET6))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the O_NONBLOCK exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b9a78/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b9a78.dir/build.make CMakeFiles/cmTC_b9a78.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b9a78.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_b9a78.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_b9a78
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b9a78.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_b9a78.dir/CheckSymbolExists.c.o  -o cmTC_b9a78 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef O_NONBLOCK
+  return ((int*)(&O_NONBLOCK))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the FIONBIO exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_32083/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_32083.dir/build.make CMakeFiles/cmTC_32083.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_32083.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_32083.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_32083
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_32083.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_32083.dir/CheckSymbolExists.c.o  -o cmTC_32083 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef FIONBIO
+  return ((int*)(&FIONBIO))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the SIOCGIFADDR exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_08850/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_08850.dir/build.make CMakeFiles/cmTC_08850.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_08850.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_08850.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_08850
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_08850.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_08850.dir/CheckSymbolExists.c.o  -o cmTC_08850 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef SIOCGIFADDR
+  return ((int*)(&SIOCGIFADDR))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the MSG_NOSIGNAL exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fa43e/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_fa43e.dir/build.make CMakeFiles/cmTC_fa43e.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fa43e.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_fa43e.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_fa43e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fa43e.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_fa43e.dir/CheckSymbolExists.c.o  -o cmTC_fa43e -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef MSG_NOSIGNAL
+  return ((int*)(&MSG_NOSIGNAL))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the PF_INET6 exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_c0c0a/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_c0c0a.dir/build.make CMakeFiles/cmTC_c0c0a.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c0c0a.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_c0c0a.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_c0c0a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c0c0a.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_c0c0a.dir/CheckSymbolExists.c.o  -o cmTC_c0c0a -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef PF_INET6
+  return ((int*)(&PF_INET6))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the CLOCK_MONOTONIC exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_20f1a/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_20f1a.dir/build.make CMakeFiles/cmTC_20f1a.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_20f1a.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_20f1a.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_20f1a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20f1a.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_20f1a.dir/CheckSymbolExists.c.o  -o cmTC_20f1a -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef CLOCK_MONOTONIC
+  return ((int*)(&CLOCK_MONOTONIC))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Performing C SOURCE FILE Test HAVE_SOCKADDR_IN6_SIN6_SCOPE_ID succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e3e88/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e3e88.dir/build.make CMakeFiles/cmTC_e3e88.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e3e88.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SOCKADDR_IN6_SIN6_SCOPE_ID   -o CMakeFiles/cmTC_e3e88.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_e3e88
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e3e88.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_SOCKADDR_IN6_SIN6_SCOPE_ID  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_e3e88.dir/src.c.o  -o cmTC_e3e88 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+   (void)sizeof(((struct sockaddr_in6 *)0)->sin6_scope_id);
+   return 0;
+}
+
+Performing C SOURCE FILE Test HAVE_LL succeeded with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b289b/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b289b.dir/build.make CMakeFiles/cmTC_b289b.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b289b.dir/src.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_LL   -o CMakeFiles/cmTC_b289b.dir/src.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c
+/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c: In function 'main':
+/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/src.c:1: warning: unused variable 'n'
+Linking C executable cmTC_b289b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b289b.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections -DHAVE_LL  -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_b289b.dir/src.c.o  -o cmTC_b289b -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main() { int n=1234LL; return 0; }
+Determining if the connect exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_94c0a/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_94c0a.dir/build.make CMakeFiles/cmTC_94c0a.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_94c0a.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_94c0a.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_94c0a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_94c0a.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_94c0a.dir/CheckSymbolExists.c.o  -o cmTC_94c0a -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef connect
+  return ((int*)(&connect))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the fcntl exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_2fc0c/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_2fc0c.dir/build.make CMakeFiles/cmTC_2fc0c.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_2fc0c.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_2fc0c.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_2fc0c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2fc0c.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_2fc0c.dir/CheckSymbolExists.c.o  -o cmTC_2fc0c -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef fcntl
+  return ((int*)(&fcntl))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the freeaddrinfo exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1808c/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_1808c.dir/build.make CMakeFiles/cmTC_1808c.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1808c.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_1808c.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_1808c
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1808c.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_1808c.dir/CheckSymbolExists.c.o  -o cmTC_1808c -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef freeaddrinfo
+  return ((int*)(&freeaddrinfo))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the getaddrinfo exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e7a09/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e7a09.dir/build.make CMakeFiles/cmTC_e7a09.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e7a09.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_e7a09.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_e7a09
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e7a09.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_e7a09.dir/CheckSymbolExists.c.o  -o cmTC_e7a09 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getaddrinfo
+  return ((int*)(&getaddrinfo))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the getenv exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9075e/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9075e.dir/build.make CMakeFiles/cmTC_9075e.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9075e.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_9075e.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_9075e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9075e.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_9075e.dir/CheckSymbolExists.c.o  -o cmTC_9075e -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getenv
+  return ((int*)(&getenv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the gethostbyaddr exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3381f/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3381f.dir/build.make CMakeFiles/cmTC_3381f.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3381f.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_3381f.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_3381f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3381f.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_3381f.dir/CheckSymbolExists.c.o  -o cmTC_3381f -lnsl -lrt 
+CMakeFiles/cmTC_3381f.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text.main+0x8): warning: gethostbyaddr is obsolescent, use getaddrinfo() instead.
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef gethostbyaddr
+  return ((int*)(&gethostbyaddr))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the gethostbyname exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_89f40/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_89f40.dir/build.make CMakeFiles/cmTC_89f40.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_89f40.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_89f40.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_89f40
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_89f40.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_89f40.dir/CheckSymbolExists.c.o  -o cmTC_89f40 -lnsl -lrt 
+CMakeFiles/cmTC_89f40.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text.main+0x8): warning: gethostbyname is obsolescent, use getnameinfo() instead.
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef gethostbyname
+  return ((int*)(&gethostbyname))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the gethostname exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a0873/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a0873.dir/build.make CMakeFiles/cmTC_a0873.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a0873.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_a0873.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_a0873
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0873.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_a0873.dir/CheckSymbolExists.c.o  -o cmTC_a0873 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef gethostname
+  return ((int*)(&gethostname))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the getnameinfo exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_72e28/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_72e28.dir/build.make CMakeFiles/cmTC_72e28.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_72e28.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_72e28.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_72e28
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_72e28.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_72e28.dir/CheckSymbolExists.c.o  -o cmTC_72e28 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getnameinfo
+  return ((int*)(&getnameinfo))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the getservbyport_r exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6e8d0/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6e8d0.dir/build.make CMakeFiles/cmTC_6e8d0.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6e8d0.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_6e8d0.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_6e8d0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6e8d0.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_6e8d0.dir/CheckSymbolExists.c.o  -o cmTC_6e8d0 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef getservbyport_r
+  return ((int*)(&getservbyport_r))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the gettimeofday exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9b3cf/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_9b3cf.dir/build.make CMakeFiles/cmTC_9b3cf.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9b3cf.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_9b3cf.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_9b3cf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9b3cf.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_9b3cf.dir/CheckSymbolExists.c.o  -o cmTC_9b3cf -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef gettimeofday
+  return ((int*)(&gettimeofday))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the if_indextoname exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f052f/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_f052f.dir/build.make CMakeFiles/cmTC_f052f.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f052f.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_f052f.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_f052f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f052f.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_f052f.dir/CheckSymbolExists.c.o  -o cmTC_f052f -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef if_indextoname
+  return ((int*)(&if_indextoname))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the inet_ntop exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4e402/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4e402.dir/build.make CMakeFiles/cmTC_4e402.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4e402.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_4e402.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_4e402
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4e402.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_4e402.dir/CheckSymbolExists.c.o  -o cmTC_4e402 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef inet_ntop
+  return ((int*)(&inet_ntop))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the inet_pton exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e9d46/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e9d46.dir/build.make CMakeFiles/cmTC_e9d46.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e9d46.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_e9d46.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_e9d46
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e9d46.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_e9d46.dir/CheckSymbolExists.c.o  -o cmTC_e9d46 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef inet_pton
+  return ((int*)(&inet_pton))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the ioctl exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b5f17/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_b5f17.dir/build.make CMakeFiles/cmTC_b5f17.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b5f17.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_b5f17.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_b5f17
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b5f17.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_b5f17.dir/CheckSymbolExists.c.o  -o cmTC_b5f17 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef ioctl
+  return ((int*)(&ioctl))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the recv exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_94382/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_94382.dir/build.make CMakeFiles/cmTC_94382.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_94382.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_94382.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_94382
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_94382.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_94382.dir/CheckSymbolExists.c.o  -o cmTC_94382 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef recv
+  return ((int*)(&recv))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the recvfrom exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3213d/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_3213d.dir/build.make CMakeFiles/cmTC_3213d.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3213d.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_3213d.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_3213d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3213d.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_3213d.dir/CheckSymbolExists.c.o  -o cmTC_3213d -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef recvfrom
+  return ((int*)(&recvfrom))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the send exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_a39b9/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_a39b9.dir/build.make CMakeFiles/cmTC_a39b9.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_a39b9.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_a39b9.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_a39b9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a39b9.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_a39b9.dir/CheckSymbolExists.c.o  -o cmTC_a39b9 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef send
+  return ((int*)(&send))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the setsockopt exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6b478/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_6b478.dir/build.make CMakeFiles/cmTC_6b478.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6b478.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_6b478.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_6b478
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6b478.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_6b478.dir/CheckSymbolExists.c.o  -o cmTC_6b478 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef setsockopt
+  return ((int*)(&setsockopt))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the socket exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_fd780/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_fd780.dir/build.make CMakeFiles/cmTC_fd780.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_fd780.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_fd780.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_fd780
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fd780.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_fd780.dir/CheckSymbolExists.c.o  -o cmTC_fd780 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef socket
+  return ((int*)(&socket))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strcasecmp exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0cdec/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_0cdec.dir/build.make CMakeFiles/cmTC_0cdec.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0cdec.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_0cdec.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_0cdec
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0cdec.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_0cdec.dir/CheckSymbolExists.c.o  -o cmTC_0cdec -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strcasecmp
+  return ((int*)(&strcasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strdup exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_cd7c7/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_cd7c7.dir/build.make CMakeFiles/cmTC_cd7c7.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_cd7c7.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_cd7c7.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_cd7c7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cd7c7.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_cd7c7.dir/CheckSymbolExists.c.o  -o cmTC_cd7c7 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strdup
+  return ((int*)(&strdup))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the strncasecmp exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_183a0/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_183a0.dir/build.make CMakeFiles/cmTC_183a0.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_183a0.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_183a0.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_183a0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_183a0.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_183a0.dir/CheckSymbolExists.c.o  -o cmTC_183a0 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef strncasecmp
+  return ((int*)(&strncasecmp))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the writev exist passed with the following output:
+Change Dir: /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e5a35/fast"
+make[4]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_e5a35.dir/build.make CMakeFiles/cmTC_e5a35.dir/build
+make[5]: Entering directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e5a35.dir/CheckSymbolExists.c.o
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -D_GNU_SOURCE -D_POSIX_C_SOURCE=199309L -D_XOPEN_SOURCE=600  -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections    -o CMakeFiles/cmTC_e5a35.dir/CheckSymbolExists.c.o   -c /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_e5a35
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e5a35.dir/link.txt --verbose=1
+/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/bin/mipsel-linux-uclibc-gcc -Os -fomit-frame-pointer -pipe  -DEMBED -I/opt/rt-n56u/trunk/stage/include -Dlinux -D__linux__ -Dunix -Wall -Wno-trigraphs -Wno-strict-aliasing -Wno-format-security   -Wno-pointer-sign -ffunction-sections -fdata-sections   -L/opt/rt-n56u/trunk/stage/lib -Wl,--gc-sections  -rdynamic CMakeFiles/cmTC_e5a35.dir/CheckSymbolExists.c.o  -o cmTC_e5a35 -lnsl -lrt 
+make[5]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+make[4]: Leaving directory '/opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp'
+
+File /opt/rt-n56u/trunk/libs/c-ares/c-ares-1.15.0/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <stdbool.h>
+#include <sys/types.h>
+#include <arpa/inet.h>
+#include <arpa/nameser.h>
+#include <netdb.h>
+#include <net/if.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/uio.h>
+#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef writev
+  return ((int*)(&writev))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+

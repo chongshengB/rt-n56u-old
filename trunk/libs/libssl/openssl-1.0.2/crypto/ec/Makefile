@@ -92,3 +92,28 @@ clean:
 	rm -f *.s *.o */*.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+
+ec2_mult.o: ec2_mult.c ec_lcl.h
+ec2_oct.o: ec2_oct.c ec_lcl.h
+ec2_smpl.o: ec2_smpl.c ec_lcl.h
+ec_ameth.o: ../../e_os.h ../asn1/asn1_locl.h ../cryptlib.h ec_ameth.c ec_lcl.h
+ec_asn1.o: ec_asn1.c ec_lcl.h
+ec_check.o: ec_check.c ec_lcl.h
+ec_curve.o: ec_curve.c ec_lcl.h
+ec_cvt.o: ec_cvt.c ec_lcl.h
+ec_err.o: ec_err.c
+ec_key.o: ec_key.c ec_lcl.h
+ec_lib.o: ec_lcl.h ec_lib.c
+ec_mult.o: ec_lcl.h ec_mult.c
+ec_oct.o: ec_lcl.h ec_oct.c
+ec_pmeth.o: ../../e_os.h ../cryptlib.h ../evp/evp_locl.h ec_lcl.h ec_pmeth.c
+ec_print.o: ec_lcl.h ec_print.c
+eck_prn.o: ../../e_os.h ../cryptlib.h eck_prn.c
+ecp_mont.o: ec_lcl.h ecp_mont.c
+ecp_nist.o: ec_lcl.h ecp_nist.c
+ecp_nistp224.o: ecp_nistp224.c
+ecp_nistp256.o: ecp_nistp256.c
+ecp_nistp521.o: ecp_nistp521.c
+ecp_nistputil.o: ecp_nistputil.c
+ecp_oct.o: ec_lcl.h ecp_oct.c
+ecp_smpl.o: ec_lcl.h ecp_smpl.c

@@ -1220,12 +1220,6 @@ handle_notifications(void)
 			restart_aria();
 		}
 #endif
-#if defined(APP_KOOLPROXY)
-		else if (strcmp(entry->d_name, RCN_RESTART_KOOLPROXY) == 0)
-		{
-			restart_koolproxy();
-		}
-#endif
 #endif
 		else if (strcmp(entry->d_name, RCN_RESTART_HTTPD) == 0)
 		{
@@ -1286,6 +1280,12 @@ handle_notifications(void)
 		else if (strcmp(entry->d_name, RCN_RESTART_DNSFORWARDER) == 0)
 		{
 			restart_dnsforwarder();
+		}
+#endif
+#if defined(APP_KOOLPROXY)
+		else if (strcmp(entry->d_name, RCN_RESTART_KOOLPROXY) == 0)
+		{
+			restart_koolproxy();
 		}
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)

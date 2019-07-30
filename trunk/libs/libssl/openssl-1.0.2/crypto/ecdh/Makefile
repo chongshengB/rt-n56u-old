@@ -76,3 +76,9 @@ clean:
 	rm -f *.o */*.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+
+ech_err.o: ech_err.c
+ech_kdf.o: ech_kdf.c
+ech_key.o: ech_key.c ech_locl.h
+ech_lib.o: ech_lib.c ech_locl.h
+ech_ossl.o: ../../e_os.h ../cryptlib.h ech_locl.h ech_ossl.c

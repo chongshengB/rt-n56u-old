@@ -1,0 +1,6 @@
+tdir_elf32ltsmip=mipsel-linux-uclibc
+tdir_elf32btsmip=mipsel-linux-uclibc
+tdir_elf32ltsmipn32=mipsel-linux-uclibc
+tdir_elf64ltsmip=mipsel-linux-uclibc
+tdir_elf32btsmipn32=mipsel-linux-uclibc
+tdir_elf64btsmip=mipsel-linux-uclibc

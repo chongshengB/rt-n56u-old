@@ -76,3 +76,10 @@ clean:
 	rm -f *.o */*.o *.obj lib tags core .pure .nfs* *.old *.bak fluff
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
+
+ecs_asn1.o: ecs_asn1.c ecs_locl.h
+ecs_err.o: ecs_err.c
+ecs_lib.o: ecs_lib.c ecs_locl.h
+ecs_ossl.o: ../bn_int.h ecs_locl.h ecs_ossl.c
+ecs_sign.o: ecs_locl.h ecs_sign.c
+ecs_vrf.o: ecs_locl.h ecs_vrf.c
