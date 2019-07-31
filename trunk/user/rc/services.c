@@ -371,13 +371,13 @@ void start_napt66(void){
 
 #if defined(APP_KOOLPROXY)
 void stop_koolproxy(void){
-	eval("/usr/bin/koolproxy.sh","stop");
+	eval("/etc/storage/koolproxy.sh","stop");
 }
 
 void start_koolproxy(void){
 	int koolproxy_mode = nvram_get_int("koolproxy_enable");
 	if ( koolproxy_mode == 1)
-		eval("/usr/bin/koolproxy.sh","start");
+		eval("/etc/storage/koolproxy.sh","start");
 }
 
 void restart_koolproxy(void){
@@ -600,6 +600,9 @@ start_services_once(int is_ap_mode)
 #if defined(APP_VLMCSD)
 	start_vlmcsd();
 #endif
+#if defined(APP_KOOLPROXY)
+	start_koolproxy();
+#endif
 	start_lltd();
 	start_watchdog_cpu();
 	start_crond();
@@ -634,6 +637,9 @@ stop_services(int stopall)
 #endif
 #if defined(APP_TTYD)
 	stop_ttyd();
+#endif
+#if defined(APP_KOOLPROXY)
+	stop_koolproxy();
 #endif
 	stop_networkmap();
 	stop_lltd();

@@ -4,6 +4,8 @@ all:
 clean:
 
 romfs:
-	$(ROMFSINST) /usr/bin/koolproxy.sh
 	$(ROMFSINST) /etc_ro/koolproxy.tgz
-	$(ROMFSINST) /wwwn56u_ribbon_fixed/Advanced_koolproxy.asp
+	$(ROMFSINST) /etc_ro/ad_config_script.sh
+	$(ROMFSINST) /etc_ro/koolproxy.sh
+	$(ROMFSINST) /etc_ro/koolproxy_rules_list.sh
+	$(ROMFSINST) /etc_ro/koolproxy_rules_script.sh

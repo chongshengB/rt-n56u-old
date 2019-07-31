@@ -1,0 +1,81 @@
+#!/bin/sh
+
+#
+# This script computes the various flags needed to run GNU C++ testsuites
+# (compiler specific as well as library specific). 
+#
+# Written by Benjamin Kosnik <bkoz@redhat.com>
+#            Gabriel Dos Reis <gdr@codesourcery.com>
+#
+
+# Print a message saying how this script is intended to be invoked
+print_usage() {
+    cat <<EOF
+Usage: 
+    testsuite_flags --install-includes
+		    --build-includes
+		    --build-cxx
+		    --build-cc
+		    --install-cxx
+		    --cxxflags
+		    --cxxpchflags
+		    --cxxldflags
+EOF
+}
+
+# Establish configure-generated directory structure.
+BUILD_DIR=/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/mipsel-linux-uclibc/libstdc++-v3
+SRC_DIR=/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/gcc-4.4.7/libstdc++-v3
+PREFIX_DIR=/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x
+query=$1
+
+case ${query} in
+    --install-includes)
+      INCLUDES="-I${SRC_DIR}/testsuite/util"
+      echo ${INCLUDES}
+      ;;
+    --build-includes)
+      INCLUDES="-nostdinc++ -I/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/mipsel-linux-uclibc/libstdc++-v3/include/mipsel-linux-uclibc -I/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/mipsel-linux-uclibc/libstdc++-v3/include -I/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/gcc-4.4.7/libstdc++-v3/libsupc++ 
+                -I${SRC_DIR}/include/backward -I${SRC_DIR}/testsuite/util"
+      echo ${INCLUDES}
+      ;;
+    --install-cxx)
+      CXX=${PREFIX_DIR}/bin/g++
+      echo ${CXX}
+      ;;
+    --build-cxx)
+      CXX_build=" /opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/./gcc/xgcc -shared-libgcc -B/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/./gcc -nostdinc++ -L/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/mipsel-linux-uclibc/libstdc++-v3/src -L/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/mipsel-linux-uclibc/libstdc++-v3/src/.libs -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib/ -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/include -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/sys-include"
+      CXX=`echo "$CXX_build" | sed 's,gcc/xgcc ,gcc/g++ ,'`
+      echo ${CXX}
+      ;;
+    --build-cc)
+      CC_build=" /opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/./gcc/xgcc -B/opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/./gcc/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/bin/ -B/opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/lib/ -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/include -isystem /opt/rt-n56u/toolchain-mipsel/toolchain-3.4.x/mipsel-linux-uclibc/sys-include"
+      CC="$CC_build"
+      echo ${CC}
+      ;;
+    --cxxflags)
+      CXXFLAGS_default="-g -O2 -D_GLIBCXX_ASSERT -fmessage-length=0"
+      CXXFLAGS_config="-ffunction-sections -fdata-sections -g -O2   -D_GNU_SOURCE -minterlink-mips16   "
+      echo ${CXXFLAGS_default} ${CXXFLAGS_config}
+      ;;
+    --cxxparallelflags)
+      CXXFLAGS_parallel="-D_GLIBCXX_PARALLEL -fopenmp
+			 -B${BUILD_DIR}/../libgomp 
+                         -I${BUILD_DIR}/../libgomp 
+			 -L${BUILD_DIR}/../libgomp/.libs -lgomp"
+      echo ${CXXFLAGS_parallel}
+      ;;
+    --cxxpchflags)
+      PCHFLAGS=""
+      echo ${PCHFLAGS}
+      ;;
+    --cxxldflags)
+      SECTIONLDFLAGS="-Wl,--gc-sections  "
+      echo ${SECTIONLDFLAGS}
+      ;;
+    *)
+      print_usage
+      ;;
+esac
+
+exit 0

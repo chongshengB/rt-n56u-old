@@ -547,7 +547,6 @@ void start_dnsforwarder(void);
 void restart_dnsforwarder(void);
 #endif
 #if defined(APP_KOOLPROXY)
-#int is_koolproxy_run(void);
 void stop_koolproxy(void);
 void start_koolproxy(void);
 void restart_koolproxy(void);

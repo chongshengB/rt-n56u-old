@@ -1,0 +1,5 @@
+@set version-GCC 4.4.7
+@clear DEVELOPMENT
+@set srcdir /opt/rt-n56u/toolchain-mipsel/src/mipsel-linux-uclibc-toolchain/build-gcc-bootstrap-cpp/gcc/../../gcc-4.4.7/gcc
+@set VERSION_PACKAGE (GCC) 
+@set BUGURL @uref{http://gcc.gnu.org/bugs.html}

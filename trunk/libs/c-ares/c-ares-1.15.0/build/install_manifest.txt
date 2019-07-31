@@ -1,0 +1,15 @@
+/opt/rt-n56u/trunk/stage/lib/libcares.so.2.3.0
+/opt/rt-n56u/trunk/stage/lib/libcares.so.2
+/opt/rt-n56u/trunk/stage/lib/libcares.so
+/opt/rt-n56u/trunk/stage/include/ares.h
+/opt/rt-n56u/trunk/stage/include/ares_version.h
+/opt/rt-n56u/trunk/stage/include/ares_dns.h
+/opt/rt-n56u/trunk/stage/include/ares_build.h
+/opt/rt-n56u/trunk/stage/include/ares_rules.h
+/opt/rt-n56u/trunk/stage/lib/cmake/c-ares/c-ares-targets.cmake
+/opt/rt-n56u/trunk/stage/lib/cmake/c-ares/c-ares-targets-noconfig.cmake
+/opt/rt-n56u/trunk/stage/lib/cmake/c-ares/c-ares-config.cmake
+/opt/rt-n56u/trunk/stage/lib/pkgconfig/libcares.pc
+/opt/rt-n56u/trunk/stage/bin/ahost
+/opt/rt-n56u/trunk/stage/bin/adig
+/opt/rt-n56u/trunk/stage/bin/acountry

@@ -1,0 +1,1 @@
+#define CONFIG_DHCP6C 1

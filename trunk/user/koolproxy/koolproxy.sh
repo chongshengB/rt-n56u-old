@@ -1,6 +1,6 @@
 #!/bin/sh
 #copyright by hiboy
-source /etc/storage/script/init.sh
+#source /etc/storage/script/init.sh
 TAG="AD_BYBY"		  # iptables tag
 koolproxy_enable=`nvram get koolproxy_enable`
 [ -z $koolproxy_enable ] && koolproxy_enable=0 && nvram set koolproxy_enable=0
@@ -9,8 +9,8 @@ if [ "$koolproxy_enable" != "0" ] ; then
 #nvramshow=`nvram showall | grep '=' | grep adbyby | awk '{print gensub(/'"'"'/,"'"'"'\"'"'"'\"'"'"'","g",$0);}'| awk '{print gensub(/=/,"='\''",1,$0)"'\'';";}'` && eval $nvramshow
 #nvramshow=`nvram showall | grep '=' | grep adm | awk '{print gensub(/'"'"'/,"'"'"'\"'"'"'\"'"'"'","g",$0);}'| awk '{print gensub(/=/,"='\''",1,$0)"'\'';";}'` && eval $nvramshow
 #nvramshow=`nvram showall | grep '=' | grep koolproxy | awk '{print gensub(/'"'"'/,"'"'"'\"'"'"'\"'"'"'","g",$0);}'| awk '{print gensub(/=/,"='\''",1,$0)"'\'';";}'` && eval $nvramshow
-adbyby_mode_x=`nvram get adbyby_mode_x`
-[ -z $adbyby_mode_x ] && adbyby_mode_x=0 && nvram set adbyby_mode_x=0
+koolproxy_set=`nvram get koolproxy_set`
+[ -z $koolproxy_set ] && koolproxy_set=0 && nvram set koolproxy_set=0
 ss_link_1=`nvram get ss_link_1`
 koolproxy_auto=`nvram get koolproxy_auto`
 koolproxy_video=`nvram get koolproxy_video`
@@ -18,7 +18,7 @@ lan_ipaddr=`nvram get lan_ipaddr`
 koolproxy_https=`nvram get koolproxy_https`
 adm_hookport=`nvram get adm_hookport`
 koolproxy_adblock=`nvram get koolproxy_adblock`
-adbyby_CPUAverages=`nvram get adbyby_CPUAverages`
+koolproxy_cpu=`nvram get koolproxy_cpu`
 ss_DNS_Redirect=`nvram get ss_DNS_Redirect`
 ss_DNS_Redirect_IP=`nvram get ss_DNS_Redirect_IP`
 ss_link_1=`nvram get ss_link_1`
@@ -28,13 +28,10 @@ ss_enable=`nvram get ss_enable`
 ss_mode_x=`nvram get ss_mode_x`
 adbyby_adblocks=`nvram get adbyby_adblocks`
 koolproxy_uprules=`nvram get koolproxy_uprules`
+rules_list=`nvram get rules_list`
 
-koolproxyfile="https://koolproxy.com/downloads/mipsel"
-koolproxyfilecdn="https://github.com/koolproxy/koolproxy-bin/raw/master/mipsel"
-koolproxyfile2="$hiboyfile/koolproxy"
-koolproxyfile22="$hiboyfile2/koolproxy"
-koolproxyfile3="$hiboyfile/7620koolproxy.tgz"
-koolproxyfile33="$hiboyfile2/7620koolproxy.tgz"
+
+koolproxyfile="$/etc_ro/koolproxy.tgz"
 koolproxy_rules_list="/etc/storage/koolproxy_rules_list.sh"
 [ -z "$(grep '1|user.txt||' $koolproxy_rules_list)" ] && rm -f $koolproxy_rules_list
 FWI="/tmp/firewall.adbyby.pdcn" # firewall include file
@@ -118,24 +115,14 @@ if [ ! -z "$upanPath" ] ; then
 	ln -sf "$upanPath/ad/7620koolproxy" /tmp/7620koolproxy
 	if [ -s /etc_ro/7620koolproxy_*.tgz ] && [ ! -s "$upanPath/ad/7620koolproxy/koolproxy" ] ; then
 		logger -t "【koolproxy】" "使用内置主程序"
-		untar.sh /etc_ro/7620koolproxy_*.tgz $upanPath/ad $upanPath/ad/7620koolproxy/data/version
-	fi
-	if [ ! -s "$upanPath/ad/7620koolproxy/data/version" ] ; then
-		logger -t "【koolproxy】" "开始下载 7620koolproxy.tgz"
-		wgetcurl.sh $upanPath/ad/7620koolproxy.tgz $koolproxyfile3 $koolproxyfile33
-		untar.sh $upanPath/ad/7620koolproxy.tgz $upanPath/ad $upanPath/ad/7620koolproxy/data/version
+		tar -xzvf "/etc_ro/koolproxy.tgz" -C "$upanPath/ad/7620koolproxy"
 	fi
 else
 	logger -t "【koolproxy】" "未挂载储存设备, 主程序放路由内存存储"
 	mkdir -p /tmp/7620koolproxy
-	if [ -s /etc_ro/7620koolproxy_*.tgz ] && [ ! -s "/tmp/7620koolproxy/koolproxy" ] ; then
+	if [ -s /etc_ro/koolproxy.tgz ] && [ ! -s "/tmp/7620koolproxy/koolproxy" ] ; then
 		logger -t "【koolproxy】" "使用内置主程序"
-		untar.sh /etc_ro/7620koolproxy_*.tgz /tmp /tmp/7620koolproxy/data/version
-	fi
-	if [ ! -s "/tmp/7620koolproxy/data/version" ] ; then
-		logger -t "【koolproxy】" "开始下载 7620koolproxy.tgz"
-		wgetcurl.sh /tmp/7620koolproxy.tgz $koolproxyfile3 $koolproxyfile33
-		untar.sh /tmp/7620koolproxy.tgz /tmp /tmp/7620koolproxy/data/version
+		tar -xzvf "/etc_ro/koolproxy.tgz" -C "/tmp"
 	fi
 fi
 export PATH='/tmp/7620koolproxy:/etc/storage/bin:/tmp/script:/etc/storage/script:/opt/usr/sbin:/opt/usr/bin:/opt/sbin:/opt/bin:/usr/local/sbin:/usr/sbin:/usr/bin:/sbin:/bin'
@@ -184,7 +171,7 @@ exit 0
 koolproxy_get_status () {
 
 A_restart=`nvram get koolproxy_status`
-B_restart="$koolproxy_enable$ss_link_1$koolproxy_auto$koolproxy_video$koolproxyfile$koolproxyfile2$koolproxyfile3$lan_ipaddr$koolproxy_https$adbyby_mode_x$adm_hookport$koolproxy_adblock$adbyby_CPUAverages$ss_DNS_Redirect$ss_DNS_Redirect_IP$(cat /etc/storage/ad_config_script.sh | grep -v "^$" | grep -v "^#")$(cat /etc/storage/koolproxy_rules_script.sh /etc/storage/koolproxy_rules_list.sh | grep -v "^$" | grep -v "^!")"
+B_restart="$koolproxy_enable$rules_list$ss_link_1$koolproxy_auto$koolproxy_video$koolproxyfile$koolproxyfile2$koolproxyfile3$lan_ipaddr$koolproxy_https$koolproxy_set$adm_hookport$koolproxy_adblock$koolproxy_cpu$ss_DNS_Redirect$ss_DNS_Redirect_IP$(cat /etc/storage/ad_config_script.sh | grep -v "^$" | grep -v "^#")$(cat /etc/storage/koolproxy_rules_script.sh /etc/storage/koolproxy_rules_list.sh | grep -v "^$" | grep -v "^!")"
 B_restart=`echo -n "$B_restart" | md5sum | sed s/[[:space:]]//g | sed s/-//g`
 if [ "$A_restart" != "$B_restart" ] ; then
 	nvram set koolproxy_status=$B_restart
@@ -357,7 +344,7 @@ done
 }
 
 koolproxy_keepcpu () {
-if [ "$adbyby_CPUAverages" = "1" ] && [ ! -f /tmp/cron_adb.lock ] ; then
+if [ "$koolproxy_cpu" = "1" ] && [ ! -f /tmp/cron_adb.lock ] ; then
 	processor=`cat /proc/cpuinfo| grep "processor"| wc -l`
 	[ "$processor" = "1" ] && processor=`expr $processor \* 2`
 	CPULoad=`uptime |sed -e 's/\ *//g' -e 's/.*://g' | awk -F ',' '{print $2;}' | sed -e 's/\..*//g'`
@@ -381,9 +368,9 @@ fi
 
 koolproxy_close () {
 
-cru.sh d adbyby_update &
-cru.sh d adm_update &
-cru.sh d koolproxy_update &
+#cru.sh d adbyby_update &
+#cru.sh d adm_update &
+#cru.sh d koolproxy_update &
 port=$(iptables -t nat -L | grep 'ports 3000' | wc -l)
 [ "$port" != 0 ] && koolproxy_flush_rules
 [ "$adbyby_enable" != "1" ] && killall -15 adbyby sh_ad_byby_keey_k.sh
@@ -442,14 +429,49 @@ if [ -z "`pidof koolproxy`" ] && [ "$koolproxy_enable" = "1" ] && [ ! -f /tmp/cr
 #3.8.2
 #规则的加载不再由程序内定，现在由source.list(data/source.list)文件制定规则的加载和开启与否，source.list也能写入第三方规则，第三方规则将由koolproxy主程序负责下载。
 #因为以上变更，去掉-e功能（仅加载kp.dat），现在要实现仅加载kp.dat，只需要修改source.list中对应规则的开关。
+koolproxy_txt=`nvram get koolproxy_txt`
+daily_txt=`nvram get daily_txt`
+kp_dat=`nvram get kp_dat`
+
+cd /tmp/7620koolproxy/data/rules
+if [ "$rules_list" = "1" ] ; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat -O kp.dat
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt -O koolproxy.txt
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt -O daily.txt
+nvram set rules_list=0
+else
+if [ ! -f "kp.dat" ]; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat -O kp.dat
+else
+logger -t "【koolproxy】" "kp.dat文件已下载。"
+fi
+
+if [ ! -f "koolproxy.txt" ]; then
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt -O koolproxy.txt
+else
+logger -t "【koolproxy】" "koolproxy.txt文件已下载。"
+fi
+
+if [ ! -f "daily.txt" ]; then
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt -O daily.txt
+else
+logger -t "【koolproxy】" "daily.txt文件已下载。"
+fi
+fi
 	if [ ! -f "$koolproxy_rules_list" ] || [ ! -s "$koolproxy_rules_list" ] ; then
 		logger -t "【koolproxy】" "重置data/source.list"
 		initconfig
 	fi
-	if [ ! -z "$(grep '1|koolproxy.txt|https://kprule.com/koolproxy.txt|' $koolproxy_rules_list)" ] ; then
-		logger -t "【koolproxy】" "kp规则停止更新！停用kprule.com规则！"
-		sed -e 's@1|koolproxy.txt|https://kprule.com/koolproxy.txt|@0|koolproxy.txt|https://kprule.com/koolproxy.txt|@' -e 's@1|daily.txt|https://kprule.com/daily.txt|@0|daily.txt|https://kprule.com/daily.txt|@' -e 's@1|kp.dat|https://kprule.com/kp.dat|@0|kp.dat|https://kprule.com/kp.dat|@' -i $koolproxy_rules_list
-	fi
+#	if [ ! -z "$(grep '1|koolproxy.txt|https://kprule.com/koolproxy.txt|' $koolproxy_rules_list)" ] ; then
+#		logger -t "【koolproxy】" "kp规则停止更新！停用kprule.com规则！"
+#		sed -e 's@1|koolproxy.txt|https://kprule.com/koolproxy.txt|@0|koolproxy.txt|https://kprule.com/koolproxy.txt|@' -e 's@1|daily.txt|https://kprule.com/daily.txt|@0|daily.txt|https://kprule.com/daily.txt|@' -e 's@1|kp.dat|https://kprule.com/kp.dat|@0|kp.dat|https://kprule.com/kp.dat|@' -i $koolproxy_rules_list
+#	fi
 	source_list="/tmp/7620koolproxy/data/source.list"
 	cat $koolproxy_rules_list | grep -v '#' | grep -v "^$" > $source_list
 	if [ "$koolproxy_video" = "1" ] ; then
@@ -504,8 +526,8 @@ if [ -z "`pidof koolproxy`" ] && [ "$koolproxy_enable" = "1" ] && [ ! -f /tmp/cr
 	[ -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "启动失败, 注意检查端口是否有冲突,程序是否下载完整,10 秒后自动尝试重新启动" && sleep 10 && koolproxy_restart x
 	#[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待40秒！" && sleep 10
 	#[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待30秒！" && sleep 10
-	[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待20秒！" && sleep 10
-	[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待10秒！" && sleep 10
+	#[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待20秒！" && sleep 10
+	#[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "等待规则下载，请等待10秒！" && sleep 10
 	hash krdl 2>/dev/null && krdl_ipset
 fi
 if [ -s /tmp/7620koolproxy/data/rules/koolproxy.txt ] ; then
@@ -587,7 +609,7 @@ touch /tmp/cp_rules.lock
 #  awk  'NR==FNR{a[$0]}NR>FNR{ if(!($1 in a)) print $0}' file1 file2 #去除 file2 中file1的内容
 #  awk 'NR==FNR{a[$0]++} NR>FNR&&a[$0]' file1 file2 #找出两个文件之间的相同部分
 #  awk 'NR==FNR{a[$0]++} NR>FNR&&!a[$0]' file1 file2 #去除 file2 中file1的内容
-if [ "$adbyby_mode_x" == 1 ] && [ -s /tmp/adbyby_host.conf ] ; then
+if [ "$koolproxy_set" == 1 ] && [ -s /tmp/adbyby_host.conf ] ; then
 logger -t "【iptables】" "添加 ipset 转发规则"
 sed -Ei '/adbyby_host.conf|cflist.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
 sed  "s/\/black_koolproxy/\/adbybylist/" -i  /tmp/adbyby_host.conf
@@ -700,10 +722,10 @@ for host in $line; do
 	esac
 done
 done < /tmp/ad_spec_lan.txt
-	[ "$adbyby_mode_x" == 0 ] && WAN_TARGET="AD_BYBY_to"
-	[ "$adbyby_mode_x" == 0 ] && ADBYBYLIST_TARGET="AD_BYBY_to"
-	[ "$adbyby_mode_x" == 1 ] && WAN_TARGET="RETURN"
-	[ "$adbyby_mode_x" == 1 ] && ADBYBYLIST_TARGET="AD_BYBY_to"
+	[ "$koolproxy_set" == 0 ] && WAN_TARGET="AD_BYBY_to"
+	[ "$koolproxy_set" == 0 ] && ADBYBYLIST_TARGET="AD_BYBY_to"
+	[ "$koolproxy_set" == 1 ] && WAN_TARGET="RETURN"
+	[ "$koolproxy_set" == 1 ] && ADBYBYLIST_TARGET="AD_BYBY_to"
 	include_ac_rules nat
 	include_ac_rules2 nat
 	wifidognx=""
@@ -760,7 +782,7 @@ done < /tmp/ad_spec_lan.txt
 	sleep 1
 	gen_include &
 	logger -t "【iptables】" "完成添加3000规则"
-	[ "$adbyby_mode_x" == 1 ] && koolproxy_cp_rules
+	[ "$koolproxy_set" == 1 ] && koolproxy_cp_rules
 }
 
 
@@ -1042,9 +1064,9 @@ if [ ! -f "$koolproxy_rules_list" ] || [ ! -s "$koolproxy_rules_list" ] ; then
 #（可选项：前面添加#停用规则,删除前面的#可生效）
 # 开关 0表示关闭 1表示开启
 # 开关|规则名字|规则网址|规则备注名字
-0|koolproxy.txt|https://kprule.com/koolproxy.txt|
-0|daily.txt|https://kprule.com/daily.txt|
-0|kp.dat|https://kprule.com/kp.dat|
+1|koolproxy.txt|https://kprule.com/koolproxy.txt|
+1|daily.txt|https://kprule.com/daily.txt|
+1|kp.dat|https://kprule.com/kp.dat|
 1|user.txt||
 
 EEE

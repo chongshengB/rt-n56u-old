@@ -2138,11 +2138,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_aria = 0;
 #endif
-#if defined(APP_KOOLPROXY)
-	int found_app_koolproxy = 1;
-#else
-	int found_app_koolproxy = 0;
-#endif
 #if defined(APP_NFSD)
 	int found_app_nfsd = 1;
 #else
@@ -2182,6 +2177,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 	int found_app_sshd = 1;
 #else
 	int found_app_sshd = 0;
+#endif
+#if defined(APP_KOOLPROXY)
+	int found_app_koolproxy = 1;
+#else
+	int found_app_koolproxy = 0;
 #endif
 #if defined(APP_SCUT)
 	int found_app_scutclient = 1;
@@ -2378,6 +2378,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_napt66() { return %d;}\n"
 		"function found_app_dnsforwarder() { return %d;}\n"
 		"function found_app_shadowsocks() { return %d;}\n"
+		"function found_app_koolproxy() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n",
 		found_utl_hdparm,
 		found_app_ovpn,
