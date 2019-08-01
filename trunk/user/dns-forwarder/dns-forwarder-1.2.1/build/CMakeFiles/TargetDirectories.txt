@@ -1,3 +1,0 @@
-/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/rebuild_cache.dir
-/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/dns-forwarder.dir
-/opt/rt-n56u/trunk/user/dns-forwarder/dns-forwarder-1.2.1/build/CMakeFiles/edit_cache.dir

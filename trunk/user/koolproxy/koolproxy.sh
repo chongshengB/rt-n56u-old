@@ -113,7 +113,7 @@ if [ ! -z "$upanPath" ] ; then
 	mkdir -p $upanPath/ad/7620koolproxy
 	rm -f /tmp/7620koolproxy
 	ln -sf "$upanPath/ad/7620koolproxy" /tmp/7620koolproxy
-	if [ -s /etc_ro/7620koolproxy_*.tgz ] && [ ! -s "$upanPath/ad/7620koolproxy/koolproxy" ] ; then
+	if [ -s /etc_ro/koolproxy.tgz ] && [ ! -s "$upanPath/ad/7620koolproxy/koolproxy" ] ; then
 		logger -t "【koolproxy】" "使用内置主程序"
 		tar -xzvf "/etc_ro/koolproxy.tgz" -C "$upanPath/ad/7620koolproxy"
 	fi
