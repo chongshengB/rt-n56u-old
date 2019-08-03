@@ -83,6 +83,14 @@
 			{"dhcp_staticname_x", "24", NULL, FALSE},
 			{0,0,0,0}
 		};
+		
+		struct variable variables_KoolproxyConf_KpIPList[] = {
+			{"koolproxy_mac_x", "14", NULL, FALSE},
+			{"koolproxy_ip_x", "17", NULL, FALSE},
+			{"koolproxy_name_x", "24", NULL, FALSE},
+			{"koolproxy_ip_road", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
 
 	struct variable variables_LANHostConfig_VPNSACLList[] = {
 			{"vpns_user_x", "32", NULL, FALSE},
@@ -839,6 +847,7 @@
 			{"koolproxy_video", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_prot", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_update", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"kp_staticnum_x", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"rules_list", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_txt", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"daily_txt", "", NULL, EVM_RESTART_KOOLPROXY},
@@ -847,6 +856,7 @@
 			{"scripts.koolproxy_rules_list.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
 			{"scripts.koolproxy_rules_script.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
 			{"scripts.ad_config_script.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
+			{"KpIPList", "Group", ARGV((char*)variables_KoolproxyConf_KpIPList, "8", "55", "kp_staticnum_x"), EVM_RESTART_KOOLPROXY},
 			{0,0,0,0}
 	};
 #endif

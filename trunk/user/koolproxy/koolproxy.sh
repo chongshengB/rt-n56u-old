@@ -113,7 +113,7 @@ if [ ! -z "$upanPath" ] ; then
 	mkdir -p $upanPath/ad/7620koolproxy
 	rm -f /tmp/7620koolproxy
 	ln -sf "$upanPath/ad/7620koolproxy" /tmp/7620koolproxy
-	if [ -s /etc_ro/koolproxy.tgz ] && [ ! -s "$upanPath/ad/7620koolproxy/koolproxy" ] ; then
+	if [ -s /etc_ro/7620koolproxy_*.tgz ] && [ ! -s "$upanPath/ad/7620koolproxy/koolproxy" ] ; then
 		logger -t "【koolproxy】" "使用内置主程序"
 		tar -xzvf "/etc_ro/koolproxy.tgz" -C "$upanPath/ad/7620koolproxy"
 	fi
@@ -775,7 +775,11 @@ done < /tmp/ad_spec_lan.txt
 		[ "$koolproxy_https" = "1" ] && iptables -t nat -I PREROUTING $wifidognx -p tcp --dport 443 -j AD_BYBY
 	else
 		[ "$koolproxy_https" = "1" ] && iptables -t nat -I PREROUTING $wifidognx -p tcp -m multiport --dports 80,443,8080 -j AD_BYBY
-		[ "$koolproxy_https" != "1" ] && iptables -t nat -I PREROUTING $wifidognx -p tcp -m multiport --dports 80,8080 -j AD_BYBY
+
+		if [ "$koolproxy_https" != "1" ]; then
+		iptables -t nat -I PREROUTING $wifidognx -p tcp -m multiport --dports 80,8080 -j AD_BYBY
+		iptables -t nat -I PREROUTING $wifidognx -p tcp -m set --match-set ad_spec_src_https src --dport 443 -j AD_BYBY
+		fi
 	fi
 	iptables -t nat -A AD_BYBY_to -p tcp -j REDIRECT --to-ports 3000
 	dns_redirect
@@ -899,7 +903,8 @@ for host in $line; do
 if [ ! -z "$mac" ] ; then
 	case "${host:0:1}" in
 		s|S)
-			iptables -t $1 -I AD_BYBY_LAN_AC -m mac --mac-source $mac -p tcp --dport 443 -j AD_BYBY_to
+			#iptables -t nat -I AD_BYBY_LAN_AC -m mac --mac-source $mac -p tcp --dport 443 -j AD_BYBY_to
+			#logger -t "【yes】" "$mac"
 			;;
 		n|N)
 			iptables -t $1 -I AD_BYBY_LAN_AC -m mac --mac-source $mac -j AD_BYBY_WAN_AC 

@@ -406,6 +406,8 @@ struct nvram_pair router_defaults[] = {
 	{ "koolproxy_update_hour", "3"},
 	{ "kolproxy_update_min", "00"},
     {"ss_DNS_Redirect", "0"},
+	{ "kp_ip_x", "0"},
+	{ "kp_staticnum_x", "0"},
 	{ "hdd_spindt", "0" },
 	{ "hdd_apmoff", "0" },
 
@@ -843,6 +845,10 @@ struct nvram_pair tables_defaults[] = {
 	{ "dhcp_staticmac_x", "" },
 	{ "dhcp_staticip_x", "" },
 	{ "dhcp_staticname_x", "" },
+	
+	{"koolproxy_mac_x", "" },
+	{"koolproxy_ip_x", "" },
+	{"koolproxy_name_x", "" },
 
 	{ "vpns_user_x", "" },
 	{ "vpns_pass_x", "" },
