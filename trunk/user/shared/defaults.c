@@ -132,6 +132,7 @@ struct nvram_pair router_defaults[] = {
 	{ "wan_ppp_peer", "" },			/* VPN server address */
 	{ "wan_ppp_auth", "0" },		/* PPP authentication */
 	{ "wan_ppp_mppe", "0" },		/* MPPE encryption */
+	{ "wan_ppp_lcp", "1" },
 	{ "wan_ppp_alcp", "0" },		/* Adaptive LCP Echo */
 	{ "wan_ppp_pppd", "" },			/* Custom PPPD options */
 
@@ -405,6 +406,8 @@ struct nvram_pair router_defaults[] = {
 	{ "koolproxy_update_hour", "3"},
 	{ "kolproxy_update_min", "00"},
     {"ss_DNS_Redirect", "0"},
+	{ "kp_ip_x", "0"},
+	{ "kp_staticnum_x", "0"},
 	{ "hdd_spindt", "0" },
 	{ "hdd_apmoff", "0" },
 
@@ -555,6 +558,7 @@ struct nvram_pair router_defaults[] = {
 	{ "dhcp_dns1_x", "" },
 	{ "dhcp_dns2_x", "" },
 	{ "dhcp_dns3_x", "" },
+	{ "dhcp_dnsv6_x", "" },
 	{ "dhcp_wins_x", "" },
 	{ "dhcp_verbose", "0" },		/* 0 : quiet, 1: verbose DHCP, 2: verbose DHCPv6, 3: verbose all */
 	{ "dhcp_static_x", "0" },
@@ -841,6 +845,10 @@ struct nvram_pair tables_defaults[] = {
 	{ "dhcp_staticmac_x", "" },
 	{ "dhcp_staticip_x", "" },
 	{ "dhcp_staticname_x", "" },
+	
+	{"koolproxy_mac_x", "" },
+	{"koolproxy_ip_x", "" },
+	{"koolproxy_name_x", "" },
 
 	{ "vpns_user_x", "" },
 	{ "vpns_pass_x", "" },

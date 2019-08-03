@@ -22,6 +22,7 @@ Contributors of this project are not responsible for what happens next.
 ***
 
 ### 特别说明 ###
+* 源码来自 https://github.com/hanwckf/rt-n56u.git
 * 汉化字典来自 https://github.com/gorden5566/padavan
 
 ***
@@ -58,9 +59,11 @@ Contributors of this project are not responsible for what happens next.
 >- [mtr](https://github.com/traviscross/mtr) ```CONFIG_FIRMWARE_INCLUDE_MTR```
 >- [socat](http://www.dest-unreach.org/socat) ```CONFIG_FIRMWARE_INCLUDE_SOCAT```
 >- [srelay](https://socks-relay.sourceforge.io) ```CONFIG_FIRMWARE_INCLUDE_SRELAY```
+>- [koolproxy]```CONFIG_FIRMWARE_INCLUDE_KOOLPROXY```
 - 已适配除官方适配外的以下机型
 >- WR1200JS (128M,USB)
 >- NEWIFI3 (512M,USB)
+>- NEWIFI-MINI (28M,USB)
 >- K2/PSG1218 (64M)
 >- K2P_DRV/K2P_nano (128M)
 >- MZ-R13 (64M)
@@ -86,8 +89,8 @@ pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl
 ```
 * 克隆源码
 ```shell
-git clone --depth=1 https://gitee.com/hanwckf/rt-n56u.git /opt/rt-n56u
-#git clone --depth=1 https://github.com/hanwckf/rt-n56u.git /opt/rt-n56u
+git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+
 ```
 * 编译工具链
 ```shell
@@ -112,5 +115,4 @@ sudo ./build_firmware_modify PSG1218
 
 ### 请参阅 ###
 - https://www.jianshu.com/p/cb51fb0fb2ac
-- https://www.jianshu.com/p/d76a63a12eae
 - https://www.jianshu.com/p/6b8403cdea46
