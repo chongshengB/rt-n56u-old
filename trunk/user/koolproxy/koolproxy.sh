@@ -79,6 +79,51 @@ if [ ! -z "$(echo $scriptfilepath | grep -v "/tmp/script/" | grep kool_proxy)" ]
 	{ echo '#!/bin/sh' ; echo $scriptfilepath '"$@"' '&' ; } > /tmp/script/_kool_proxy
 	chmod 777 /tmp/script/_kool_proxy
 fi
+hosts_ad () {
+rm -rf /etc/storage/dnsmasq/dns;cd /etc
+mkdir -p /etc/storage/dnsmasq/dns/conf
+hosts_ad=`nvram get hosts_ad`
+tv_hosts=`nvram get tv_hosts`
+if [ "$koolproxy_enable"="1" ] ; then
+if [ "$hosts_ad" = "1" ] ; then
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/hosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://raw.githubusercontent.com/vokins/yhosts/master/hosts -O hosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" hosts
+if [ ! -f "hosts" ]; then
+logger -t "dnsmasq" "host文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "host文件下载完成。"
+fi
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+if [ "$tv_hosts" = "1" ]; then
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/tvhosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://dev.tencent.com/u/shaoxia1991/p/yhosts/git/raw/master/data/tvbox.txt -O tvhosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" tvhosts
+if [ ! -f "tvhosts" ]; then
+logger -t "dnsmasq" "tvbox规则文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "tvbox规则文件下载完成。"
+fi
+else
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+/sbin/restart_dhcpd
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+/sbin/restart_dhcpd
+fi
+
+}
 
 koolproxy_mount () {
 
@@ -171,7 +216,7 @@ exit 0
 koolproxy_get_status () {
 
 A_restart=`nvram get koolproxy_status`
-B_restart="$koolproxy_enable$rules_list$ss_link_1$koolproxy_auto$koolproxy_video$koolproxyfile$koolproxyfile2$koolproxyfile3$lan_ipaddr$koolproxy_https$koolproxy_set$adm_hookport$koolproxy_adblock$koolproxy_cpu$ss_DNS_Redirect$ss_DNS_Redirect_IP$(cat /etc/storage/ad_config_script.sh | grep -v "^$" | grep -v "^#")$(cat /etc/storage/koolproxy_rules_script.sh /etc/storage/koolproxy_rules_list.sh | grep -v "^$" | grep -v "^!")"
+B_restart="$hosts_ad$tv_hosts$koolproxy_enable$rules_list$koolproxy_txt_2$daily_txt_2$kp_dat_2$ss_link_1$koolproxy_auto$koolproxy_video$koolproxyfile$koolproxyfile2$koolproxyfile3$lan_ipaddr$koolproxy_https$koolproxy_set$adm_hookport$koolproxy_adblock$koolproxy_cpu$ss_DNS_Redirect$ss_DNS_Redirect_IP$(cat /etc/storage/ad_config_script.sh | grep -v "^$" | grep -v "^#")$(cat /etc/storage/koolproxy_rules_script.sh /etc/storage/koolproxy_rules_list.sh | grep -v "^$" | grep -v "^!")"
 B_restart=`echo -n "$B_restart" | md5sum | sed s/[[:space:]]//g | sed s/-//g`
 if [ "$A_restart" != "$B_restart" ] ; then
 	nvram set koolproxy_status=$B_restart
@@ -203,6 +248,7 @@ if [ "$koolproxy_enable" = "1" ] ; then
 			fi
 		fi
 	fi
+hosts_ad
 fi
 }
 
@@ -429,41 +475,113 @@ if [ -z "`pidof koolproxy`" ] && [ "$koolproxy_enable" = "1" ] && [ ! -f /tmp/cr
 #3.8.2
 #规则的加载不再由程序内定，现在由source.list(data/source.list)文件制定规则的加载和开启与否，source.list也能写入第三方规则，第三方规则将由koolproxy主程序负责下载。
 #因为以上变更，去掉-e功能（仅加载kp.dat），现在要实现仅加载kp.dat，只需要修改source.list中对应规则的开关。
-koolproxy_txt=`nvram get koolproxy_txt`
-daily_txt=`nvram get daily_txt`
-kp_dat=`nvram get kp_dat`
 
 cd /tmp/7620koolproxy/data/rules
-if [ "$rules_list" = "1" ] ; then
+rules_list_old=`nvram get rules_list_old`
+if [ "$rules_list" = "0" ]; then
+koolproxy_txt_0=`nvram get koolproxy_txt_0`
+daily_txt_0=`nvram get daily_txt_0`
+kp_dat_0=`nvram get kp_dat_0`
+if [ "$rules_list_old" != "0" ] ; then
 logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
-wget --no-check-certificate $kp_dat -O kp.dat
+wget --no-check-certificate $kp_dat_0 -O kp.dat
 logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
-wget --no-check-certificate $koolproxy_txt -O koolproxy.txt
+wget --no-check-certificate $koolproxy_txt_0 -O koolproxy.txt
 logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
-wget --no-check-certificate $daily_txt -O daily.txt
-nvram set rules_list=0
+wget --no-check-certificate $daily_txt_0 -O daily.txt
 else
 if [ ! -f "kp.dat" ]; then
 logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
-wget --no-check-certificate $kp_dat -O kp.dat
+wget --no-check-certificate $kp_dat_0 -O kp.dat
 else
 logger -t "【koolproxy】" "kp.dat文件已下载。"
 fi
-
 if [ ! -f "koolproxy.txt" ]; then
 logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
-wget --no-check-certificate $koolproxy_txt -O koolproxy.txt
+wget --no-check-certificate $koolproxy_txt_0 -O koolproxy.txt
 else
 logger -t "【koolproxy】" "koolproxy.txt文件已下载。"
 fi
-
 if [ ! -f "daily.txt" ]; then
 logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
-wget --no-check-certificate $daily_txt -O daily.txt
+wget --no-check-certificate $daily_txt_0 -O daily.txt
 else
 logger -t "【koolproxy】" "daily.txt文件已下载。"
 fi
 fi
+fi
+if [ "$rules_list" = "1" ] ; then
+koolproxy_txt_1=`nvram get koolproxy_txt_1`
+daily_txt_1=`nvram get daily_txt_1`
+kp_dat_1=`nvram get kp_dat_1`
+if [ "$rules_list_old" != "1" ] ; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat_1 -O kp.dat
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt_1 -O koolproxy.txt
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt_1 -O daily.txt
+else
+if [ ! -f "kp.dat" ]; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat_1 -O kp.dat
+else
+logger -t "【koolproxy】" "kp.dat文件已下载。"
+fi
+if [ ! -f "koolproxy.txt" ]; then
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt_1 -O koolproxy.txt
+else
+logger -t "【koolproxy】" "koolproxy.txt文件已下载。"
+fi
+if [ ! -f "daily.txt" ]; then
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt_1 -O daily.txt
+else
+logger -t "【koolproxy】" "daily.txt文件已下载。"
+fi
+fi
+fi
+if [ "$rules_list" = "2" ] ; then
+koolproxy_txt_2=`nvram get koolproxy_txt_2`
+daily_txt_2=`nvram get daily_txt_2`
+kp_dat_2=`nvram get kp_dat_2`
+if [ "$rules_list_old" != "2" ] ; then
+if [ "$kp_dat_2" != "" ] ; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat_2 -O kp.dat
+fi
+if [ "$koolproxy_txt_2" != "" ] ; then
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt_2 -O koolproxy.txt
+fi
+if [ "$daily_txt_2" != "" ] ; then
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt_2 -O daily.txt
+fi
+else
+if [ ! -f "kp.dat" ]; then
+logger -t "【koolproxy】" "正在更新kp.dat规则文件..."
+wget --no-check-certificate $kp_dat_2 -O kp.dat
+else
+logger -t "【koolproxy】" "kp.dat文件已下载。"
+fi
+if [ ! -f "koolproxy.txt" ]; then
+logger -t "【koolproxy】" "正在更新koolproxy.txt规则文件..."
+wget --no-check-certificate $koolproxy_txt_2 -O koolproxy.txt
+else
+logger -t "【koolproxy】" "koolproxy.txt文件已下载。"
+fi
+if [ ! -f "daily.txt" ]; then
+logger -t "【koolproxy】" "正在更新daily.txt规则文件..."
+wget --no-check-certificate $daily_txt_2 -O daily.txt
+else
+logger -t "【koolproxy】" "daily.txt文件已下载。"
+fi
+fi
+fi
+nvram set rules_list_old="$rules_list"
+
 	if [ ! -f "$koolproxy_rules_list" ] || [ ! -s "$koolproxy_rules_list" ] ; then
 		logger -t "【koolproxy】" "重置data/source.list"
 		initconfig
@@ -494,7 +612,8 @@ fi
 		c_line=`echo $line |grep -v "#"`
 		if [ ! -z "$c_line" ] ; then
 			logger -t "【koolproxy】" "第三方规则:$line"
-			wgetcurl.sh /tmp/7620koolproxy/user2.txt $line $line N
+			#wgetcurl.sh /tmp/7620koolproxy/user2.txt $line $line N
+			wget --no-check-certificate $line -O /tmp/7620koolproxy/user2.txt
 			grep -v '^!' /tmp/7620koolproxy/user2.txt | grep -E '^(@@\||\||[[:alnum:]])' | sort -u | grep -v "^$" >> /tmp/7620koolproxy/user3adblocks.txt
 			rm -f /tmp/7620koolproxy/user2.txt
 		fi
@@ -535,7 +654,7 @@ nvram set koolproxy_rules_date_local="`sed -n '1,10p' /tmp/7620koolproxy/data/ru
 nvram set koolproxy_rules_nu_local="`cat /tmp/7620koolproxy/data/rules/koolproxy.txt | grep -v ! | wc -l`"
 nvram set koolproxy_video_date_local="`sed -n '1,10p' /tmp/7620koolproxy/data/rules/koolproxy.txt | grep "$(sed -n '1,10p' /tmp/7620koolproxy/data/rules/koolproxy.txt | grep -Eo '[0-9]+-[0-9]+-[0-9]+ [0-9]+:[0-9]+|201?.{1}' | sed -n '2p')" | sed 's/[x!]//g' | sed -r 's/-{2,}//g' | sed -r 's/\ {2}//g' | sed -r 's/\ {2}//g' | sed -n '1p'`"
 fi
-#koolproxy_add_rules
+koolproxy_add_rules
 rm -f /tmp/7620koolproxy.tgz /tmp/cron_adb.lock
 /etc/storage/ez_buttons_script.sh 3 & #更新按钮状态
 logger -t "【koolproxy】" "守护进程启动"
@@ -662,6 +781,7 @@ ipset -F adbybylist &> /dev/null
 ipset destroy adbybylist &> /dev/null
 #ipset -F cflist &> /dev/null
 sed -Ei '/adbyby_host.conf|cflist.conf/d' /etc/storage/dnsmasq/dnsmasq.conf
+sed -i -e '/\/dns\//d' /etc/storage/dnsmasq/dnsmasq.conf
 restart_dhcpd
 logger -t "【iptables】" "完成删除3000规则"
 }
@@ -1092,6 +1212,7 @@ check)
 	;;
 stop)
 	koolproxy_close
+
 	;;
 keep)
 	#koolproxy_check

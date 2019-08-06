@@ -26,6 +26,8 @@ var $j = jQuery.noConflict();
 $j(document).ready(function() {
 	init_itoggle('koolproxy_enable',change_koolproxy_enable);
 	init_itoggle('koolproxy_cpu');
+	init_itoggle('hosts_ad');
+	init_itoggle('tv_hosts');
 	init_itoggle('koolproxy_https');
 	init_itoggle('koolproxy_video');
 	init_itoggle('koolproxy_prot');
@@ -74,10 +76,16 @@ function change_koolproxy_enable(){
 }
 
 function change_rules_list(){
-	var m = document.form.rules_list[0].checked;
+if(document.form.rules_list_3.checked==true){
+	var m = document.form.rules_list_3.checked;
 	showhide_div('koolproxy_txt', m);
 	showhide_div('daily_txt', m);
 	showhide_div('kp_dat', m);
+	}else{
+	showhide_div('koolproxy_txt', false);
+	showhide_div('daily_txt', false);
+	showhide_div('kp_dat', false);
+}
 }
 
 function change_ss_DNS_Redirect(){
@@ -274,37 +282,67 @@ function button_updatead(){
 											</td>
 										</tr>
 										<tr>
-											<th width="30%" style="border-top: 0 none;">更换规则更新地址</th>
+											<th width="30%" style="border-top: 0 none;">加载hosts去AD？</th>
 											<td>
 													<div class="main_itoggle">
-													<div id="rules_list_on_of">
-														<input type="checkbox" id="rules_list_fake" <% nvram_match_x("", "rules_list", "1", "value=1 checked"); %><% nvram_match_x("", "rules_list", "0", "value=0"); %>  />
+													<div id="hosts_ad_on_of">
+														<input type="checkbox" id="hosts_ad_fake" <% nvram_match_x("", "hosts_ad", "1", "value=1 checked"); %><% nvram_match_x("", "hosts_ad", "0", "value=0"); %>  />
 													</div>
 												</div>
 												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="rules_list" id="rules_list_1" class="input" value="1" onClick="change_rules_list();"<% nvram_match_x("", "rules_list", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="rules_list" id="rules_list_0" class="input" value="0" onClick="change_rules_list();" <% nvram_match_x("", "rules_list", "0", "checked"); %> /><#checkbox_No#>
+													<input type="radio" value="1" name="hosts_ad" id="hosts_ad_1" class="input" value="1" <% nvram_match_x("", "hosts_ad", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="hosts_ad" id="hosts_ad_0" class="input" value="0" <% nvram_match_x("", "hosts_ad", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
 										</tr>
+																				<tr>
+											<th width="30%" style="border-top: 0 none;">加载TVbox Hosts？</th>
+											<td>
+													<div class="main_itoggle">
+													<div id="tv_hosts_on_of">
+														<input type="checkbox" id="tv_hosts_fake" <% nvram_match_x("", "tv_hosts", "1", "value=1 checked"); %><% nvram_match_x("", "tv_hosts", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="tv_hosts" id="tv_hosts_1" class="input" value="1" <% nvram_match_x("", "tv_hosts", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="tv_hosts" id="tv_hosts_0" class="input" value="0" <% nvram_match_x("", "tv_hosts", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+											</td>
+										</tr>
+										<tr id="row_ad_dir" >
+                                            <th width="50%">
+                                                加载规则:
+                                            </th>
+                                            <td>
+											<label class="radio inline">
+                                                    <input type="radio" name="rules_list" id="rules_list_1" value="0" onclick="change_rules_list();" <% nvram_match_x("", "rules_list", "0", "checked"); %>/>完整
+													</label>
+                                         <label class="radio inline">
+                                                    <input type="radio" name="rules_list" id="rules_list_2" value="1" onclick="change_rules_list();" <% nvram_match_x("", "rules_list", "1", "checked"); %>/>精简
+													</label>
+													<label class="radio inline">
+                                                    <input type="radio" name="rules_list" id="rules_list_3" value="2" onclick="change_rules_list();" <% nvram_match_x("", "rules_list", "2", "checked"); %>/>自定义
+													</label>
+                                            </td>
+                                        </tr>
 										<tr id="koolproxy_txt" style="display:none;">
 											<th style="border-top: 0 none;">koolproxy.txt文件地址:</th>
 											<td style="border-top: 0 none;">
-												<input type="text" maxlength="255"  class="none" size="100" name="koolproxy_txt" value="<% nvram_get_x("","koolproxy_txt"); %>"/>
+												<input type="text" maxlength="255"  class="none" size="100" name="koolproxy_txt_2" value="<% nvram_get_x("","koolproxy_txt_2"); %>"/>
 
 											</td>
 											</tr>
 											<tr id="daily_txt" style="display:none;">
 											<th style="border-top: 0 none;">daily.txt文件地址:</th>
 											<td style="border-top: 0 none;">
-												<input type="text" maxlength="255"  class="none" size="100" name="daily_txt" value="<% nvram_get_x("","daily_txt"); %>"/>
+												<input type="text" maxlength="255"  class="none" size="100" name="daily_txt_2" value="<% nvram_get_x("","daily_txt_2"); %>"/>
 
 											</td>
 											</tr>
 											<tr id="kp_dat" style="display:none;">
 											<th style="border-top: 0 none;">kp.dat文件地址:</th>
 											<td style="border-top: 0 none;">
-												<input type="text" maxlength="255"  class="none" size="100" name="kp_dat" value="<% nvram_get_x("","kp_dat"); %>"/>
+												<input type="text" maxlength="255"  class="none" size="100" name="kp_dat_2" value="<% nvram_get_x("","kp_dat_2"); %>"/>
 
 											</td>
 											

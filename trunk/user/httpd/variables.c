@@ -841,6 +841,8 @@
 #if defined(APP_KOOLPROXY)
     struct variable variables_KoolproxyConf[] = {
 			{"koolproxy_enable", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"hosts_ad", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"tv_hosts", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_set", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_cpu", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"koolproxy_https", "", NULL, EVM_RESTART_KOOLPROXY},
@@ -849,9 +851,9 @@
 			{"koolproxy_update", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"kp_staticnum_x", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"rules_list", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"koolproxy_txt", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"daily_txt", "", NULL, EVM_RESTART_KOOLPROXY},
-			{"kp_dat", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"koolproxy_txt_2", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"daily_txt_2", "", NULL, EVM_RESTART_KOOLPROXY},
+			{"kp_dat_2", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"ss_DNS_Redirect_IP", "", NULL, EVM_RESTART_KOOLPROXY},
 			{"scripts.koolproxy_rules_list.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
 			{"scripts.koolproxy_rules_script.sh", "File", NULL, EVM_RESTART_KOOLPROXY},
