@@ -386,6 +386,23 @@ void restart_koolproxy(void){
 }
 #endif
 
+#if defined(APP_ALIDDNS)
+void stop_aliddns(void){
+	eval("/etc/storage/aliddns.sh","stop");
+}
+
+void start_aliddns(void){
+	int aliddns_mode = nvram_get_int("aliddns_enable");
+	if ( aliddns_mode == 1)
+		eval("/etc/storage/aliddns.sh","start");
+}
+
+void restart_aliddns(void){
+    stop_aliddns();
+	start_aliddns();
+}
+#endif
+
 void
 start_httpd(int restart_fw)
 {
@@ -603,6 +620,9 @@ start_services_once(int is_ap_mode)
 #if defined(APP_KOOLPROXY)
 	start_koolproxy();
 #endif
+#if defined(APP_ALIDDNS)
+	start_aliddns();
+#endif
 	start_lltd();
 	start_watchdog_cpu();
 	start_crond();
@@ -640,6 +660,9 @@ stop_services(int stopall)
 #endif
 #if defined(APP_KOOLPROXY)
 	stop_koolproxy();
+#endif
+#if defined(APP_ALIDDNS)
+	stop_aliddns();
 #endif
 	stop_networkmap();
 	stop_lltd();

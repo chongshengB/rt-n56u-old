@@ -69,6 +69,7 @@
 #define RCN_RESTART_SS_TUNNEL		"restart_ss_tunnel"
 #define RCN_RESTART_GFWLIST_UPD		"restart_gfwlist_upd"
 #define RCN_RESTART_KOOLPROXY		"restart_koolproxy"
+#define RCN_RESTART_ALIDDNS		"restart_aliddns"
 #define RCN_RESTART_REBOOT		"restart_reboot"
 
 ////////////////////////////////////////////////////////////

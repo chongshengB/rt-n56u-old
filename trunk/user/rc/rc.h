@@ -551,6 +551,11 @@ void stop_koolproxy(void);
 void start_koolproxy(void);
 void restart_koolproxy(void);
 #endif
+#if defined(APP_ALIDDNS)
+void stop_aliddns(void);
+void start_aliddns(void);
+void restart_aliddns(void);
+#endif
 
 /* services_ex.c */
 int fill_dnsmasq_servers(void);

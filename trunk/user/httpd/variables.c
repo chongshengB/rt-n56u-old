@@ -656,6 +656,17 @@
 			{"ddns2_hname", "", NULL, EVM_RESTART_DDNS },
 			{"ddns2_user", "", NULL, EVM_RESTART_DDNS },
 			{"ddns2_pass", "", NULL, EVM_RESTART_DDNS },
+#if defined(APP_ALIDDNS)
+            {"aliddns_enable", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_interval", "", NULL, EVM_RESTART_ALIDDNS },
+            {"aliddns_ttl", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_ak", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_sk", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name2", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_name6", "", NULL, EVM_RESTART_ALIDDNS },
+			{"scripts.ddns_script.sh", "File", NULL, EVM_RESTART_ALIDDNS},
+#endif
 			{"ManualDHCPList", "Group", ARGV((char*)variables_LANHostConfig_ManualDHCPList, "8", "55", "dhcp_staticnum_x"), EVM_RESTART_DHCPD},
 			{"VPNSACLList", "Group", ARGV((char*)variables_LANHostConfig_VPNSACLList, "8", "107", "vpns_num_x"), EVM_RESTART_VPNSVR},
 			{0,0,0,0}
@@ -1064,6 +1075,9 @@
 #endif
 #if defined(APP_KOOLPROXY)
 		{EVM_RESTART_KOOLPROXY,		EVT_RESTART_KOOLPROXY,		RCN_RESTART_KOOLPROXY,	0},
+#endif
+#if defined(APP_ALIDDNS)
+		{EVM_RESTART_ALIDDNS,		EVT_RESTART_ALIDDNS,		RCN_RESTART_ALIDDNS,	0},
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)
 		{EVM_RESTART_NMBD,		EVT_RESTART_NMBD,		RCN_RESTART_NMBD,	0},
