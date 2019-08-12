@@ -407,7 +407,7 @@ struct nvram_pair router_defaults[] = {
 	{ "kp_dat_0", "https://raw.githubusercontent.com/user1121114685/koolproxyR/master/koolproxyR/koolproxyR/data/rules/kp.dat"},
 	{ "koolproxy_txt_1", "https://gitee.com/bkye/kp/raw/master/mrules/koolproxy.txt"},
 	{ "daily_txt_1", "https://gitee.com/bkye/kp/raw/master/mrules/daily.txt"},
-	{ "kp_dat_1", "https://gitee.com/bkye/kp/raw/master/mrules/kp.dat"},
+	{ "kp_dat_1", "https://raw.githubusercontent.com/user1121114685/koolproxyR/master/koolproxyR/koolproxyR/data/rules/kp.dat"},
 	{ "koolproxy_txt_2", ""},
 	{ "daily_txt_2", ""},
 	{ "kp_dat_2", ""},

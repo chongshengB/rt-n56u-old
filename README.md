@@ -59,7 +59,10 @@ Contributors of this project are not responsible for what happens next.
 >- [mtr](https://github.com/traviscross/mtr) ```CONFIG_FIRMWARE_INCLUDE_MTR```
 >- [socat](http://www.dest-unreach.org/socat) ```CONFIG_FIRMWARE_INCLUDE_SOCAT```
 >- [srelay](https://socks-relay.sourceforge.io) ```CONFIG_FIRMWARE_INCLUDE_SRELAY```
+
 >- [koolproxy]```CONFIG_FIRMWARE_INCLUDE_KOOLPROXY```
+>- [aliddns]```CONFIG_FIRMWARE_INCLUDE_ALIDDNS```
+
 - 已适配除官方适配外的以下机型
 >- WR1200JS (128M,USB)
 >- NEWIFI3 (512M,USB)
@@ -89,7 +92,7 @@ pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl
 ```
 * 克隆源码
 ```shell
-git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
+git clone https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
 
 ```
 * 编译工具链
