@@ -1451,10 +1451,13 @@ ej_wl_auth_list(int eid, webs_t wp, int argc, char **argv)
 }
 
 
-#define SSURV_LINE_LEN		(4+4+33+20+23+9+7+7+3+8+10)		// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType
-#define SSURV_LINE_LEN_WPS	(4+4+33+20+23+9+7+7+3+8+4+5+10)	// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType+WPS+PIN
-#define SSURV_LINE_LEN_MT7615_WPS (4+4+67+20+23+9+9+7+3+4+5+7)	// No+Ch+SSID+BSSID+Security+Siganl+WiressMode+ExtCH+NetworkType+WPS+DPID+BcnRept
-#define SSURV_LINE_LEN_MT7615_4421 (4+4+33+20+23+9+9+7+3+8)	// No+Ch+SSID+BSSID+Security+Siganl+WiressMode+ExtCH+NetworkType+BcnRept
+#if defined(USE_MT7615_AP)
+#define SSURV_LINE_LEN		(4+4+33+20+23+9+7+7+3+10)	// No+Ch+SSID+BSSID+Security+Siganl+WiressMode+ExtCH+NetworkType+BcnRept
+#define SSURV_LINE_LEN_WPS	(4+4+33+20+23+9+7+7+3+4+5+10)	// No+Ch+SSID+BSSID+Security+Siganl+WiressMode+ExtCH+NetworkType+WPS+DPID+BcnRept
+#else
+#define SSURV_LINE_LEN		(4+33+20+23+9+7+7+3)		// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType
+#define SSURV_LINE_LEN_WPS	(4+33+20+23+9+7+7+3+4+5)	// Channel+SSID+Bssid+Security+Signal+WiressMode+ExtCh+NetworkType+WPS+PIN
+#endif
 
 #if BOARD_HAS_5G_RADIO
 int
@@ -1528,7 +1531,7 @@ ej_wl_scan_5g(int eid, webs_t wp, int argc, char **argv)
 		while (*sp && ((len - (sp-op)) >= 0))
 		{
 			memcpy(site_line, sp, line_len);
-			
+#if defined(USE_MT7615_AP)
 #if defined (USE_WID_5G) && USE_WID_5G==7615 && defined (WITHOUT_KERNEL)
 			memcpy(site_chnl, sp+4, 3);
 			memcpy(site_ssid, sp+8, 33);
@@ -1653,7 +1656,7 @@ ej_wl_scan_2g(int eid, webs_t wp, int argc, char **argv)
 		while (*sp && ((len - (sp-op)) >= 0))
 		{
 			memcpy(site_line, sp, line_len);
-			
+#if defined(USE_MT7615_AP)
 #if defined (USE_WID_2G) && USE_WID_2G==7615 && defined (WITHOUT_KERNEL)	
 			memcpy(site_chnl, sp+4, 3);
 			memcpy(site_ssid, sp+8, 33);
