@@ -430,7 +430,7 @@ if (found_app_koolproxy()){
 }
 if (found_app_aliddns()){
 	aliddns_array = new Array("","Advanced_aliddns.asp");
-	tablink[13] = (aliddns_array);
+	tablink[14] = (aliddns_array);
 }
 
 //Level 2 Menu
