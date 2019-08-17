@@ -384,6 +384,10 @@ void restart_koolproxy(void){
 	stop_koolproxy();
 	start_koolproxy();
 }
+
+void update_kp(void){
+	eval("/etc/storage/koolproxy.sh","updatekp");
+}
 #endif
 
 #if defined(APP_ALIDDNS)

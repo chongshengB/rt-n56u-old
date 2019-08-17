@@ -563,7 +563,7 @@ struct nvram_pair router_defaults[] = {
 	{ "ss_obfs_param", ""},
 
 	{ "ss-tunnel_enable", "0" },
-	{ "ss-tunnel_local_port", "5301" },
+	{ "ss-tunnel_local_port", "5353" },
 	{ "ss-tunnel_remote", "8.8.4.4:53" },
 	{ "ss-tunnel_mtu", "1492" },
 	

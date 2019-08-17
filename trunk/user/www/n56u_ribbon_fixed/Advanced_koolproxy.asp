@@ -37,13 +37,14 @@ $j(document).ready(function() {
 
 </script>
 <script>
-
+<% koolproxy_status(); %>
 <% login_state_hook(); %>
 
 function initial(){
 	show_banner(2);
 	show_menu(5,14,1);
 	show_footer();
+	fill_koolproxy_status(koolproxy_status());
 	change_koolproxy_enable();
 	change_rules_list();
 	change_ss_DNS_Redirect();
@@ -69,6 +70,12 @@ function applyRule(){
 //	}
 }
 
+function submitInternet(v){
+	showLoading();
+	document.koolproxy_action.action = "Kp_action.asp";
+	document.koolproxy_action.connect_action.value = v;
+	document.koolproxy_action.submit();
+}
 
 function change_koolproxy_enable(){
 	var m = document.form.koolproxy_enable[0].checked;
@@ -87,7 +94,14 @@ if(document.form.rules_list_3.checked==true){
 	showhide_div('kp_dat', false);
 }
 }
-
+function fill_koolproxy_status(status_code){
+	var stext = "Unknown";
+	if (status_code == 0)
+		stext = "<#Stopped#>";
+	else if (status_code == 1)
+		stext = "<#Running#>";
+	$("koolproxy_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
+}
 function change_ss_DNS_Redirect(){
 	var m = document.form.ss_DNS_Redirect[0].checked;
 	var is_ss_DNS_Redirect = (m == "1") ? 1 : 0;
@@ -165,8 +179,11 @@ function button_updatead(){
 									<div>koolproxy视频规则：【<% nvram_get_x("", "koolproxy_video_date_local"); %>】 </div>
 									</div>
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+											<tr> <th width="30%" style="border-top: 0 none;">运行状态:</th>
+                                            <td id="koolproxy_status" colspan="3"></td>
+                                        </tr>
 										<tr >
-											<th width="30%" style="border-top: 0 none;">启用 koolproxy 功能 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input id="kp_update_b" class="btn btn-success" style="width:110px display:none;" type="button" name="updatefrp" value="重启、更新程序" onclick="button_updatead()" /></th>
+											<th width="30%" style="border-top: 0 none;">启用 koolproxy 功能 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input id="kp_update_b" class="btn btn-success" style="width:110px display:none;" type="button" name="updatefrp" value="重置程序" onclick="submitInternet('resetkp');" /></th>
 											<td style="border-top: 0 none;">
 													<div class="main_itoggle">
 													<div id="koolproxy_enable_on_of">
@@ -391,6 +408,9 @@ function button_updatead(){
 
 	<div id="footer"></div>
 </div>
+<form method="post" name="koolproxy_action" action="">
+    <input type="hidden" name="connect_action" value="">
+</form>
 </body>
 </html>
 

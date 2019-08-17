@@ -1199,6 +1199,20 @@ EEE
 fi
 
 }
+updatekp (){
+	koolproxy_close
+	rm -rf /tmp/7620koolproxy
+	logger -t "【koolproxy】" "删除koolproxy程序文件夹，请等待2秒"
+	sleep 2
+    koolproxy_check
+}
+
+ACTION=$1
+
+if [ $1 = "updatekp" ] ; then
+updatekp
+fi
+
 
 initconfig
 
@@ -1227,14 +1241,7 @@ D)
 C)
 	koolproxy_cp_rules
 	;;
-update_ad)
-	koolproxy_mount
-	rm -rf /tmp/7620koolproxy/koolproxy
-	koolproxy_restart o
-	koolproxy_restart
-	;;
 *)
 	koolproxy_check
 	;;
 esac
-

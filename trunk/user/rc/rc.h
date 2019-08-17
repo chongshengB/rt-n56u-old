@@ -550,6 +550,7 @@ void restart_dnsforwarder(void);
 void stop_koolproxy(void);
 void start_koolproxy(void);
 void restart_koolproxy(void);
+void update_kp(void);
 #endif
 #if defined(APP_ALIDDNS)
 void stop_aliddns(void);

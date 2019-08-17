@@ -182,6 +182,32 @@ func_reset()
 	mkdir -p -m 755 $dir_storage
 }
 
+func_rssh()
+{
+cp -rf /etc_ro/koolproxy.sh /etc/storage/
+chmod 755 "/etc/storage/koolproxy.sh"
+
+cp -rf /etc_ro/aliddns.sh /etc/storage/
+chmod 755 "/etc/storage/aliddns.sh"
+
+if [ ! -f "/etc/storage/ad_config_script.sh" ] ; then
+cp -rf /etc_ro/ad_config_script.sh /etc/storage/
+chmod 755 "/etc/storage/ad_config_script.sh"
+fi
+if [ ! -f "/etc/storage/koolproxy_rules_script.sh" ] ; then
+cp -rf /etc_ro/koolproxy_rules_script.sh /etc/storage/
+chmod 755 "/etc/storage/koolproxy_rules_script.sh"
+fi
+if [ ! -f "/etc/storage/koolproxy_rules_list.sh" ] ; then
+cp -rf /etc_ro/koolproxy_rules_list.sh /etc/storage/
+chmod 755 "/etc/storage/koolproxy_rules_list.sh"
+fi
+if [ ! -f "/etc/storage/ddns_script.sh" ] ; then
+cp -rf /etc_ro/ddns_script.sh /etc/storage/
+chmod 755 "/etc/storage/ddns_script.sh"
+fi
+}
+
 func_fill()
 {
 	dir_httpssl="$dir_storage/https"
@@ -262,29 +288,6 @@ func_fill()
 
 #drop caches
 sync && echo 3 > /proc/sys/vm/drop_caches
-
-cp -rf /etc_ro/koolproxy.sh /etc/storage/
-chmod 755 "/etc/storage/koolproxy.sh"
-
-cp -rf /etc_ro/aliddns.sh /etc/storage/
-chmod 755 "/etc/storage/aliddns.sh"
-
-if [ ! -f "/etc/storage/ad_config_script.sh" ] ; then
-cp -rf /etc_ro/ad_config_script.sh /etc/storage/
-chmod 755 "/etc/storage/ad_config_script.sh"
-fi
-if [ ! -f "/etc/storage/koolproxy_rules_script.sh" ] ; then
-cp -rf /etc_ro/koolproxy_rules_script.sh /etc/storage/
-chmod 755 "/etc/storage/koolproxy_rules_script.sh"
-fi
-if [ ! -f "/etc/storage/koolproxy_rules_list.sh" ] ; then
-cp -rf /etc_ro/koolproxy_rules_list.sh /etc/storage/
-chmod 755 "/etc/storage/koolproxy_rules_list.sh"
-fi
-if [ ! -f "/etc/storage/ddns_script.sh" ] ; then
-cp -rf /etc_ro/ddns_script.sh /etc/storage/
-chmod 755 "/etc/storage/ddns_script.sh"
-fi
 
 EOF
 		chmod 755 "$script_started"
@@ -678,6 +681,7 @@ save)
 	func_get_mtd
 	func_mdir
 	func_tarb
+	func_rssh
 	func_save
 	;;
 backup)

@@ -309,6 +309,7 @@ function fill_ss_tunnel_status(status_code){
                                                 <select name="ss_mode" class="input" style="width: 145px;">   
                                                     <option value="0" ><#menu5_16_11#></option>
                                                     <option value="1" >Chnroute</option>
+													<option value="2" >gfwlist(推荐)</option>
                                                 </select>
                                             </td>
                                         </tr>

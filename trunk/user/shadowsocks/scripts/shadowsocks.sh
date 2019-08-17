@@ -9,13 +9,13 @@ ss_proc="/var/ss-redir"
 ss_type="$(nvram get ss_type)" #0=ss;1=ssr
 
 if [ "${ss_type:-0}" = "0" ]; then
-	ln -sf /usr/bin/ss-orig-redir $ss_proc
+	ln -sf /etc/storage/scripts/ss-orig-redir $ss_proc
 elif [ "${ss_type:-0}" = "1" ]; then
 	ss_protocol=$(nvram get ss_protocol)
 	ss_proto_param=$(nvram get ss_proto_param)
 	ss_obfs=$(nvram get ss_obfs)
 	ss_obfs_param=$(nvram get ss_obfs_param)
-	ln -sf /usr/bin/ssr-redir $ss_proc
+	ln -sf /etc/storage/scripts/ssr-redir $ss_proc
 fi
 
 ss_local_port=$(nvram get ss_local_port)
@@ -53,8 +53,8 @@ get_wan_bp_list(){
 	[ -n "$wanip" ] && [ "$wanip" != "0.0.0.0" ] && bp="-b $wanip" || bp=""
 	if [ "$ss_mode" = "1" ]; then
 		bp=${bp}" -B /etc/storage/chinadns/chnroute.txt"
-	fi
-	echo "$bp"
+		echo "$bp"
+fi
 }
 
 get_ipt_ext(){
@@ -72,8 +72,20 @@ func_start_ss_redir(){
 
 func_start_ss_rules(){
 	ss-rules -f
-	sh -c "ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
+	if [ "$ss_mode" = "1" ]; then
+	sh -c "/etc/storage/scripts/ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
 	return $?
+	elif [ "$ss_mode" = "2" ]; then
+	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/gfwlist
+EOF
+ipset -N gfwlist iphash
+iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
+iptables -t nat -A OUTPUT -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
+fi
+	#sh -c "/etc/storage/scripts/ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
+	#return $?
 }
 
 func_gen_ss_json(){
@@ -100,12 +112,21 @@ func_start(){
 	func_gen_ss_json && \
 	func_start_ss_redir && \
 	func_start_ss_rules && \
-	loger $ss_bin "start done" || { ss-rules -f && loger $ss_bin "start fail!";}
+	loger $ss_bin "start done" || { /etc/storage/scripts/ss-rules -f && loger $ss_bin "start fail!";}
+	/sbin/restart_dhcpd
 }
 
 func_stop(){
 	killall -q $ss_bin
+if [ "$ss_mode" = "2" ]; then
+
+iptables -t nat -D PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
+iptables -t nat -D OUTPUT -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
+fi
+	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
+	/sbin/restart_dhcpd
 	ss-rules -f && loger $ss_bin "stop"
+	
 }
 
 case "$1" in

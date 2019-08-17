@@ -2024,6 +2024,27 @@ static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
+#if defined (APP_KOOLPROXY)
+static int koolproxy_action_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int needed_seconds = 3;
+	char *kp_action = websGetVar(wp, "connect_action", "");
+	
+	if (!strcmp(kp_action, "resetkp")) {
+		notify_rc(RCN_RESTART_KPUPDATE);
+	}
+	websWrite(wp, "<script>restart_needed_time(%d);</script>\n", needed_seconds);
+	return 0;
+}
+
+static int koolproxy_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int kp_status_code = pids("koolproxy");
+	websWrite(wp, "function koolproxy_status() { return %d;}\n", kp_status_code);
+	return 0;
+}
+#endif
+
 static int
 ej_detect_internet_hook(int eid, webs_t wp, int argc, char **argv)
 {
@@ -4054,6 +4075,10 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_DNSFORWARDER)
 	{ "dnsforwarder_status", dnsforwarder_status_hook},
+#endif
+#if defined (APP_KOOLPROXY)
+	{ "koolproxy_action", koolproxy_action_hook},
+	{ "koolproxy_status", koolproxy_status_hook},
 #endif
 	{ "openssl_util_hook", openssl_util_hook},
 	{ "openvpn_srv_cert_hook", openvpn_srv_cert_hook},
