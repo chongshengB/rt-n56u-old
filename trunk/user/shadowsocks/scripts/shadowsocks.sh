@@ -9,13 +9,13 @@ ss_proc="/var/ss-redir"
 ss_type="$(nvram get ss_type)" #0=ss;1=ssr
 
 if [ "${ss_type:-0}" = "0" ]; then
-	ln -sf /etc/storage/scripts/ss-orig-redir $ss_proc
+	ln -sf ss-orig-redir $ss_proc
 elif [ "${ss_type:-0}" = "1" ]; then
 	ss_protocol=$(nvram get ss_protocol)
 	ss_proto_param=$(nvram get ss_proto_param)
 	ss_obfs=$(nvram get ss_obfs)
 	ss_obfs_param=$(nvram get ss_obfs_param)
-	ln -sf /etc/storage/scripts/ssr-redir $ss_proc
+	ln -sf ssr-redir $ss_proc
 fi
 
 ss_local_port=$(nvram get ss_local_port)
@@ -73,7 +73,7 @@ func_start_ss_redir(){
 func_start_ss_rules(){
 	ss-rules -f
 	if [ "$ss_mode" = "1" ]; then
-	sh -c "/etc/storage/scripts/ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
+	sh -c "ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
 	return $?
 	elif [ "$ss_mode" = "2" ]; then
 	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
@@ -112,7 +112,7 @@ func_start(){
 	func_gen_ss_json && \
 	func_start_ss_redir && \
 	func_start_ss_rules && \
-	loger $ss_bin "start done" || { /etc/storage/scripts/ss-rules -f && loger $ss_bin "start fail!";}
+	loger $ss_bin "start done" || { ss-rules -f && loger $ss_bin "start fail!";}
 	/sbin/restart_dhcpd
 }
 
