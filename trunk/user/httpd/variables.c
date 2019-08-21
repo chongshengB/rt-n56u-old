@@ -665,6 +665,9 @@
 			{"aliddns_name", "", NULL, EVM_RESTART_ALIDDNS },
 			{"aliddns_name2", "", NULL, EVM_RESTART_ALIDDNS },
 			{"aliddns_name6", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain2", "", NULL, EVM_RESTART_ALIDDNS },
+			{"aliddns_domain6", "", NULL, EVM_RESTART_ALIDDNS },
 			{"scripts.ddns_script.sh", "File", NULL, EVM_RESTART_ALIDDNS},
 #endif
 			{"ManualDHCPList", "Group", ARGV((char*)variables_LANHostConfig_ManualDHCPList, "8", "55", "dhcp_staticnum_x"), EVM_RESTART_DHCPD},
