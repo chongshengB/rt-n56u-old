@@ -33,7 +33,7 @@ endif
 EXTRA_CFLAGS = -Idrivers/net/wireless/ralink/mt7615/include \
 				-Idrivers/net/wireless/ralink/mt7615/embedded/include \
 				-Idrivers/net/wireless/ralink/mt7615/ate/include
-DRV_NAME = mt7615_ap
+DRV_NAME = mt_7615e
 SRC_DIR = ../mt7615
 SRC_EMBEDDED_DIR = ../mt7615/embedded
 obj-$(CONFIG_MT_AP_SUPPORT) += $(DRV_NAME).o
