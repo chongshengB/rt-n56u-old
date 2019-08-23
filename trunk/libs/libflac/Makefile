@@ -25,6 +25,7 @@ config_test:
 
 configure:
 	( cd $(SRC_NAME) ; \
+	autoreconf -ivf ; \
 	./autogen.sh ; \
 	./configure \
 		--prefix=$(STAGEDIR) \
