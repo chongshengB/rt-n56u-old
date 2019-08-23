@@ -2727,9 +2727,7 @@ BOOLEAN  ApCliHandleRxBroadcastFrame(
 		}
 	}
 	pRxInfo->MyBss = 1;
-#ifdef APCLI_SUPPORT
-	rx_get_pn(pRxBlk,pRxInfo);
-#endif /* APCLI_SUPPORT */
+
 #ifdef HDR_TRANS_SUPPORT
 	if (pRxBlk->bHdrRxTrans)
 		Indicate_Legacy_Packet_Hdr_Trns(pAd, pRxBlk, FromWhichBSSID);
