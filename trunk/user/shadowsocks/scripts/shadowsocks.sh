@@ -9,13 +9,13 @@ ss_proc="/var/ss-redir"
 ss_type="$(nvram get ss_type)" #0=ss;1=ssr
 
 if [ "${ss_type:-0}" = "0" ]; then
-	ln -sf ss-orig-redir $ss_proc
+	ln -sf /usr/bin/ss-orig-redir $ss_proc
 elif [ "${ss_type:-0}" = "1" ]; then
 	ss_protocol=$(nvram get ss_protocol)
 	ss_proto_param=$(nvram get ss_proto_param)
 	ss_obfs=$(nvram get ss_obfs)
 	ss_obfs_param=$(nvram get ss_obfs_param)
-	ln -sf ssr-redir $ss_proc
+	ln -sf /usr/bin/ssr-redir $ss_proc
 fi
 
 ss_local_port=$(nvram get ss_local_port)

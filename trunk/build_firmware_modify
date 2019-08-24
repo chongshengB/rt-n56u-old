@@ -156,10 +156,9 @@ rm -rf "$dir_wifi_dst/mt76x3"
 rm -rf "$dir_wifi_dst/mt7628"
 rm -rf "$dir_wifi_dst/mt7615"
 mkdir -p "$dir_wifi_dst/mt7615/embedded"
+dir_wifi_ver="5.0.3.0"
 if [ "$CONFIG_FIRMWARE_WIFI_DRIVER" = "4.4.2.1" ] ; then
 dir_wifi_ver="4.4.2.1"
-elif [ "$CONFIG_FIRMWARE_WIFI_DRIVER" = "5.0.3.0" ] ; then
-dir_wifi_ver="5.0.3.0"
 fi
 cp -f "$dir_wifi_src/rtpci/$dir_wifi_ver/mt7615/embedded/Kconfig" "$dir_wifi_dst/mt7615/embedded/Kconfig"
 
