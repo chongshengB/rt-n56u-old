@@ -227,11 +227,6 @@ fi
 }
 
 koolproxy_check () {
-if [ ! -f "/etc/storage/ad_config_script.sh" ] ; then
-    sleep 10
-	koolproxy_close
-	koolproxy_check
-else
 koolproxy_get_status
 if [ "$koolproxy_enable" != "1" ] && [ "$needed_restart" = "1" ] ; then
 	[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "停止 koolproxy" && koolproxy_close
@@ -253,7 +248,6 @@ if [ "$koolproxy_enable" = "1" ] ; then
 		fi
 	fi
 hosts_ad
-fi
 fi
 }
 
