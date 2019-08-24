@@ -184,8 +184,6 @@ func_reset()
 
 func_rssh()
 {
-cp -rf /etc_ro/koolproxy.sh /etc/storage/
-chmod 755 "/etc/storage/koolproxy.sh"
 
 cp -rf /etc_ro/aliddns.sh /etc/storage/
 chmod 755 "/etc/storage/aliddns.sh"

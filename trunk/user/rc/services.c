@@ -343,7 +343,7 @@ void stop_dnsforwarder(void){
 void start_dnsforwarder(void){
 	int dnsforwarder_mode = nvram_get_int("dns_forwarder_enable");
 	if (dnsforwarder_mode == 1)
-		eval("usr/bin/dns-forwarder.sh","start");
+		eval("/usr/bin/dns-forwarder.sh","start");
 }
 
 void restart_dnsforwarder(void){
@@ -371,13 +371,13 @@ void start_napt66(void){
 
 #if defined(APP_KOOLPROXY)
 void stop_koolproxy(void){
-	eval("/etc/storage/koolproxy.sh","stop");
+	eval("/usr/bin/koolproxy.sh","stop");
 }
 
 void start_koolproxy(void){
 	int koolproxy_mode = nvram_get_int("koolproxy_enable");
 	if ( koolproxy_mode == 1)
-		eval("/etc/storage/koolproxy.sh","start");
+		eval("/usr/bin/koolproxy.sh","start");
 }
 
 void restart_koolproxy(void){
@@ -386,7 +386,7 @@ void restart_koolproxy(void){
 }
 
 void update_kp(void){
-	eval("/etc/storage/koolproxy.sh","updatekp");
+	eval("/usr/bin/koolproxy.sh","updatekp");
 }
 #endif
 

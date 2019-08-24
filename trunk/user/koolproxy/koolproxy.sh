@@ -16,7 +16,7 @@ koolproxy_auto=`nvram get koolproxy_auto`
 koolproxy_video=`nvram get koolproxy_video`
 lan_ipaddr=`nvram get lan_ipaddr`
 koolproxy_https=`nvram get koolproxy_https`
-adm_hookport=`nvram get adm_hookport`
+adm_hookport=`nvram get koolproxy_prot`
 koolproxy_adblock=`nvram get koolproxy_adblock`
 koolproxy_cpu=`nvram get koolproxy_cpu`
 ss_DNS_Redirect=`nvram get ss_DNS_Redirect`
@@ -122,7 +122,7 @@ else
 sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
 /sbin/restart_dhcpd
 fi
-
+exit 0
 }
 
 koolproxy_mount () {
@@ -227,7 +227,11 @@ fi
 }
 
 koolproxy_check () {
-
+if [ ! -f "/etc/storage/ad_config_script.sh" ] ; then
+    sleep 10
+	koolproxy_close
+	koolproxy_check
+else
 koolproxy_get_status
 if [ "$koolproxy_enable" != "1" ] && [ "$needed_restart" = "1" ] ; then
 	[ ! -z "`pidof koolproxy`" ] && logger -t "【koolproxy】" "停止 koolproxy" && koolproxy_close
@@ -249,6 +253,7 @@ if [ "$koolproxy_enable" = "1" ] ; then
 		fi
 	fi
 hosts_ad
+fi
 fi
 }
 
@@ -433,8 +438,8 @@ kill_ps "$scriptname"
 }
 
 koolproxy_start () {
-check_webui_yes
-nvram set button_script_1_s="KP"
+#check_webui_yes
+#nvram set button_script_1_s="KP"
 /etc/storage/ez_buttons_script.sh 3 & #更新按钮状态
 if [ -z "`pidof koolproxy`" ] && [ "$koolproxy_enable" = "1" ] && [ ! -f /tmp/cron_adb.lock ] ; then
 	touch /tmp/cron_adb.lock
@@ -660,7 +665,7 @@ rm -f /tmp/7620koolproxy.tgz /tmp/cron_adb.lock
 logger -t "【koolproxy】" "守护进程启动"
 #koolproxy_get_status
 eval "$scriptfilepath keep &"
-exit 0
+
 }
 
 flush_r () {
@@ -1241,6 +1246,8 @@ D)
 C)
 	koolproxy_cp_rules
 	;;
+E)  hosts_ad
+    ;;
 *)
 	koolproxy_check
 	;;
