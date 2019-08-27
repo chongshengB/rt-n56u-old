@@ -165,8 +165,8 @@ function fill_adbyby_status(status_code){
 													</div>
 												</div>
 												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="adbyby_enable" id="adbyby_enable_1" class="input" onClick="change_adbyby_enable();" <% nvram_match_x("", "adbyby_enable", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="adbyby_enable" id="adbyby_enable_0" class="input" onClick="change_adbyby_enable();" <% nvram_match_x("", "adbyby_enable", "0", "checked"); %> /><#checkbox_No#>
+													<input type="radio" value="1" name="adbyby_enable" id="adbyby_enable_1" class="input" <% nvram_match_x("", "adbyby_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="adbyby_enable" id="adbyby_enable_0" class="input" <% nvram_match_x("", "adbyby_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
 										</tr>
