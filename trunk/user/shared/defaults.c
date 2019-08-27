@@ -421,7 +421,7 @@ struct nvram_pair router_defaults[] = {
 	{ "adbyby_enable", "0" },
 	{ "adbyby_set", "0" },
 	{ "adbyby_adb_update", "0" },
-	{ "adbyby_update", "0" },
+	{ "adbyby_update", "2" },
 	{ "adbyby_update_hour", "0" },
 	{ "adbyby_update_min", "0" },
     /* Aliddns */
