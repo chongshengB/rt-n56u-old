@@ -1,0 +1,496 @@
+#!/bin/sh
+adbyby_enable=`nvram get adbyby_enable`
+adbyby_set=`nvram get adbyby_set`
+http_username=`nvram get http_username`
+adbyby_update=`nvram get adbyby_update`
+adbyby_update_hour=`nvram get adbyby_update_hour`
+adbyby_update_min=`nvram get adbyby_update_min`
+ipt_n="iptables -t nat"
+#adbyby_dir="/tmp/adbyby"
+PROG_PATH="/tmp/adbyby"
+DATA_PATH="$PROG_PATH/data"
+wan_mode=`nvram get adbyby_set`
+abp_mode=`nvram get adbyby_adb_update`
+nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
+nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
+nvram set adbyby_utime=`cat /tmp/adbyby.updated 2>/dev/null`
+
+adbyby_start()
+{
+addscripts
+if [ ! -f "$PROG_PATH/adbyby" ]; then
+    logger -t "adbyby" "adbyby程序文件不存在，正在解压..."
+	tar -xzvf "/etc_ro/adbyby.tar.gz" -C "/tmp"
+	logger -t "adbyby" "成功解压至：$PROG_PATH"
+	fi
+if [ $abp_mode -eq 1 ]; then
+/tmp/adbyby/adblock.sh &
+fi
+    #/tmp/adbyby/adupdate.sh &
+	add_rules
+	$PROG_PATH/adbyby &>/dev/null &
+	add_dns
+	hosts_ad
+	iptables-save | grep ADBYBY >/dev/null || \
+	add_rule
+	/sbin/restart_dhcpd
+	add_cron
+}
+
+adbyby_close()
+{
+	del_rule
+	del_cron
+	del_dns
+	killall -q adbyby
+	if [ $mem_mode -eq 1 ]; then
+    echo "stop mem mode"
+	fi
+	kill -9 $(ps | grep admem.sh | grep -v grep | awk '{print $1}') >/dev/null 2>&1 
+	/sbin/restart_dhcpd
+
+
+}
+
+add_rules()
+{
+logger -t "adbyby" "更新Adbyby规则"
+rm -f /tmp/adbyby/data/*.bak
+
+touch /tmp/local-md5.json && md5sum /tmp/adbyby/data/lazy.txt /tmp/adbyby/data/video.txt > /tmp/local-md5.json
+touch /tmp/md5.json && wget --no-check-certificate -t 1 -T 10 -O /tmp/md5.json https://coding.net/u/adbyby/p/xwhyc-rules/git/raw/master/md5.json
+
+lazy_local=$(grep 'lazy' /tmp/local-md5.json | awk -F' ' '{print $1}')
+video_local=$(grep 'video' /tmp/local-md5.json | awk -F' ' '{print $1}')  
+lazy_online=$(sed  's/":"/\n/g' /tmp/md5.json  |  sed  's/","/\n/g' | sed -n '2p')
+video_online=$(sed  's/":"/\n/g' /tmp/md5.json  |  sed  's/","/\n/g' | sed -n '4p')
+
+if [ "$lazy_online"x != "$lazy_local"x -o "$video_online"x != "$video_local"x ]; then
+    echo "MD5 not match! Need update!"
+    touch /tmp/lazy.txt && wget --no-check-certificate -t 1 -T 10 -O /tmp/lazy.txt https://coding.net/u/adbyby/p/xwhyc-rules/git/raw/master/lazy.txt
+    touch /tmp/video.txt && wget --no-check-certificate -t 1 -T 10 -O /tmp/video.txt https://coding.net/u/adbyby/p/xwhyc-rules/git/raw/master/video.txt
+    touch /tmp/local-md5.json && md5sum /tmp/lazy.txt /tmp/video.txt > /tmp/local-md5.json
+    lazy_local=$(grep 'lazy' /tmp/local-md5.json | awk -F' ' '{print $1}')
+    video_local=$(grep 'video' /tmp/local-md5.json | awk -F' ' '{print $1}')
+    if [ "$lazy_online"x == "$lazy_local"x -a "$video_online"x == "$video_local"x ]; then
+      echo "New rules MD5 match!"
+      mv /tmp/lazy.txt /tmp/adbyby/data/lazy.txt
+      mv /tmp/video.txt /tmp/adbyby/data/video.txt
+      echo $(date +"%Y-%m-%d %H:%M:%S") > /tmp/adbyby.updated
+     fi
+else
+     echo "MD5 match! No need to update!"
+fi
+
+rm -f /tmp/lazy.txt /tmp/video.txt /tmp/local-md5.json /tmp/md5.json
+logger -t "adbyby" "Adbyby规则更新完成"
+nvram set adbyby_ltime=`head -1 /tmp/adbyby/data/lazy.txt | awk -F' ' '{print $3,$4}'`
+nvram set adbyby_vtime=`head -1 /tmp/adbyby/data/video.txt | awk -F' ' '{print $3,$4}'`
+grep -v '^!' /etc/storage/adbyby_rules.sh | grep -v "^$" > $PROG_PATH/rules.txt
+grep -v '^!' /etc/storage/adbyby_blockip.sh | grep -v "^$" > $PROG_PATH/blockip.conf
+grep -v '^!' /etc/storage/adbyby_adblack.sh | grep -v "^$" > $PROG_PATH/adblack.conf
+grep -v '^!' /etc/storage/adbyby_adesc.sh | grep -v "^$" > $PROG_PATH/adesc.conf
+grep -v '^!' /etc/storage/adbyby_adhost.sh | grep -v "^$" > $PROG_PATH/adhost.conf
+	rm -f $DATA_PATH/user.bin
+	grep -v ^! $PROG_PATH/rules.txt > $DATA_PATH/user.txt
+	cp $PROG_PATH/rules.txt $DATA_PATH/rules.txt
+}
+
+
+add_cron()
+{
+	if [ $adbyby_update -eq 0 ]; then
+	sed -i '/adbyby/d' /etc/storage/cron/crontabs/$http_username
+cat >> /etc/storage/cron/crontabs/$http_username << EOF
+$adbyby_update_min $adbyby_update_hour * * * /bin/sh /usr/bin/adbyby.sh G >/dev/null 2>&1
+EOF
+logger -t "adbyby" "设置每天$adbyby_update_hour时$adbyby_update_min分，自动更新规则！"
+	fi
+if [ $adbyby_update -eq 1 ]; then
+
+	sed -i '/adbyby/d' /etc/storage/cron/crontabs/$http_username
+cat >> /etc/storage/cron/crontabs/$http_username << EOF
+*/$adbyby_update_min */$adbyby_update_hour * * * /bin/sh /usr/bin/adbyby.sh G >/dev/null 2>&1
+EOF
+logger -t "adbyby" "设置每隔$adbyby_update_hour时$adbyby_update_min分，自动更新规则！"
+fi
+if [ $adbyby_update -eq 2 ]; then
+sed -i '/adbyby/d' /etc/storage/cron/crontabs/$http_username
+fi
+}
+
+del_cron()
+{
+sed -i '/adbchk/d' /etc/storage/cron/crontabs/$http_username
+	#/etc/init.d/cron restart
+}
+
+ip_rule()
+{
+
+  ipset -N adbyby_esc hash:ip
+  $ipt_n -A ADBYBY -m set --match-set adbyby_esc dst -j RETURN
+    
+	for i in $(seq 0 100)
+	do
+		local ip=$(uci_get_by_type acl_rule ipaddr '' $i)
+		local mode=$(uci_get_by_type acl_rule filter_mode '' $i)
+		case "$mode" in
+		disable)
+			$ipt_n -A ADBYBY -s $ip -j RETURN
+			;;
+		global)
+			$ipt_n -A ADBYBY -s $ip -p tcp -j REDIRECT --to-ports 8118
+			$ipt_n -A ADBYBY -s $ip -j RETURN
+			;;
+		esac
+	done
+	
+	
+	
+	case $wan_mode in
+		0)
+			;;
+		1)
+      ipset -N adbyby_wan hash:ip
+			$ipt_n -A ADBYBY -m set ! --match-set adbyby_wan dst -j RETURN
+			;;
+		2)
+			$ipt_n -I ADBYBY -j RETURN
+			;;
+	esac
+	
+	echo "create blockip hash:net family inet hashsize 1024 maxelem 65536" > /tmp/blockip.ipset
+  awk '!/^$/&&!/^#/{printf("add blockip %s'" "'\n",$0)}' $PROG_PATH/blockip.conf >> /tmp/blockip.ipset
+  ipset -! restore < /tmp/blockip.ipset 2>/dev/null
+  iptables -I FORWARD -m set --match-set blockip dst -j DROP
+  iptables -I OUTPUT -m set --match-set blockip dst -j DROP
+}
+
+add_dns()
+{
+		mkdir -p /etc/storage/dnsmasq-adbyby.d
+    mkdir -p /tmp/dnsmasq.d
+    awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_esc"'\n",$0)}' $PROG_PATH/adesc.conf > /etc/storage/dnsmasq-adbyby.d/06-dnsmasq.esc
+    awk '!/^$/&&!/^#/{printf("address=/%s/'"0.0.0.0"'\n",$0)}' $PROG_PATH/adblack.conf > /etc/storage/dnsmasq-adbyby.d/07-dnsmasq.black
+sed -i '/dnsmasq-adbyby/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/dnsmasq-adbyby.d
+EOF
+
+		if [ $abp_mode -eq 1 ]; then
+		awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_wan"'\n",$0)}' $PROG_PATH/adhost.conf > $WAN_FILE
+		if ls /etc/storage/dnsmasq-adbyby.d/* >/dev/null 2>&1; then
+      mkdir -p /tmp/dnsmasq.d
+      cp $PROG_PATH/dnsmasq.adblock /etc/storage/dnsmasq-adbyby.d/04-dnsmasq.adblock
+      cp $PROG_PATH/dnsmasq.ads /etc/storage/dnsmasq-adbyby.d/05-dnsmasq.ads
+	  fi
+	fi
+	
+   sed -i '/mesu.apple.com/d' /etc/dnsmasq.conf && [ $block_ios -eq 1 ] && echo 'address=/mesu.apple.com/0.0.0.0' >> /etc/dnsmasq.conf
+}
+
+del_dns()
+{
+sed -i '/dnsmasq-adbyby/d' /etc/storage/dnsmasq/dnsmasq.conf
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+		rm -f /tmp/dnsmasq.d/dnsmasq-adbyby.conf
+		rm -f /etc/storage/dnsmasq-adbyby.d/*
+		rm -f /tmp/adbyby_host.conf
+}
+
+
+add_rule()
+{
+	$ipt_n -N ADBYBY
+	$ipt_n -A ADBYBY -d 0.0.0.0/8 -j RETURN
+	$ipt_n -A ADBYBY -d 10.0.0.0/8 -j RETURN
+	$ipt_n -A ADBYBY -d 127.0.0.0/8 -j RETURN
+	$ipt_n -A ADBYBY -d 169.254.0.0/16 -j RETURN
+	$ipt_n -A ADBYBY -d 172.16.0.0/12 -j RETURN
+	$ipt_n -A ADBYBY -d 192.168.0.0/16 -j RETURN
+	$ipt_n -A ADBYBY -d 224.0.0.0/4 -j RETURN
+	$ipt_n -A ADBYBY -d 240.0.0.0/4 -j RETURN
+	ip_rule
+	logger -t "adbyby" "添加8118透明代理端口。"
+	$ipt_n -A ADBYBY -p tcp -j REDIRECT --to-ports 8118
+	$ipt_n -I PREROUTING -p tcp --dport 80 -j ADBYBY
+}
+
+del_rule()
+{
+	$ipt_n -D PREROUTING -p tcp --dport 80 -j ADBYBY 2>/dev/null
+	$ipt_n -F ADBYBY 2>/dev/null
+	$ipt_n -X ADBYBY 2>/dev/null
+	iptables -D FORWARD -m set --match-set blockip dst -j DROP 2>/dev/null
+	iptables -D OUTPUT -m set --match-set blockip dst -j DROP 2>/dev/null
+	ipset -F adbyby_esc 2>/dev/null
+	ipset -X adbyby_esc 2>/dev/null
+	ipset -F adbyby_wan 2>/dev/null
+	ipset -X adbyby_wan 2>/dev/null
+	ipset -F blockip 2>/dev/null
+	ipset -X blockip 2>/dev/null
+	logger -t "adbyby" "已关闭全部8118透明代理端口。"
+}
+
+reload_rule()
+{
+	config_load adbyby
+	config_foreach get_config adbyby
+	del_rule
+	iptables-save | grep ADBYBY >/dev/null || \
+	add_rule
+}
+
+hosts_ad () {
+rm -rf /etc/storage/dnsmasq/dns;cd /etc
+mkdir -p /etc/storage/dnsmasq/dns/conf
+hosts_ad=`nvram get hosts_ad`
+tv_hosts=`nvram get tv_hosts`
+if [ "$koolproxy_enable"="1" ] ; then
+if [ "$hosts_ad" = "1" ] ; then
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/hosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://raw.githubusercontent.com/vokins/yhosts/master/hosts -O hosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" hosts
+if [ ! -f "hosts" ]; then
+logger -t "dnsmasq" "host文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "host文件下载完成。"
+fi
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+if [ "$tv_hosts" = "1" ]; then
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/tvhosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://dev.tencent.com/u/shaoxia1991/p/yhosts/git/raw/master/data/tvbox.txt -O tvhosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" tvhosts
+if [ ! -f "tvhosts" ]; then
+logger -t "dnsmasq" "tvbox规则文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "tvbox规则文件下载完成。"
+fi
+else
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+#/sbin/restart_dhcpd
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+#/sbin/restart_dhcpd
+fi
+}
+
+adbyby_uprules()
+{
+adbyby_close
+addscripts
+if [ ! -f "$PROG_PATH/adbyby" ]; then
+    logger -t "adbyby" "adbyby程序文件不存在，正在解压..."
+	tar -xzvf "/etc_ro/adbyby.tar.gz" -C "/tmp"
+	logger -t "adbyby" "成功解压至：$PROG_PATH"
+	fi
+if [ $abp_mode -eq 1 ]; then
+/tmp/adbyby/adblock.sh &
+fi
+    #/tmp/adbyby/adupdate.sh &
+	add_rules
+	$PROG_PATH/adbyby &>/dev/null &
+	add_dns
+	hosts_ad
+	iptables-save | grep ADBYBY >/dev/null || \
+	add_rule
+	/sbin/restart_dhcpd
+	#add_cron
+}
+
+updateadb()
+{
+   /tmp/adbyby/adblock.sh &
+}
+
+
+addscripts() 
+{
+
+adbyby_rules="/etc/storage/adbyby_rules.sh"
+if [ ! -f "$adbyby_rules" ] || [ ! -s "$adbyby_rules" ] ; then
+	cat > "$adbyby_rules" <<-\EEE
+!  ------------------------------ ADByby 自定义过滤语法简表---------------------------------
+!  --------------  规则基于abp规则，并进行了字符替换部分的扩展-----------------------------
+!  ABP规则请参考https://adblockplus.org/zh_CN/filters，下面为大致摘要
+!  "!" 为行注释符，注释行以该符号起始作为一行注释语义，用于规则描述
+!  "*" 为字符通配符，能够匹配0长度或任意长度的字符串，该通配符不能与正则语法混用。
+!  "^" 为分隔符，可以是除了字母、数字或者 _ - . % 之外的任何字符。
+!  "|" 为管线符号，来表示地址的最前端或最末端
+!  "||" 为子域通配符，方便匹配主域名下的所有子域。
+!  "~" 为排除标识符，通配符能过滤大多数广告，但同时存在误杀, 可以通过排除标识符修正误杀链接。
+!  "##" 为元素选择器标识符，后面跟需要隐藏元素的CSS样式例如 #ad_id  .ad_class
+!!  元素隐藏暂不支持全局规则和排除规则
+!! 字符替换扩展
+!  文本替换选择器标识符，后面跟需要替换的文本数据，格式：$s@模式字符串@替换后的文本@
+!  支持通配符*和？
+!  -------------------------------------------------------------------------------------------
+
+EEE
+	chmod 755 "$adbyby_rules"
+fi
+
+adbyby_blockip="/etc/storage/adbyby_blockip.sh"
+if [ ! -f "$adbyby_blockip" ] || [ ! -s "$adbyby_blockip" ] ; then
+	cat > "$adbyby_blockip" <<-\EEE
+2.2.2.2
+
+EEE
+	chmod 755 "$adbyby_blockip"
+fi
+
+adbyby_adblack="/etc/storage/adbyby_adblack.sh"
+if [ ! -f "$adbyby_adblack" ] || [ ! -s "$adbyby_adblack" ] ; then
+	cat > "$adbyby_adblack" <<-\EEE
+gvod.aiseejapp.atianqi.com
+stat.pandora.xiaomi.com
+upgrade.mishop.pandora.xiaomi.com
+logonext.tv.kuyun.com
+config.kuyun.com
+mishop.pandora.xiaomi.com
+dvb.pandora.xiaomi.com
+api.ad.xiaomi.com
+de.pandora.xiaomi.com
+data.mistat.xiaomi.com
+jellyfish.pandora.xiaomi.com
+gallery.pandora.xiaomi.com
+o2o.api.xiaomi.com
+bss.pandora.xiaomi.com
+
+EEE
+	chmod 755 "$adbyby_adblack"
+fi
+
+adbyby_adesc="/etc/storage/adbyby_adesc.sh"
+if [ ! -f "$adbyby_adesc" ] || [ ! -s "$adbyby_adesc" ] ; then
+	cat > "$adbyby_adesc" <<-\EEE
+weixin.qq.com
+qpic.cn
+imtt.qq.com
+
+EEE
+	chmod 755 "$adbyby_adesc"
+fi
+
+adbyby_adhost="/etc/storage/adbyby_adhost.sh"
+if [ ! -f "$adbyby_adhost" ] || [ ! -s "$adbyby_adhost" ] ; then
+	cat > "$adbyby_adhost" <<-\EEE
+cbjs.baidu.com
+list.video.baidu.com
+nsclick.baidu.com
+play.baidu.com
+sclick.baidu.com
+tieba.baidu.com
+baidustatic.com
+bdimg.com
+bdstatic.com
+share.baidu.com
+hm.baidu.com
+v.baidu.com
+cpro.baidu.com
+1000fr.net
+atianqi.com
+56.com
+v-56.com
+acfun.com
+acfun.tv
+baofeng.com
+baofeng.net
+cntv.cn
+hoopchina.com.cn
+funshion.com
+fun.tv
+hitvs.cn
+hljtv.com
+iqiyi.com
+qiyi.com
+agn.aty.sohu.com
+itc.cn
+kankan.com
+ku6.com
+letv.com
+letvcloud.com
+letvimg.com
+pplive.cn
+pps.tv
+ppsimg.com
+pptv.com
+www.qq.com
+l.qq.com
+v.qq.com
+video.sina.com.cn
+tudou.com
+wasu.cn
+analytics-union.xunlei.com
+kankan.xunlei.com
+youku.com
+hunantv.com
+ifeng.com
+renren.com
+mediav.com
+cnbeta.com
+mydrivers.com
+168f.info
+doubleclick.net
+126.net
+sohu.com
+right.com.cn
+50bang.org
+you85.cn
+jiuzhilan.com
+googles.com
+cnbetacdn.com
+ptqy.gitv.tv
+admaster.com.cn
+serving-sys.com
+
+EEE
+	chmod 755 "$adbyby_adhost"
+fi
+}
+
+case $1 in
+start)
+	adbyby_start
+	;;
+stop)
+	adbyby_close
+	;;
+A)
+	add_rules
+	;;
+C)
+	add_rule
+	;;
+D)
+	add_dns
+	;;
+E)
+    addscripts
+	;;
+F)
+    hosts_ad
+	;;
+G)
+    adbyby_uprules
+	;;
+updateadb)
+    updateadb
+	;;
+*)
+	echo "check"
+	;;
+esac

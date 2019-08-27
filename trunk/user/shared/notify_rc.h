@@ -70,6 +70,8 @@
 #define RCN_RESTART_GFWLIST_UPD		"restart_gfwlist_upd"
 #define RCN_RESTART_KOOLPROXY		"restart_koolproxy"
 #define RCN_RESTART_KPUPDATE	"update_kp"
+#define RCN_RESTART_ADBYBY		"restart_adbyby"
+#define RCN_RESTART_UPDATEADB	"update_adb"
 #define RCN_RESTART_ALIDDNS		"restart_aliddns"
 #define RCN_RESTART_REBOOT		"restart_reboot"
 

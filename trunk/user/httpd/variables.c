@@ -877,6 +877,26 @@
 	};
 #endif
 
+#if defined(APP_ADBYBY)
+    struct variable variables_AdbybyConf[] = {
+			{"adbyby_enable", "", NULL, EVM_RESTART_ADBYBY},
+			{"hosts_ad", "", NULL, EVM_RESTART_ADBYBY},
+			{"tv_hosts", "", NULL, EVM_RESTART_ADBYBY},
+			{"adbyby_set", "", NULL, EVM_RESTART_ADBYBY},
+			{"adbyby_adb_update", "", NULL, EVM_RESTART_ADBYBY},
+			{"adbyby_update", "", NULL, EVM_RESTART_ADBYBY},
+			{"adbyby_update_hour", "", NULL, EVM_RESTART_ADBYBY},
+			{"adbyby_update_min", "", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_rules.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_blockip.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_adblack.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_adesc.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_adhost.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{"scripts.adbyby_config_script.sh", "File", NULL, EVM_RESTART_ADBYBY},
+			{0,0,0,0}
+	};
+#endif
+
 	struct variable variables_WLANConfig11b[] = {
 			{"rt_ssid", "", NULL, EVM_RESTART_WIFI2},
 			{"rt_ssid2", "", NULL, EVM_RESTART_WIFI2},
@@ -996,6 +1016,9 @@
 #if defined(APP_KOOLPROXY)
 		{"KoolproxyConf",		variables_KoolproxyConf},
 #endif
+#if defined(APP_ADBYBY)
+		{"AdbybyConf",		variables_AdbybyConf},
+#endif
 		{"LANGUAGE",			variables_Language},
 		{0,0}
 	};
@@ -1078,6 +1101,9 @@
 #endif
 #if defined(APP_KOOLPROXY)
 		{EVM_RESTART_KOOLPROXY,		EVT_RESTART_KOOLPROXY,		RCN_RESTART_KOOLPROXY,	0},
+#endif
+#if defined(APP_ADBYBY)
+		{EVM_RESTART_ADBYBY,		EVT_RESTART_ADBYBY,		RCN_RESTART_ADBYBY,	0},
 #endif
 #if defined(APP_ALIDDNS)
 		{EVM_RESTART_ALIDDNS,		EVT_RESTART_ALIDDNS,		RCN_RESTART_ALIDDNS,	0},

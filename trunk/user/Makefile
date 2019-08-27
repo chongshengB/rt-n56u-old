@@ -185,6 +185,7 @@ dir_$(ARIA2_ENABLED)		+= aria2
 endif
 
 dir_$(CONFIG_FIRMWARE_INCLUDE_KOOLPROXY)		+= koolproxy
+dir_$(CONFIG_FIRMWARE_INCLUDE_ADBYBY)		+= adbyby
 dir_$(CONFIG_FIRMWARE_INCLUDE_ALIDDNS)		+= aliddns
 ifdef CONFIG_MTD_UBI
 ifneq ($(STORAGE_ENABLED),y)

@@ -1999,7 +1999,7 @@ static int rules_count_hook(int eid, webs_t wp, int argc, char **argv)
 	websWrite(wp, "function chnroute_count() { return '%s';}\n", count);
 #if defined(APP_SHADOWSOCKS)
 	memset(count, 0, sizeof(count));
-	fstream = popen("grep ^server /etc/storage/gfwlist/dnsmasq_gfwlist.conf |wc -l","r");
+	fstream = popen("grep ^server /etc/storage/gfwlist/dnsmasq_gfwlist_ipset.conf |wc -l","r");
 	if(fstream) {
 		fgets(count, sizeof(count), fstream);
 		pclose(fstream);
@@ -2041,6 +2041,27 @@ static int koolproxy_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
 	int kp_status_code = pids("koolproxy");
 	websWrite(wp, "function koolproxy_status() { return %d;}\n", kp_status_code);
+	return 0;
+}
+#endif
+
+#if defined (APP_ADBYBY)
+static int adbyby_action_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int needed_seconds = 3;
+	char *ad_action = websGetVar(wp, "connect_action", "");
+	
+	if (!strcmp(ad_action, "updateadb")) {
+		notify_rc(RCN_RESTART_UPDATEADB);
+	}
+	websWrite(wp, "<script>restart_needed_time(%d);</script>\n", needed_seconds);
+	return 0;
+}
+
+static int adbyby_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int ad_status_code = pids("adbyby");
+	websWrite(wp, "function adbyby_status() { return %d;}\n", ad_status_code);
 	return 0;
 }
 #endif
@@ -2234,6 +2255,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_koolproxy = 0;
 #endif
+#if defined(APP_ADBYBY)
+	int found_app_adbyby = 1;
+#else
+	int found_app_adbyby = 0;
+#endif
 #if defined(APP_ALIDDNS)
 	int found_app_aliddns = 1;
 #else
@@ -2404,6 +2430,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_dnsforwarder() { return %d;}\n"
 		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_koolproxy() { return %d;}\n"
+		"function found_app_adbyby() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n",
 		found_utl_hdparm,
@@ -2427,6 +2454,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_dnsforwarder,
 		found_app_shadowsocks,
 		found_app_koolproxy,
+		found_app_adbyby,
 		found_app_aliddns,
 		found_app_xupnpd
 	);
@@ -4079,6 +4107,10 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_KOOLPROXY)
 	{ "koolproxy_action", koolproxy_action_hook},
 	{ "koolproxy_status", koolproxy_status_hook},
+#endif
+#if defined (APP_ADBYBY)
+	{ "adbyby_action", adbyby_action_hook},
+	{ "adbyby_status", adbyby_status_hook},
 #endif
 	{ "openssl_util_hook", openssl_util_hook},
 	{ "openvpn_srv_cert_hook", openvpn_srv_cert_hook},

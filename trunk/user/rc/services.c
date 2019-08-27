@@ -390,6 +390,27 @@ void update_kp(void){
 }
 #endif
 
+#if defined(APP_ADBYBY)
+void stop_adbyby(void){
+	eval("/usr/bin/adbyby.sh","stop");
+}
+
+void start_adbyby(void){
+	int adbyby_mode = nvram_get_int("adbyby_enable");
+	if ( adbyby_mode == 1)
+		eval("/usr/bin/adbyby.sh","start");
+}
+
+void restart_adbyby(void){
+	stop_adbyby();
+	start_adbyby();
+}
+
+void update_adb(void){
+	eval("/usr/bin/adbyby.sh","updateadb");
+}
+#endif
+
 #if defined(APP_ALIDDNS)
 void stop_aliddns(void){
 	eval("/etc/storage/aliddns.sh","stop");
@@ -624,6 +645,9 @@ start_services_once(int is_ap_mode)
 #if defined(APP_KOOLPROXY)
 	start_koolproxy();
 #endif
+#if defined(APP_ADBYBY)
+	start_adbyby();
+#endif
 #if defined(APP_ALIDDNS)
 	start_aliddns();
 #endif
@@ -664,6 +688,9 @@ stop_services(int stopall)
 #endif
 #if defined(APP_KOOLPROXY)
 	stop_koolproxy();
+#endif
+#if defined(APP_ADBYBY)
+	stop_adbyby();
 #endif
 #if defined(APP_ALIDDNS)
 	stop_aliddns();
