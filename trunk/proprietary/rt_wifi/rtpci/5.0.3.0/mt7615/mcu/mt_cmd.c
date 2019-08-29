@@ -9444,7 +9444,7 @@ INT32 MtCmdCr4Set(RTMP_ADAPTER *pAd, UINT32 arg0, UINT32 arg1, UINT32 arg2)
 	INT32 Ret = 0;
 	struct _EXT_CMD_CR4_SET_T  CmdCr4SetSet;
 	struct _CMD_ATTRIBUTE attr = {0};
-	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_OFF,
+	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_TRACE,
 			 (":%s: arg0(%d) arg1(%d) arg2(%d)\n",
 			  __func__, arg0, arg1, arg2));
 	msg = MtAndesAllocCmdMsg(pAd, sizeof(CmdCr4SetSet));
@@ -9480,7 +9480,7 @@ INT32 MtCmdCr4Capability(RTMP_ADAPTER *pAd, UINT32 option)
 	INT32 Ret = 0;
 	struct _EXT_CMD_CR4_CAPABILITY_T CmdCr4SetCapability;
 	struct _CMD_ATTRIBUTE attr = {0};
-	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_OFF,
+	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_TRACE,
 			 (":%s: option(%d)\n", __func__, option));
 	msg = MtAndesAllocCmdMsg(pAd, sizeof(CmdCr4SetCapability));
 
@@ -9515,7 +9515,7 @@ INT32 MtCmdCr4Debug(RTMP_ADAPTER *pAd, UINT32 option)
 	INT32 Ret = 0;
 	struct _EXT_CMD_CR4_DEBUG_T CmdCr4SetDebug;
 	struct _CMD_ATTRIBUTE attr = {0};
-	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_OFF,
+	MTWF_LOG(DBG_CAT_CFG, DBG_SUBCAT_ALL, DBG_LVL_TRACE,
 			 (":%s: option(%d)\n", __func__, option));
 	msg = MtAndesAllocCmdMsg(pAd, sizeof(CmdCr4SetDebug));
 
