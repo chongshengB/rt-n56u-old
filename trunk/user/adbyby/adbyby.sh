@@ -9,6 +9,7 @@ ipt_n="iptables -t nat"
 #adbyby_dir="/tmp/adbyby"
 PROG_PATH="/tmp/adbyby"
 DATA_PATH="$PROG_PATH/data"
+WAN_FILE="/etc/storage/dnsmasq-adbyby.d/03-adbyby-ipset.conf"
 wan_mode=`nvram get adbyby_set`
 abp_mode=`nvram get adbyby_adb_update`
 nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
@@ -178,10 +179,12 @@ cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
 conf-dir=/etc/storage/dnsmasq-adbyby.d
 EOF
 
-		if [ $abp_mode -eq 1 ]; then
+			if [ $wan_mode -eq 1 ]; then
 		awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_wan"'\n",$0)}' $PROG_PATH/adhost.conf > $WAN_FILE
+		fi
 		if ls /etc/storage/dnsmasq-adbyby.d/* >/dev/null 2>&1; then
       mkdir -p /tmp/dnsmasq.d
+	  if [ $abp_mode -eq 1 ]; then
       cp $PROG_PATH/dnsmasq.adblock /etc/storage/dnsmasq-adbyby.d/04-dnsmasq.adblock
       cp $PROG_PATH/dnsmasq.ads /etc/storage/dnsmasq-adbyby.d/05-dnsmasq.ads
 	  fi
