@@ -1,7 +1,8 @@
 ##################################################################
 # Board PID # Board Name       # PRODUCT # Note
 ##################################################################
-# NEWIFI-MINI # Lenovo NEWIFI-MINI # MT7620  #
+# K2P       # K2P              # MT7621  #
 ##################################################################
-CFLAGS += -DBOARD_NEWIFIMINI
-BOARD_NUM_USB_PORTS=1
+
+CFLAGS += -DBOARD_K2P
+BOARD_NUM_USB_PORTS=0

@@ -18,6 +18,7 @@
 <script type="text/javascript" src="/state.js"></script>
 <script type="text/javascript" src="/general.js"></script>
 <script type="text/javascript" src="/itoggle.js"></script>
+<script type="text/javascript" src="/client_function.js"></script>
 <script type="text/javascript" src="/popup.js"></script>
 <script type="text/javascript" src="/help.js"></script>
 <script>
@@ -28,6 +29,8 @@ $j(document).ready(function() {
 	init_itoggle('hosts_ad');
 	init_itoggle('tv_hosts');
 	init_itoggle('adbyby_adb_update');
+	init_itoggle('adbyby_ip_x', change_adbyby_ip_enabled);
+	init_itoggle('adbyby_rules_x', change_adbyby_rules_enabled);
 });
 
 </script>
@@ -35,14 +38,44 @@ $j(document).ready(function() {
 <% adbyby_status(); %>
 <% login_state_hook(); %>
 
+var ipmonitor = [<% get_static_client(); %>];
+var wireless = [<% wl_auth_list(); %>];
+var m_dhcp = [<% get_nvram_list("AdbybyConf", "AdIPList"); %>];
+var m_rules = [<% get_nvram_list("AdbybyConf", "AdRULESList"); %>];
+var mdhcp_ifield = 4;
+if(m_dhcp.length > 0){
+	var m_dhcp_ifield = m_dhcp[0].length;
+	for (var i = 0; i < m_dhcp.length; i++) {
+		m_dhcp[i][mdhcp_ifield] = i;
+	}
+}
+
+var mrules_ifield = 2;
+if(m_rules.length > 0){
+	var m_rules_ifield = m_rules[0].length;
+	for (var i = 0; i < m_rules.length; i++) {
+		m_rules[i][mrules_ifield] = i;
+	}
+}
+
+var clients_info = getclients(1,0);
+
+var isMenuopen = 0;
+
 function initial(){
 	show_banner(2);
 	show_menu(5,15,1);
 	show_footer();
 	fill_adbyby_status(adbyby_status());
-	change_adbyby_enable();
+	//change_adbyby_enable();
+	showMDHCPList();
+	showLANIPList();
+	showMRULESList();
+	change_adbyby_ip_enabled();
+	change_adbyby_rules_enabled();
 	if (!login_safe())
 		textarea_scripts_enabled(0);
+		load_body();
 }
 
 function textarea_scripts_enabled(v){
@@ -55,7 +88,7 @@ function textarea_scripts_enabled(v){
 }
 
 function applyRule(){
-//	if(validForm()){
+	//if(validForm()){
 		showLoading();
 		
 		document.form.action_mode.value = " Apply ";
@@ -65,6 +98,7 @@ function applyRule(){
 		document.form.submit();
 //	}
 }
+
 
 function submitInternet(v){
 	showLoading();
@@ -87,7 +121,250 @@ function fill_adbyby_status(status_code){
 		stext = "<#Running#>";
 	$("adbyby_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
 }
+function sortbyIP(){
+	m_dhcp.sort(function(a,b){
+		var aa = a[1].split(".");
+		var bb = b[1].split(".");
+		var resulta = aa[0]*0x1000000 + aa[1]*0x10000 + aa[2]*0x100 + aa[3]*1;
+		var resultb = bb[0]*0x1000000 + bb[1]*0x10000 + bb[2]*0x100 + bb[3]*1;
+		return resulta-resultb;
+	});
+	showMDHCPList();
+}
 
+function sortbyMAC(){
+	m_dhcp.sort(function(a,b){
+		return parseInt(a[0])-parseInt(b[0]);
+	});
+	showMDHCPList();
+}
+
+function sortbyName(){
+	m_dhcp.sort(function(a,b){
+		var aa = a[2].toLowerCase();
+		var bb = b[2].toLowerCase();
+		if (aa < bb) return -1;
+		if (aa > bb) return 1;
+		return 0;
+	});
+	showMDHCPList();
+}
+
+function sortbyId(){
+	m_dhcp.sort(function(a,b){
+		return a[mdhcp_ifield] - b[mdhcp_ifield];
+	});
+	showMDHCPList();
+}
+
+function setClientMAC(num){
+	document.form.adbybyip_mac_x_0.value = clients_info[num][2];
+	document.form.adbybyip_ip_x_0.value = clients_info[num][1];
+	document.form.adbybyip_name_x_0.value = clients_info[num][0];
+	hideClients_Block();
+}
+
+function showLANIPList(){
+	var code = "";
+	var show_name = "";
+	
+	for(var i = 0; i < clients_info.length ; i++){
+		if(clients_info[i][0] && clients_info[i][0].length > 20)
+			show_name = clients_info[i][0].substring(0, 18) + "..";
+		else
+			show_name = clients_info[i][0];
+		
+		if(clients_info[i][2]){
+			code += '<a href="javascript:void(0)"><div onclick="setClientMAC('+i+');"><strong>'+clients_info[i][1]+'</strong>';
+			code += ' ['+clients_info[i][2]+']';
+			if(show_name && show_name.length > 0)
+				code += ' ('+show_name+')';
+			code += ' </div></a>';
+		}
+	}
+	if (code == "")
+		code = '<div style="text-align: center;" onclick="hideClients_Block();"><#Nodata#></div>';
+	code +='<!--[if lte IE 6.5]><iframe class="hackiframe2"></iframe><![endif]-->';	
+	$("ClientList_Block").innerHTML = code;
+}
+
+function hideClients_Block(){
+	$j("#chevron").children('i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
+	$('ClientList_Block').style.display='none';
+	isMenuopen = 0;
+}
+
+function pullLANIPList(obj){
+	if(isMenuopen == 0){
+		$j(obj).children('i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+		$("ClientList_Block").style.display = 'block';
+		document.form.adbybyip_mac_x_0.focus();
+		isMenuopen = 1;
+	}
+	else
+		hideClients_Block();
+}
+
+function change_adbyby_ip_enabled(){
+	var v = document.form.adbyby_ip_x[0].checked;
+	showhide_div('row_static_arp', v);
+	showhide_div('row_static_caption', v);
+	showhide_div('row_static_header', v);
+	showhide_div('row_static_body', v);
+}
+
+function change_adbyby_rules_enabled(){
+	var v = document.form.adbyby_rules_x[0].checked;
+	showhide_div('row_rules_caption', v);
+	showhide_div('row_rules_header', v);
+	showhide_div('row_rules_body', v);
+}
+
+function done_validating(action){
+	refreshpage();
+}
+
+function markGroupMDHCP(o, c, b) {
+	document.form.group_id.value = "AdIPList";
+	if(b == " Add "){
+		if (document.form.adbybyip_staticnum_x_0.value >= c){
+			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
+			return false;
+		}else if (document.form.adbybyip_mac_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.adbybyip_mac_x_0.focus();
+			document.form.adbybyip_mac_x_0.select();
+			return false;
+		}else if(document.form.adbybyip_ip_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.adbybyip_ip_x_0.focus();
+			document.form.adbybyip_ip_x_0.select();
+			return false;
+		}else if (!validate_hwaddr(document.form.adbybyip_mac_x_0)){
+			return false;
+		}else if (!validate_ipaddr_final(document.form.adbybyip_ip_x_0, 'staticip')){
+			return false;
+		}else{
+			for(i=0; i<m_dhcp.length; i++){
+				if(document.form.adbybyip_mac_x_0.value==m_dhcp[i][0]) {
+					alert('<#JS_duplicate#>' + ' (' + m_dhcp[i][0] + ')' );
+					document.form.adbybyip_mac_x_0.focus();
+					document.form.adbybyip_mac_x_0.select();
+					return false;
+				}
+				if(document.form.adbybyip_ip_x_0.value.value==m_dhcp[i][1]) {
+					alert('<#JS_duplicate#>' + ' (' + m_dhcp[i][1] + ')' );
+					document.form.adbybyip_ip_x_0.focus();
+					document.form.adbybyip_ip_x_0.select();
+					return false;
+				}
+			}
+		}
+	}
+	pageChanged = 0;
+	document.form.action_mode.value = b;
+	return true;
+}
+
+function markGroupRULES(o, c, b) {
+	document.form.group_id.value = "AdRULESList";
+	if(b == " Add "){
+		if (document.form.adbybyrules_staticnum_x_0.value >= c){
+			alert("<#JS_itemlimit1#> " + c + " <#JS_itemlimit2#>");
+			return false;
+		}else if (document.form.adbybyrules_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.adbybyrules_x_0.focus();
+			document.form.adbybyrules_x_0.select();
+			return false;
+		}else if(document.form.adbybyrules_road_x_0.value==""){
+			alert("<#JS_fieldblank#>");
+			document.form.adbybyrules_road_0.focus();
+			document.form.adbybyrules_road_0.select();
+			return false;
+		}else{
+			for(i=0; i<m_rules.length; i++){
+				if(document.form.adbybyrules_x_0.value==m_rules[i][0]) {
+					alert('<#JS_duplicate#>' + ' (' + m_rules[i][0] + ')' );
+					document.form.adbybyrules_x_0.focus();
+					document.form.adbybyrules_x_0.select();
+					return false;
+				}
+				if(document.form.adbybyrules_road_x_0.value.value==m_rules[i][1]) {
+					alert('<#JS_duplicate#>' + ' (' + m_rules[i][1] + ')' );
+					document.form.adbybyrules_road_0.focus();
+					document.form.adbybyrules_road_0.select();
+					return false;
+				}
+			}
+		}
+	}
+	pageChanged = 0;
+	document.form.action_mode.value = b;
+	return true;
+}
+
+function showMDHCPList(){
+	var code = '<table width="100%" cellspacing="0" cellpadding="3" class="table table-list">';
+	if(m_dhcp.length == 0)
+		code +='<tr><td colspan="4" style="text-align: center;"><div class="alert alert-info"><#IPConnection_VSList_Norule#></div></td></tr>';
+	else{
+	    for(var i = 0; i < m_dhcp.length; i++){
+		if(m_dhcp[i][3] == 0)
+		adbybyiproad="不过滤";
+		else{
+		adbybyiproad="全局过滤";
+		}
+		code +='<tr id="row' + i + '">';
+		code +='<td width="25%">&nbsp;' + m_dhcp[i][0] + '</td>';
+		code +='<td width="25%">&nbsp;' + m_dhcp[i][1] + '</td>';
+		code +='<td width="25%">&nbsp;' + m_dhcp[i][2] + '</td>';
+		code +='<td width="20%">&nbsp;' + adbybyiproad + '</td>';
+		code +='<td width="5%" style="text-align: center;"><input type="checkbox" name="AdIPList_s" value="' + m_dhcp[i][mdhcp_ifield] + '" onClick="changeBgColor(this,' + i + ');" id="check' + m_dhcp[i][mdhcp_ifield] + '"></td>';
+		code +='</tr>';
+	    }
+		code += '<tr>';
+		code += '<td colspan="4">&nbsp;</td>'
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markGroupMDHCP(this, 64, \' Del \');" name="AdIPList"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '</tr>'
+	}
+	code +='</table>';
+	$("MDHCPList_Block").innerHTML = code;
+}
+
+function showMRULESList(){
+	var code = '<table width="100%" cellspacing="0" cellpadding="3" class="table table-list">';
+	if(m_rules.length == 0)
+		code +='<tr><td colspan="3" style="text-align: center;"><div class="alert alert-info"><#IPConnection_VSList_Norule#></div></td></tr>';
+	else{
+	    for(var i = 0; i < m_rules.length; i++){
+		if(m_rules[i][1] == 0)
+		adbybyrulesroad="已禁用";
+		else{
+		adbybyrulesroad="已启用";
+		}
+		code +='<tr id="rowrl' + i + '">';
+		code +='<td width="75%">&nbsp;' + m_rules[i][0] + '</td>';
+		code +='<td width="8%">&nbsp;</td>';
+		code +='<td width="12%">&nbsp;' + adbybyrulesroad + '</td>';
+		code +='<center><td width="5%" style="text-align: center;"><input type="checkbox" name="AdRULESList_s" value="' + m_rules[i][mrules_ifield] + '" onClick="changeBgColorrl(this,' + i + ');" id="check' + m_rules[i][mrules_ifield] + '"></td></center>';
+		code +='</tr>';
+	    }
+		code += '<tr>';
+		code += '<td colspan="3">&nbsp;</td>'
+		code += '<td><button class="btn btn-danger" type="submit" onclick="markGroupRULES(this, 64, \' Del \');" name="AdRULESList"><i class="icon icon-minus icon-white"></i></button></td>';
+		code += '</tr>'
+	}
+	code +='</table>';
+	$("MRULESList_Block").innerHTML = code;
+}
+
+function changeBgColor(obj, num){
+	$("row" + num).style.background=(obj.checked)?'#D9EDF7':'whiteSmoke';
+}
+function changeBgColorrl(obj, num){
+	$("rowrl" + num).style.background=(obj.checked)?'#D9EDF7':'whiteSmoke';
+}
 
 </script>
 </head>
@@ -114,14 +391,15 @@ function fill_adbyby_status(status_code){
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="AdbybyConf;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="">
+	<input type="hidden" name="group_id" value="AdIPList;AdRULESList">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
 	<input type="hidden" name="wan_ipaddr" value="<% nvram_get_x("", "wan0_ipaddr"); %>" readonly="1">
 	<input type="hidden" name="wan_netmask" value="<% nvram_get_x("", "wan0_netmask"); %>" readonly="1">
 	<input type="hidden" name="dhcp_start" value="<% nvram_get_x("", "dhcp_start"); %>">
 	<input type="hidden" name="dhcp_end" value="<% nvram_get_x("", "dhcp_end"); %>">
-
+    <input type="hidden" name="adbybyip_staticnum_x_0" value="<% nvram_get_x("", "adbybyip_staticnum_x"); %>" readonly="1" />
+	<input type="hidden" name="adbybyrules_staticnum_x_0" value="<% nvram_get_x("", "adbybyrules_staticnum_x"); %>" readonly="1" />
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3">
@@ -238,7 +516,129 @@ function fill_adbyby_status(status_code){
 												<div>&nbsp;<span style="color:#888;">注意：更新时可能会造成网游断线！</span></div>
 											</td>
 										</tr>
-										
+										</table>
+										<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+                                        <tr>
+                                            <th colspan="5" id="GWStatic" style="background-color: #E3E3E3;">自定义IP过滤设置</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2" width="50%">启用内网过滤控制</th>
+                                            <td colspan="2" width="50%">
+                                                <div class="main_itoggle">
+                                                    <div id="adbyby_ip_x_on_of">
+                                                        <input type="checkbox" id="adbyby_ip_x_fake" <% nvram_match_x("", "adbyby_ip_x", "1", "value=1 checked"); %><% nvram_match_x("", "adbyby_ip_x", "0", "value=0"); %>>
+                                                    </div>
+                                                </div>
+
+                                                <div style="position: absolute; margin-left: -10000px;">
+                                                    <input type="radio" value="1" name="adbyby_ip_x" id="adbyby_ip_x_1" onclick="change_adbyby_ip_enabled()" <% nvram_match_x("", "adbyby_ip_x", "1", "checked"); %> /><#checkbox_Yes#>
+                                                    <input type="radio" value="0" name="adbyby_ip_x" id="adbyby_ip_x_0" onclick="change_adbyby_ip_enabled()" <% nvram_match_x("", "adbyby_ip_x", "0", "checked"); %> /><#checkbox_No#>
+                                                </div>
+                                            </td>
+                                        </tr>
+										</table>
+										<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
+                                        <tr id="row_static_caption" style="display:none">
+                                            <th width="25%">
+                                                <#LANHostConfig_ManualMac_itemname#> <a href="javascript:sortbyMAC();" style="outline:0;"><i class="icon-circle-arrow-down"></i></a>
+                                            </th>
+                                            <th width="25%">
+                                                <#LANHostConfig_ManualIP_itemname#> <a href="javascript:sortbyIP();" style="outline:0;"><i class="icon-circle-arrow-down"></i></a>
+                                            </th>
+                                            <th width="25%">
+                                                <#LANHostConfig_ManualName_itemname#> <a href="javascript:sortbyName();" style="outline:0;"><i class="icon-circle-arrow-down"></i></a>
+                                            </th>
+											<th width="20%">
+                                                过滤模式 <a href="javascript:sortbyName();" style="outline:0;"><i class="icon-circle-arrow-down"></i></a>
+                                            </th>
+                                            <th width="5%">
+                                                <center><a href="javascript:sortbyId();" style="outline:0;"><i class="icon-th-list"></i></a></center>
+                                            </th>
+                                        </tr>
+                                        <tr id="row_static_header" style="display:none">
+                                            <td width="25%">
+                                                <div id="ClientList_Block" class="alert alert-info ddown-list" style="width: 400px;"></div>
+                                                <div class="input-append">
+                                                    <input type="text" maxlength="12" class="span12" size="12" name="adbybyip_mac_x_0" value="<% nvram_get_x("", "adbybyip_mac_x_0"); %>" onkeypress="return is_hwaddr(event);" style="float:left; width: 110px"/>
+                                                    <button class="btn btn-chevron" id="chevron" type="button" onclick="pullLANIPList(this);" title="Select the MAC of LAN clients."><i class="icon icon-chevron-down"></i></button>
+                                                </div>
+                                            </td>
+                                            <td width="25%">
+                                                <input type="text" maxlength="15" class="span12" size="15" name="adbybyip_ip_x_0" value="<% nvram_get_x("", "adbybyip_ip_x_0"); %>" onkeypress="return is_ipaddr(this,event);"/>
+                                            </td>
+                                            <td width="25%">
+                                                <input type="text" maxlength="24" class="span12" size="20" name="adbybyip_name_x_0" value="<% nvram_get_x("", "adbybyip_name_x_0"); %>" onKeyPress="return is_string(this,event);"/>
+                                            </td>
+											 <td width="20%">
+                                          	<select name="adbybyip_ip_road_x_0" class="input" style="width: 110px">
+													<option value="0" <% nvram_match_x("","adbybyip_ip_road_x_0", "0","selected"); %>>不过滤</option>
+													<option value="1" <% nvram_match_x("","adbybyip_ip_road_x_0", "1","selected"); %>>全局过滤</option>
+												</select>
+                                            </td>
+                                            <td width="5%">
+                                                <button class="btn" style="max-width: 219px" type="submit" onclick="return markGroupMDHCP(this, 64, ' Add ');" name="ManualDHCPList2" value="<#CTL_add#>" size="12"><i class="icon icon-plus"></i></button>
+                                            </td>
+                                        </tr>
+                                        <tr id="row_static_body" style="display:none">
+                                            <td colspan="5" style="border-top: 0 none; padding: 0px;">
+                                                <div id="MDHCPList_Block"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+									 <table width="100%" align="center" cellpadding="5" cellspacing="0" class="table">
+                                        <tr>
+                                            <th colspan="5" id="GWStatic" style="background-color: #E3E3E3;">第三方过滤规则</th>
+                                        </tr>
+                                        <tr>
+                                            <th width="50%">启用第三方过滤规则</th>
+                                            <td width="50%">
+                                                <div class="main_itoggle">
+                                                    <div id="adbyby_rules_x_on_of">
+                                                        <input type="checkbox" id="adbyby_rules_x_fake" <% nvram_match_x("", "adbyby_rules_x", "1", "value=1 checked"); %><% nvram_match_x("", "adbyby_rules_x", "0", "value=0"); %>>
+                                                    </div>
+                                                </div>
+
+                                                <div style="position: absolute; margin-left: -10000px;">
+                                                    <input type="radio" value="1" name="adbyby_rules_x" id="adbyby_rules_x_1" onclick="change_adbyby_rules_enabled()" <% nvram_match_x("", "adbyby_rules_x", "1", "checked"); %> /><#checkbox_Yes#>
+                                                    <input type="radio" value="0" name="adbyby_rules_x" id="adbyby_rules_x_0" onclick="change_adbyby_rules_enabled()" <% nvram_match_x("", "adbyby_rules_x", "0", "checked"); %> /><#checkbox_No#>
+                                                </div>
+                                            </td>
+                                        </tr>
+										</table>
+										<table width="100%" align="center" cellpadding="3" cellspacing="0" class="table">
+                                        <tr id="row_rules_caption" style="display:none">
+										 
+                                            <th width="85%">
+                                                规则地址 <i class="icon-circle-arrow-down"></i>
+                                            </th>
+											<th width="10%">
+                                                状态 <i class="icon-circle-arrow-down"></i>
+                                            </th>
+                                            <th width="5%">
+                                                <center><i class="icon-th-list"></i></center>
+                                            </th>
+                                        </tr>
+                                        <tr id="row_rules_header" style="display:none">
+                                            <td width="85%">
+                                                <input type="text" maxlength="255" class="span12" size="200" name="adbybyrules_x_0" value="<% nvram_get_x("", "adbybyrules_x_0"); %>" onKeyPress="return is_string(this,event);"/>
+                                            </td>
+											 <td width="10%">
+                                          	<select name="adbybyrules_road_x_0" class="input" style="width: 65px">
+													<option value="0" <% nvram_match_x("","adbybyrules_road_x_0", "0","selected"); %>>禁用</option>
+													<option value="1" <% nvram_match_x("","adbybyrules_road_x_0", "1","selected"); %>>启用</option>
+												</select>
+                                            </td>
+                                            <td width="5%">
+                                               <center> <button class="btn" style="max-width: 219px " type="submit" onclick="return markGroupRULES(this, 64, ' Add ');" name="ManualRULESList2" value="<#CTL_add#>" size="12"><i class="icon icon-plus"></i></button></center>
+                                            </td>
+                                        </tr>
+                                        <tr id="row_rules_body" style="display:none">
+                                            <td colspan="3" style="border-top: 0 none; padding: 0px;">
+                                                <div id="MRULESList_Block"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+									<table class="table">
 										<tr>
 											<td colspan="3" >
 												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script9')"><span>Plus+ 模式过滤的域名:</span></a>
@@ -279,16 +679,9 @@ function fill_adbyby_status(status_code){
 												</div>
 											</td>
 										</tr>
-										<!--
-										<tr id="ad_config">
-											<td colspan="3" style="border-top: 0 none;">
-												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script14')"><span>点这里自定义内网 IP 过滤广告控制功能、订阅第三方自定义规则</span></a>
-												<div id="script14" style="display:none;">
-													<textarea rows="24" wrap="off" spellcheck="false" maxlength="314571" class="span12" name="scripts.adbyby_config_script.sh" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.adbyby_config_script.sh",""); %></textarea>
-												</div>
-											</td>
-										</tr>-->
-										<tr>
+										
+										
+									
 											<td colspan="2" style="border-top: 0 none;">
 												<br />
 												<center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>

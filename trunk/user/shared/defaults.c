@@ -424,6 +424,10 @@ struct nvram_pair router_defaults[] = {
 	{ "adbyby_update", "2" },
 	{ "adbyby_update_hour", "0" },
 	{ "adbyby_update_min", "0" },
+	{ "adbyby_ip_x", "0" },
+	{ "adbyby_rules_x", "0" },
+	{ "adbybyip_staticnum_x", "0" },
+	{ "adbybyrules_staticnum_x", "0" },
     /* Aliddns */
 	{ "aliddns_enable", "0" },
 	{ "aliddns_interval", "600" },
@@ -878,6 +882,14 @@ struct nvram_pair tables_defaults[] = {
 	{"koolproxy_mac_x", "" },
 	{"koolproxy_ip_x", "" },
 	{"koolproxy_name_x", "" },
+	
+	{"adbybyip_mac_x", "" },
+	{"adbybyip_ip_x", "" },
+	{"adbybyip_name_x", "" },
+	{"adbybyip_ip_road_x", "" },
+	
+	{"adbybyrules_x", "" },
+	{"adbybyrules_road_x", "" },
 
 	{ "vpns_user_x", "" },
 	{ "vpns_pass_x", "" },

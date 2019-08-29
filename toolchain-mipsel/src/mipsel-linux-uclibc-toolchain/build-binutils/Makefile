@@ -466,7 +466,7 @@ do-compare3 = $(do-compare)
 
 AR_FOR_TARGET=$$r/$(HOST_SUBDIR)/binutils/ar
 AS_FOR_TARGET=$$r/$(HOST_SUBDIR)/gas/as-new
-CC_FOR_TARGET=$(STAGE_CC_WRAPPER) mipsel-linux-uclibc-gcc
+CC_FOR_TARGET=$(STAGE_CC_WRAPPER) mipsel-linux-uclibc-cc
 
 # If GCC_FOR_TARGET is not overriden on the command line, then this
 # variable is passed down to the gcc Makefile, where it is used to

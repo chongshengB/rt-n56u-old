@@ -1,5 +1,7 @@
 #!/bin/sh
 adbyby_enable=`nvram get adbyby_enable`
+adbyby_ip_x=`nvram get adbyby_ip_x`
+adbyby_rules_x=`nvram get adbyby_rules_x`
 adbyby_set=`nvram get adbyby_set`
 http_username=`nvram get http_username`
 adbyby_update=`nvram get adbyby_update`
@@ -15,7 +17,12 @@ abp_mode=`nvram get adbyby_adb_update`
 nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
 nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
 nvram set adbyby_utime=`cat /tmp/adbyby.updated 2>/dev/null`
-
+nvram set adbybyip_mac_x_0=""
+nvram set adbybyip_ip_x_0=""
+nvram set adbybyip_name_x_0=""
+nvram set adbybyip_ip_road_x_0=""
+nvram set adbybyrules_x_0=""
+nvram set adbybyrules_road_x_0=""
 adbyby_start()
 {
 addscripts
@@ -36,6 +43,7 @@ fi
 	add_rule
 	/sbin/restart_dhcpd
 	add_cron
+	logger -t "adbyby" "Adbyby启动完成。"
 }
 
 adbyby_close()
@@ -49,13 +57,13 @@ adbyby_close()
 	fi
 	kill -9 $(ps | grep admem.sh | grep -v grep | awk '{print $1}') >/dev/null 2>&1 
 	/sbin/restart_dhcpd
-
+logger -t "adbyby" "Adbyby已关闭。"
 
 }
 
 add_rules()
 {
-logger -t "adbyby" "更新Adbyby规则"
+logger -t "adbyby" "正在检查规则是否需要更新!"
 rm -f /tmp/adbyby/data/*.bak
 
 touch /tmp/local-md5.json && md5sum /tmp/adbyby/data/lazy.txt /tmp/adbyby/data/video.txt > /tmp/local-md5.json
@@ -68,6 +76,7 @@ video_online=$(sed  's/":"/\n/g' /tmp/md5.json  |  sed  's/","/\n/g' | sed -n '4
 
 if [ "$lazy_online"x != "$lazy_local"x -o "$video_online"x != "$video_local"x ]; then
     echo "MD5 not match! Need update!"
+	logger -t "adbyby" "发现更新的规则,下载规则！"
     touch /tmp/lazy.txt && wget --no-check-certificate -t 1 -T 10 -O /tmp/lazy.txt https://coding.net/u/adbyby/p/xwhyc-rules/git/raw/master/lazy.txt
     touch /tmp/video.txt && wget --no-check-certificate -t 1 -T 10 -O /tmp/video.txt https://coding.net/u/adbyby/p/xwhyc-rules/git/raw/master/video.txt
     touch /tmp/local-md5.json && md5sum /tmp/lazy.txt /tmp/video.txt > /tmp/local-md5.json
@@ -81,6 +90,7 @@ if [ "$lazy_online"x != "$lazy_local"x -o "$video_online"x != "$video_local"x ];
      fi
 else
      echo "MD5 match! No need to update!"
+	 logger -t "adbyby" "没有更新的规则,本次无需更新！"
 fi
 
 rm -f /tmp/lazy.txt /tmp/video.txt /tmp/local-md5.json /tmp/md5.json
@@ -92,9 +102,28 @@ grep -v '^!' /etc/storage/adbyby_blockip.sh | grep -v "^$" > $PROG_PATH/blockip.
 grep -v '^!' /etc/storage/adbyby_adblack.sh | grep -v "^$" > $PROG_PATH/adblack.conf
 grep -v '^!' /etc/storage/adbyby_adesc.sh | grep -v "^$" > $PROG_PATH/adesc.conf
 grep -v '^!' /etc/storage/adbyby_adhost.sh | grep -v "^$" > $PROG_PATH/adhost.conf
+logger -t "adbyby" "正在处理规则..."
 	rm -f $DATA_PATH/user.bin
-	grep -v ^! $PROG_PATH/rules.txt > $DATA_PATH/user.txt
-	cp $PROG_PATH/rules.txt $DATA_PATH/rules.txt
+	  rulesnum=`nvram get adbybyrules_staticnum_x`
+	   if [ $adbyby_rules_x -eq 1 ]; then
+	 if [ $adbyby_update -ne 0 ]; then
+	for i in $(seq 1 $rulesnum)
+	do
+	j=`expr $i - 1`
+		rules_address=`nvram get adbybyrules_x$j`
+		rules_road=`nvram get adbybyrules_road_x$j`
+ if [ $rules_road -ne 0 ]; then
+			logger -t "adbyby" "正在下载和合并第三方规则"
+			wget --no-check-certificate $rules_address -O /tmp/adbyby/user2.txt
+			grep -v '^!' /tmp/adbyby/user2.txt | grep -E '^(@@\||\||[[:alnum:]])' | sort -u | grep -v "^$" >> $DATA_PATH/user3adblocks.txt
+			rm -f /tmp/adbyby/user2.txt
+		fi
+	done
+	grep -v '^!' $DATA_PATH/user3adblocks.txt | grep -v "^$" >> $DATA_PATH/user.txt
+	rm -f $DATA_PATH/user3adblocks.txt
+	fi
+	fi
+	grep -v ^! $PROG_PATH/rules.txt >> $DATA_PATH/user.txt
 }
 
 
@@ -123,7 +152,6 @@ fi
 del_cron()
 {
 sed -i '/adbchk/d' /etc/storage/cron/crontabs/$http_username
-	#/etc/init.d/cron restart
 }
 
 ip_rule()
@@ -131,29 +159,32 @@ ip_rule()
 
   ipset -N adbyby_esc hash:ip
   $ipt_n -A ADBYBY -m set --match-set adbyby_esc dst -j RETURN
-    
-	for i in $(seq 0 100)
+  num=`nvram get adbybyip_staticnum_x`
+  if [ $adbyby_ip_x -eq 1 ]; then
+  if [ $num -ne 0 ]; then
+	for i in $(seq 1 $num)
 	do
-		local ip=$(uci_get_by_type acl_rule ipaddr '' $i)
-		local mode=$(uci_get_by_type acl_rule filter_mode '' $i)
-		case "$mode" in
-		disable)
+	j=`expr $i - 1`
+		ip=`nvram get adbybyip_ip_x$j`
+		mode=`nvram get adbybyip_ip_road_x$j`
+		case $mode in
+		0)
 			$ipt_n -A ADBYBY -s $ip -j RETURN
 			;;
-		global)
+		1)
 			$ipt_n -A ADBYBY -s $ip -p tcp -j REDIRECT --to-ports 8118
 			$ipt_n -A ADBYBY -s $ip -j RETURN
 			;;
 		esac
 	done
-	
-	
+	fi
+	fi
 	
 	case $wan_mode in
 		0)
 			;;
 		1)
-      ipset -N adbyby_wan hash:ip
+            ipset -N adbyby_wan hash:ip
 			$ipt_n -A ADBYBY -m set ! --match-set adbyby_wan dst -j RETURN
 			;;
 		2)
@@ -179,18 +210,22 @@ cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
 conf-dir=/etc/storage/dnsmasq-adbyby.d
 EOF
 
+<<<<<<< Updated upstream
 			if [ $wan_mode -eq 1 ]; then
+=======
+		if [ $wan_mode -eq 1 ]; then
+>>>>>>> Stashed changes
 		awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_wan"'\n",$0)}' $PROG_PATH/adhost.conf > $WAN_FILE
 		fi
 		if ls /etc/storage/dnsmasq-adbyby.d/* >/dev/null 2>&1; then
       mkdir -p /tmp/dnsmasq.d
 	  if [ $abp_mode -eq 1 ]; then
       cp $PROG_PATH/dnsmasq.adblock /etc/storage/dnsmasq-adbyby.d/04-dnsmasq.adblock
+	  sed -i '/youku.com/d' $PROG_PATH/dnsmasq.ads
       cp $PROG_PATH/dnsmasq.ads /etc/storage/dnsmasq-adbyby.d/05-dnsmasq.ads
 	  fi
 	fi
-	
-   sed -i '/mesu.apple.com/d' /etc/dnsmasq.conf && [ $block_ios -eq 1 ] && echo 'address=/mesu.apple.com/0.0.0.0' >> /etc/dnsmasq.conf
+   #sed -i '/mesu.apple.com/d' /etc/dnsmasq.conf && [ $block_ios -eq 1 ] && echo 'address=/mesu.apple.com/0.0.0.0' >> /etc/dnsmasq.conf
 }
 
 del_dns()

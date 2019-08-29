@@ -1127,9 +1127,6 @@ VOID PeerPairMsg1Action(
 
 	/* Generate random SNonce*/
 	GenRandom(pAd, (UCHAR *)pCurrentAddr, pEntry->SNonce);
-	pEntry->AllowInsPTK = TRUE;
-	pEntry->LastGroupKeyId = 0;
-	NdisZeroMemory(pEntry->LastGTK, 32);
 
 #ifdef DOT11R_FT_SUPPORT
 	if (IS_FT_RSN_STA(pEntry))
@@ -1803,15 +1800,8 @@ VOID PeerPairMsg3Action(
 	IF_DEV_CONFIG_OPMODE_ON_AP(pAd)
 	{
 #ifdef APCLI_SUPPORT
-		if (IS_ENTRY_APCLI(pEntry)) {
-			if(pEntry->AllowInsPTK == TRUE) {
-				APCliInstallPairwiseKey(pAd, pEntry);
-				pEntry->AllowInsPTK = FALSE;
-			} else {
-				MTWF_LOG(DBG_CAT_ALL, DBG_SUBCAT_ALL, DBG_LVL_ERROR,
-						("!!!%s : the M3 reinstall attack, skip install key\n", __func__));
-			}
-		}
+		if (IS_ENTRY_APCLI(pEntry))
+		 	APCliInstallPairwiseKey(pAd, pEntry);
 #endif /* APCLI_SUPPORT */
 	}
 #endif /* CONFIG_AP_SUPPORT */
@@ -4372,19 +4362,10 @@ BOOLEAN RTMPParseEapolKeyData(
 #ifdef APCLI_SUPPORT
 		if ((pAd->chipCap.hif_type == HIF_RLT || pAd->chipCap.hif_type == HIF_RTMP) && IS_ENTRY_APCLI(pEntry))
 		{
-			/* Prevent the GTK reinstall key attack */
-			if (pEntry->LastGroupKeyId != DefaultIdx ||
-					!NdisEqualMemory(pEntry->LastGTK, GTK, MAX_LEN_GTK)) {
-				/* Set Group key material, TxMic and RxMic for AP-Client*/
-				if (!APCliInstallSharedKey(pAd, GTK, GTKLEN, DefaultIdx, pEntry))
-				{
-					return FALSE;
-				}
-				pEntry->LastGroupKeyId = DefaultIdx;
-				NdisMoveMemory(pEntry->LastGTK, GTK, MAX_LEN_GTK);
-			} else {
-				MTWF_LOG(DBG_CAT_ALL, DBG_SUBCAT_ALL, DBG_LVL_ERROR,
-						("!!!%s : the Group reinstall attack, skip install key\n", __func__));
+			/* Set Group key material, TxMic and RxMic for AP-Client*/
+			if (!APCliInstallSharedKey(pAd, GTK, GTKLEN, DefaultIdx, pEntry))
+			{
+				return FALSE;
 			}
 		}
 #ifdef MT_MAC
