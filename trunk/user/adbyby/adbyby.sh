@@ -1,4 +1,5 @@
 #!/bin/sh
+#2019/08/30 by bkye
 adbyby_enable=`nvram get adbyby_enable`
 adbyby_ip_x=`nvram get adbyby_ip_x`
 adbyby_rules_x=`nvram get adbyby_rules_x`
@@ -14,9 +15,6 @@ DATA_PATH="$PROG_PATH/data"
 WAN_FILE="/etc/storage/dnsmasq-adbyby.d/03-adbyby-ipset.conf"
 wan_mode=`nvram get adbyby_set`
 abp_mode=`nvram get adbyby_adb_update`
-nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
-nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
-nvram set adbyby_utime=`cat /tmp/adbyby.updated 2>/dev/null`
 nvram set adbybyip_mac_x_0=""
 nvram set adbybyip_ip_x_0=""
 nvram set adbybyip_name_x_0=""
@@ -97,6 +95,9 @@ rm -f /tmp/lazy.txt /tmp/video.txt /tmp/local-md5.json /tmp/md5.json
 logger -t "adbyby" "Adbyby规则更新完成"
 nvram set adbyby_ltime=`head -1 /tmp/adbyby/data/lazy.txt | awk -F' ' '{print $3,$4}'`
 nvram set adbyby_vtime=`head -1 /tmp/adbyby/data/video.txt | awk -F' ' '{print $3,$4}'`
+#nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
+#nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
+#nvram set adbyby_utime=`cat /tmp/adbyby.updated 2>/dev/null`
 grep -v '^!' /etc/storage/adbyby_rules.sh | grep -v "^$" > $PROG_PATH/rules.txt
 grep -v '^!' /etc/storage/adbyby_blockip.sh | grep -v "^$" > $PROG_PATH/blockip.conf
 grep -v '^!' /etc/storage/adbyby_adblack.sh | grep -v "^$" > $PROG_PATH/adblack.conf
@@ -162,6 +163,7 @@ ip_rule()
   num=`nvram get adbybyip_staticnum_x`
   if [ $adbyby_ip_x -eq 1 ]; then
   if [ $num -ne 0 ]; then
+  logger -t "adbyby" "设置内网IP过滤控制"
 	for i in $(seq 1 $num)
 	do
 	j=`expr $i - 1`
@@ -170,10 +172,12 @@ ip_rule()
 		case $mode in
 		0)
 			$ipt_n -A ADBYBY -s $ip -j RETURN
+			logger -t "adbyby" "忽略$ip走AD过滤。"
 			;;
 		1)
 			$ipt_n -A ADBYBY -s $ip -p tcp -j REDIRECT --to-ports 8118
 			$ipt_n -A ADBYBY -s $ip -j RETURN
+			logger -t "adbyby" "设置$ip走全局过滤。"
 			;;
 		esac
 	done
@@ -209,12 +213,7 @@ sed -i '/dnsmasq-adbyby/d' /etc/storage/dnsmasq/dnsmasq.conf
 cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
 conf-dir=/etc/storage/dnsmasq-adbyby.d
 EOF
-
-<<<<<<< Updated upstream
-			if [ $wan_mode -eq 1 ]; then
-=======
 		if [ $wan_mode -eq 1 ]; then
->>>>>>> Stashed changes
 		awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_wan"'\n",$0)}' $PROG_PATH/adhost.conf > $WAN_FILE
 		fi
 		if ls /etc/storage/dnsmasq-adbyby.d/* >/dev/null 2>&1; then

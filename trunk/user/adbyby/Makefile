@@ -5,7 +5,6 @@ clean:
 
 romfs:
 	$(ROMFSINST) /etc_ro/adbyby.tar.gz
-	$(ROMFSINST) /etc_ro/adbyby_config_script.sh
 	$(ROMFSINST) /etc_ro/adbyby_rules.sh
 	$(ROMFSINST) /etc_ro/adbyby_adblack.sh
 	$(ROMFSINST) /etc_ro/adbyby_adesc.sh

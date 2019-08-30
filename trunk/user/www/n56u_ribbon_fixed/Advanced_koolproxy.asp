@@ -42,7 +42,7 @@ $j(document).ready(function() {
 
 function initial(){
 	show_banner(2);
-	show_menu(5,14,1);
+	show_menu(5,11,2);
 	show_footer();
 	fill_koolproxy_status(koolproxy_status());
 	change_koolproxy_enable();

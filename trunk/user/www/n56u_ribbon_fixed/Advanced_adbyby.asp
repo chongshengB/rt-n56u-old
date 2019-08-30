@@ -31,6 +31,23 @@ $j(document).ready(function() {
 	init_itoggle('adbyby_adb_update');
 	init_itoggle('adbyby_ip_x', change_adbyby_ip_enabled);
 	init_itoggle('adbyby_rules_x', change_adbyby_rules_enabled);
+	var i=0;
+    var z=0;
+    var adbyby_update_hour = '<% nvram_get_x("", "adbyby_update_hour"); %>';
+    var adbyby_update_min = '<% nvram_get_x("", "adbyby_update_min"); %>';
+    while (i<24){
+	i=i>9?i:"0"+i;
+$j("#adbyby_update_hour").append("<option value='"+i+"'>"+i+"</option>");
+i++;
+}
+$j("#adbyby_update_hour").val(adbyby_update_hour);
+while (z<60)
+{
+z=z>9?z:"0"+z;
+$j("#adbyby_update_min").append("<option value='"+z+"'>"+z+"</option>");
+z++;
+}
+$j("#adbyby_update_min").val(adbyby_update_min);
 });
 
 </script>
@@ -64,7 +81,7 @@ var isMenuopen = 0;
 
 function initial(){
 	show_banner(2);
-	show_menu(5,15,1);
+	show_menu(5,11,1);
 	show_footer();
 	fill_adbyby_status(adbyby_status());
 	//change_adbyby_enable();
@@ -75,7 +92,7 @@ function initial(){
 	change_adbyby_rules_enabled();
 	if (!login_safe())
 		textarea_scripts_enabled(0);
-		load_body();
+		//load_body();
 }
 
 function textarea_scripts_enabled(v){
@@ -90,7 +107,18 @@ function textarea_scripts_enabled(v){
 function applyRule(){
 	//if(validForm()){
 		showLoading();
-		
+		if (document.form.adbyby_ip_x[0].checked)
+		{
+		if((m_dhcp.length == 0)&&(document.form.adbybyip_mac_x_0.value == "")){
+		document.form.group_id.value = "AdRULESList";
+		}
+		}else if (document.form.adbyby_rules_x[0].checked)
+		{
+		document.form.group_id.value = "AdRULESList";
+		}
+		if (document.form.adbyby_ip_x[0].checked||document.form.adbyby_rules_x[0].checked)
+		document.form.action_mode.value = " Restart ";
+	else
 		document.form.action_mode.value = " Apply ";
 		document.form.current_page.value = "/Advanced_adbyby.asp";
 		document.form.next_page.value = "";
@@ -390,16 +418,12 @@ function changeBgColorrl(obj, num){
 	<input type="hidden" name="current_page" value="Advanced_adbyby.asp">
 	<input type="hidden" name="next_page" value="">
 	<input type="hidden" name="next_host" value="">
-	<input type="hidden" name="sid_list" value="AdbybyConf;LANHostConfig;General;">
-	<input type="hidden" name="group_id" value="AdIPList;AdRULESList">
+	<input type="hidden" name="sid_list" value="AdbybyConf;">
+	<input type="hidden" name="group_id" value="AdIPList">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
-	<input type="hidden" name="wan_ipaddr" value="<% nvram_get_x("", "wan0_ipaddr"); %>" readonly="1">
-	<input type="hidden" name="wan_netmask" value="<% nvram_get_x("", "wan0_netmask"); %>" readonly="1">
-	<input type="hidden" name="dhcp_start" value="<% nvram_get_x("", "dhcp_start"); %>">
-	<input type="hidden" name="dhcp_end" value="<% nvram_get_x("", "dhcp_end"); %>">
-    <input type="hidden" name="adbybyip_staticnum_x_0" value="<% nvram_get_x("", "adbybyip_staticnum_x"); %>" readonly="1" />
-	<input type="hidden" name="adbybyrules_staticnum_x_0" value="<% nvram_get_x("", "adbybyrules_staticnum_x"); %>" readonly="1" />
+    <input type="hidden" name="adbybyip_staticnum_x_0" value="<% nvram_get_x("AdIPList", "adbybyip_staticnum_x"); %>" readonly="1" />
+	<input type="hidden" name="adbybyrules_staticnum_x_0" value="<% nvram_get_x("AdRULESList", "adbybyrules_staticnum_x"); %>" readonly="1" />
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="span3">
@@ -511,9 +535,12 @@ function changeBgColorrl(obj, num){
 													<option value="1" <% nvram_match_x("","adbyby_update", "1","selected"); %>>每隔</option>
 													<option value="2" <% nvram_match_x("","adbyby_update", "2","selected"); %>>关闭</option>
 												</select>
-												<input style="width: 20px;" type="text" maxlength="2"  class="none" size="60" name="adbyby_update_hour" placeholder="23" value="<% nvram_get_x("","adbyby_update_hour"); %>" onKeyPress="return is_number(this,event);"/>时，<input style="width: 20px;" type="text" maxlength="2"  class="none" size="60" name="adbyby_update_min" placeholder="59" value="<% nvram_get_x("","adbyby_update_min"); %>" onKeyPress="return is_number(this,event);"/>分，更新
-												&nbsp;<span style="color:#888;"></span>
-												<div>&nbsp;<span style="color:#888;">注意：更新时可能会造成网游断线！</span></div>
+												 <select name="adbyby_update_hour" id="adbyby_update_hour" class="input" style="width: 50px">
+
+                                                </select>时
+												<select name="adbyby_update_min" id="adbyby_update_min" class="input" style="width: 50px">
+
+                                                </select>分
 											</td>
 										</tr>
 										</table>

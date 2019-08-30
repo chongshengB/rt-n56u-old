@@ -38,7 +38,3 @@ if [ ! -f "/etc/storage/adbyby_rules.sh" ] ; then
 cp -rf /etc_ro/adbyby_rules.sh /etc/storage/
 chmod 755 "/etc/storage/adbyby_rules.sh"
 fi
-if [ ! -f "/etc/storage/adbyby_config_script.sh" ] ; then
-cp -rf /etc_ro/adbyby_config_script.sh /etc/storage/
-chmod 755 "/etc/storage/adbyby_config_script.sh"
-fi
