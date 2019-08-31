@@ -36,7 +36,6 @@ fi
 	add_rules
 	$PROG_PATH/adbyby &>/dev/null &
 	add_dns
-	hosts_ad
 	iptables-save | grep ADBYBY >/dev/null || \
 	add_rule
 	/sbin/restart_dhcpd
@@ -179,6 +178,13 @@ ip_rule()
 			$ipt_n -A ADBYBY -s $ip -j RETURN
 			logger -t "adbyby" "设置$ip走全局过滤。"
 			;;
+		2)
+		    ipset -N adbyby_wan hash:ip
+			$ipt_n -A ADBYBY -m set ! --match-set adbyby_wan dst -j RETURN
+			$ipt_n -A ADBYBY -s $ip -p tcp -j REDIRECT --to-ports 8118
+			#$ipt_n -A ADBYBY -s $ip -j RETURN
+			logger -t "adbyby" "设置$ip走Plus+过滤。"
+			;;
 		esac
 	done
 	fi
@@ -225,6 +231,51 @@ EOF
 	  fi
 	fi
    #sed -i '/mesu.apple.com/d' /etc/dnsmasq.conf && [ $block_ios -eq 1 ] && echo 'address=/mesu.apple.com/0.0.0.0' >> /etc/dnsmasq.conf
+   #处理hosts文件
+rm -rf /etc/storage/dnsmasq/dns;cd /etc
+mkdir -p /etc/storage/dnsmasq/dns/conf
+hosts_ad=`nvram get hosts_ad`
+tv_hosts=`nvram get tv_hosts`
+if [ "$adbyby_enable"="1" ] ; then
+if [ "$hosts_ad" = "1" ] ; then
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/hosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://raw.githubusercontent.com/vokins/yhosts/master/hosts -O hosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" hosts
+if [ ! -f "hosts" ]; then
+logger -t "dnsmasq" "host文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "host文件下载完成。"
+nvram set adbyby_hostsad=`grep -v '^!' /etc/storage/dnsmasq/dns/hosts | wc -l`
+fi
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+if [ "$tv_hosts" = "1" ]; then
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+addn-hosts=/etc/storage/dnsmasq/dns/tvhosts
+EOF
+cd /etc/storage/dnsmasq/dns
+wget --no-check-certificate https://dev.tencent.com/u/shaoxia1991/p/yhosts/git/raw/master/data/tvbox.txt -O tvhosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" tvhosts
+if [ ! -f "tvhosts" ]; then
+logger -t "dnsmasq" "tvbox规则文件下载失败，可能是地址失效或者网络异常！"
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+else
+logger -t "dnsmasq" "tvbox规则文件下载完成。"
+nvram set adbyby_tvbox=`grep -v '^!' /etc/storage/dnsmasq/dns/tvhosts | wc -l`
+fi
+else
+sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+fi
+#/sbin/restart_dhcpd
+else
+sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
+#/sbin/restart_dhcpd
+fi
 }
 
 del_dns()
@@ -280,51 +331,6 @@ reload_rule()
 	add_rule
 }
 
-hosts_ad () {
-rm -rf /etc/storage/dnsmasq/dns;cd /etc
-mkdir -p /etc/storage/dnsmasq/dns/conf
-hosts_ad=`nvram get hosts_ad`
-tv_hosts=`nvram get tv_hosts`
-if [ "$koolproxy_enable"="1" ] ; then
-if [ "$hosts_ad" = "1" ] ; then
-sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
-addn-hosts=/etc/storage/dnsmasq/dns/hosts
-EOF
-cd /etc/storage/dnsmasq/dns
-wget --no-check-certificate https://raw.githubusercontent.com/vokins/yhosts/master/hosts -O hosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" hosts
-if [ ! -f "hosts" ]; then
-logger -t "dnsmasq" "host文件下载失败，可能是地址失效或者网络异常！"
-sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-else
-logger -t "dnsmasq" "host文件下载完成。"
-fi
-else
-sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-fi
-if [ "$tv_hosts" = "1" ]; then
-sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
-addn-hosts=/etc/storage/dnsmasq/dns/tvhosts
-EOF
-cd /etc/storage/dnsmasq/dns
-wget --no-check-certificate https://dev.tencent.com/u/shaoxia1991/p/yhosts/git/raw/master/data/tvbox.txt -O tvhosts;sed -i "1 i\## update：$(date "+%Y-%m-%d %H:%M:%S")" tvhosts
-if [ ! -f "tvhosts" ]; then
-logger -t "dnsmasq" "tvbox规则文件下载失败，可能是地址失效或者网络异常！"
-sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-else
-logger -t "dnsmasq" "tvbox规则文件下载完成。"
-fi
-else
-sed -i '/tvhosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-fi
-#/sbin/restart_dhcpd
-else
-sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
-#/sbin/restart_dhcpd
-fi
-}
-
 adbyby_uprules()
 {
 adbyby_close
@@ -341,7 +347,6 @@ fi
 	add_rules
 	$PROG_PATH/adbyby &>/dev/null &
 	add_dns
-	hosts_ad
 	iptables-save | grep ADBYBY >/dev/null || \
 	add_rule
 	/sbin/restart_dhcpd

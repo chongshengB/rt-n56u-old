@@ -339,9 +339,11 @@ function showMDHCPList(){
 	else{
 	    for(var i = 0; i < m_dhcp.length; i++){
 		if(m_dhcp[i][3] == 0)
-		adbybyiproad="不过滤";
-		else{
-		adbybyiproad="全局过滤";
+		adbybyiproad="直连模式";
+		else if(m_dhcp[i][3] == 1){
+		adbybyiproad="全局模式";
+		}else if(m_dhcp[i][3] == 2){
+		adbybyiproad="Plus+模式";
 		}
 		code +='<tr id="row' + i + '">';
 		code +='<td width="25%">&nbsp;' + m_dhcp[i][0] + '</td>';
@@ -452,7 +454,9 @@ function changeBgColorrl(obj, num){
 									<div>Plus + 版本可以和 Adblock Plus Host 结合方式运行，过滤广告不损失带宽</div>
 									<div>静态规则：【<% nvram_get_x("", "adbyby_ltime"); %>】 </div>
 									<div>视频规则：【<% nvram_get_x("", "adbyby_vtime"); %>】 </div>
-									<div>Adblock Plus Host List：【<% nvram_get_x("", "adbyby_adb"); %>】条 </div>
+									<div>Adb List：【<% nvram_get_x("", "adbyby_adb"); %>】条 </div>
+									<div>Hosts AD：【<% nvram_get_x("", "adbyby_hostsad"); %>】条 </div>
+									<div>TV box：【<% nvram_get_x("", "adbyby_tvbox"); %>】条 </div>
 									</div>
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
 									<tr> <th>运行状态:</th>
@@ -476,11 +480,13 @@ function changeBgColorrl(obj, num){
 											<th width="50%">过滤方案选择</th>
 											<td style="border-top: 0 none;">
 												<select name="adbyby_set" class="input">
-													<option value="0" <% nvram_match_x("","adbyby_set", "0","selected"); %>>方案一全局模式（推荐），全部IP走adbyby过滤</option>
-													<option value="1" <% nvram_match_x("","adbyby_set", "1","selected"); %>>方案二Plus + 模式(只过滤列表内域名结合ABP名单)</option>
+													<option value="0" <% nvram_match_x("","adbyby_set", "0","selected"); %>>全局模式（推荐），全部IP走adbyby过滤</option>
+													<option value="1" <% nvram_match_x("","adbyby_set", "1","selected"); %>>Plus + 模式(只过滤列表内域名结合ABP名单)</option>
+													<option value="2" <% nvram_match_x("","adbyby_set", "2","selected"); %>>内网IP列表控制模式</option>
 												</select>
-												<div><span style="color:#888;">方案二是Plus + 模式，过滤效果稍差，</span></div>
-												<div><span style="color:#888;">但有效降低CPU占用，推荐方案一</span></div>
+												<div><span style="color:#888;">Plus + 模式，过滤效果稍差,推荐全局模式</span></div>
+												<div><span style="color:#888;">内网IP列表模式默认是不过滤所有IP的</span></div>
+												<div><span style="color:#888;">请在内网控制选项里添加需要过滤的IP。</span></div>
 											</td>
 										</tr>
 										<tr>
@@ -500,7 +506,7 @@ function changeBgColorrl(obj, num){
 											</td>
 										</tr>
 										<tr>
-											<th width="30%" style="border-top: 0 none;">加载hosts去AD？</th>
+											<th width="30%" style="border-top: 0 none;">加载hosts去AD</th>
 											<td>
 													<div class="main_itoggle">
 													<div id="hosts_ad_on_of">
@@ -514,7 +520,7 @@ function changeBgColorrl(obj, num){
 											</td>
 										</tr>
 																				<tr>
-											<th width="30%" style="border-top: 0 none;">加载TVbox Hosts？</th>
+											<th width="30%" style="border-top: 0 none;">加载TVbox Hosts</th>
 											<td>
 													<div class="main_itoggle">
 													<div id="tv_hosts_on_of">
@@ -598,8 +604,9 @@ function changeBgColorrl(obj, num){
                                             </td>
 											 <td width="20%">
                                           	<select name="adbybyip_ip_road_x_0" class="input" style="width: 110px">
-													<option value="0" <% nvram_match_x("","adbybyip_ip_road_x_0", "0","selected"); %>>不过滤</option>
-													<option value="1" <% nvram_match_x("","adbybyip_ip_road_x_0", "1","selected"); %>>全局过滤</option>
+													<option value="0" <% nvram_match_x("","adbybyip_ip_road_x_0", "0","selected"); %>>直连模式</option>
+													<option value="1" <% nvram_match_x("","adbybyip_ip_road_x_0", "1","selected"); %>>全局模式</option>
+													<option value="2" <% nvram_match_x("","adbybyip_ip_road_x_0", "2","selected"); %>>plus+模式</option>
 												</select>
                                             </td>
                                             <td width="5%">
