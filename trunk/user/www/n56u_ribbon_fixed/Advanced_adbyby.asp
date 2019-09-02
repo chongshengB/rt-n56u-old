@@ -107,16 +107,7 @@ function textarea_scripts_enabled(v){
 function applyRule(){
 	//if(validForm()){
 		showLoading();
-		if (document.form.adbyby_ip_x[0].checked)
-		{
-		if((m_dhcp.length == 0)&&(document.form.adbybyip_mac_x_0.value == "")){
-		document.form.group_id.value = "AdRULESList";
-		}
-		}else if (document.form.adbyby_rules_x[0].checked)
-		{
-		document.form.group_id.value = "AdRULESList";
-		}
-		if (document.form.adbyby_ip_x[0].checked||document.form.adbyby_rules_x[0].checked)
+	if (document.form.adbyby_ip_x[0].checked||document.form.adbyby_rules_x[0].checked)
 		document.form.action_mode.value = " Restart ";
 	else
 		document.form.action_mode.value = " Apply ";

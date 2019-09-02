@@ -1192,7 +1192,9 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 		}
 		else {
 			char group_id[64];
+			char group_id2[64];
 			snprintf(group_id, sizeof(group_id), "%s", websGetVar(wp, "group_id", ""));
+			snprintf(group_id2, sizeof(group_id2), "%s", websGetVar(wp, "group_id2", ""));
 			
 			if (strlen(action_mode) > 0) {
 				if (!strcmp(action_mode, " Add ")) {
@@ -1231,6 +1233,21 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 						
 						nvram_modified = 1;
 						nvram_set_int_temp(group_id, 0);
+						nvram_clr_group_temp(v);
+					}
+					
+					if (v->name && nvram_get_int(group_id2) > 0) {
+						restart_needed_bits |= (v->event_mask & ~(EVM_BLOCK_UNSAFE));
+						dbG("group restart_needed_bits: 0x%llx\n", restart_needed_bits);
+#if BOARD_HAS_5G_RADIO
+						if (!strcmp(group_id2, "RBRList") || !strcmp(group_id2, "ACLList"))
+							wl_modified |= WIFI_COMMON_CHANGE_BIT;
+#endif
+						if (!strcmp(group_id2, "rt_RBRList") || !strcmp(group_id2, "rt_ACLList"))
+							rt_modified |= WIFI_COMMON_CHANGE_BIT;
+						
+						nvram_modified = 1;
+						nvram_set_int_temp(group_id2, 0);
 						nvram_clr_group_temp(v);
 					}
 					
