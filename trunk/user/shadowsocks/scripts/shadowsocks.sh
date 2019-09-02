@@ -120,14 +120,16 @@ addscripts
 	func_start_ss_rules && \
 	loger $ss_bin "start done" || { ss-rules -f && loger $ss_bin "start fail!";}
 	/sbin/restart_dhcpd
-	sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
-cat >> /etc/storage/post_wan_script.sh << EOF
-/usr/bin/shadowsocks.sh restart
-EOF
+	#sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
+#cat >> /etc/storage/post_wan_script.sh << EOF
+#/usr/bin/shadowsocks.sh restart
+#EOF
 }
 
 func_stop(){
 	killall -q $ss_bin
+	nvram set ss-tunnel_enable=0
+        sh /usr/bin/ss-tunnel.sh stop
 	ipset -F gfwlist 2>/dev/null
 	ipset -X gfwlist 2>/dev/null
 if [ "$ss_mode" = "2" ]; then
@@ -137,7 +139,7 @@ fi
 	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
 	/sbin/restart_dhcpd
 	ss-rules -f && loger $ss_bin "stop"
-	sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
+	#sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
 	
 }
 
