@@ -862,6 +862,8 @@
 			{"ss-tunnel_local_port","",NULL, EVM_RESTART_SS_TUNNEL},
 			{"ss-tunnel_remote","",NULL, EVM_RESTART_SS_TUNNEL},
 			{"ss-tunnel_mtu","",NULL, EVM_RESTART_SS_TUNNEL},
+			{"scripts.ss_dom.sh", "File", NULL, EVM_RESTART_SS_TUNNEL},
+			{"scripts.ss_ip.sh", "File", NULL, EVM_RESTART_SS_TUNNEL},
 			{0,0,0,0}
 	};
 #endif

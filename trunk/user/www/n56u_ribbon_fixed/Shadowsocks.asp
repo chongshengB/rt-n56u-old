@@ -35,11 +35,16 @@ $j(document).ready(function(){
 	init_itoggle('ss_update_chnroute');
 	init_itoggle('ss_update_gfwlist');
 	init_itoggle('ss-tunnel_enable');
+		$j("#tab_ss_cfg, #tab_ss_ssl, #tab_ss_cli").click(function(){
+		var newHash = $j(this).attr('href').toLowerCase();
+		showTab(newHash);
+		return false;
+	});
 });
 
 function initial(){
 	show_banner(2);
-	show_menu(5,13,1);
+	show_menu(13,13,0);
 	show_footer();
 	var o1 = document.form.ss_method;
 	var o2 = document.form.ss_mode;
@@ -59,6 +64,13 @@ function initial(){
 	$("chnroute_count").innerHTML = '<#menu5_17_3#>' + chnroute_count() ;
 	$("gfwlist_count").innerHTML = '<#menu5_17_3#>' + gfwlist_count() ;
 	switch_ss_type();
+	showTab(getHash());
+	textarea_scripts_enabled(0);
+}
+
+function textarea_scripts_enabled(v){
+	inputCtrl(document.form['scripts.ss.dom.sh'], v);
+	inputCtrl(document.form['scripts.ss.ip.sh'], v);
 }
 
 function switch_ss_type(){
@@ -107,6 +119,32 @@ function fill_ss_tunnel_status(status_code){
 	$("ss_tunnel_status").innerHTML = '<span class="label label-' + (status_code != 0 ? 'success' : 'warning') + '">' + stext + '</span>';
 }
 
+var arrHashes = ["cfg", "ssl", "cli"];
+
+function showTab(curHash){
+	var obj = $('tab_ss_'+curHash.slice(1));
+	if (obj == null || obj.style.display == 'none')
+		curHash = '#cfg';
+	for(var i = 0; i < arrHashes.length; i++){
+		if(curHash == ('#'+arrHashes[i])){
+			$j('#tab_ss_'+arrHashes[i]).parents('li').addClass('active');
+			$j('#wnd_ss_'+arrHashes[i]).show();
+		}else{
+			$j('#wnd_ss_'+arrHashes[i]).hide();
+			$j('#tab_ss_'+arrHashes[i]).parents('li').removeClass('active');
+		}
+	}
+	window.location.hash = curHash;
+}
+
+function getHash(){
+	var curHash = window.location.hash.toLowerCase();
+	for(var i = 0; i < arrHashes.length; i++){
+		if(curHash == ('#'+arrHashes[i]))
+			return curHash;
+	}
+	return ('#'+arrHashes[0]);
+}
 </script>
 
 <style>
@@ -164,8 +202,22 @@ function fill_ss_tunnel_status(status_code){
                         <div class="box well grad_colour_dark_blue">
                             <h2 class="box_head round_top"><#menu5_16#></h2>
                             <div class="round_bottom">
+							<div>
+                            <ul class="nav nav-tabs" style="margin-bottom: 10px;">
+                                <li class="active">
+                                    <a id="tab_ss_cfg" href="#cfg">设置</a>
+                                </li>
+                                <li>
+                                    <a id="tab_ss_ssl" href="#ssl">端口转发</a>
+                                </li>
+                                <li>
+                                    <a id="tab_ss_cli" href="#cli">规则管理</a>
+                                </li>
+                            </ul>
+                        </div>
                                 <div class="row-fluid">
                                     <div id="tabMenu" class="submenuBlock"></div>
+									<div id="wnd_ss_cfg">
                                     <table width="100%" cellpadding="4" cellspacing="0" class="table">
                                         <tr> <th colspan="2" style="background-color: #E3E3E3;"><#menu5_16_1#></th> </tr>
 
@@ -313,7 +365,16 @@ function fill_ss_tunnel_status(status_code){
                                                 </select>
                                             </td>
                                         </tr>
+</table>
+                            <table class="table">
+                                <tr>
+                                    <td style="border: 0 none; padding: 0px;"><center><input name="button" type="button" class="btn btn-primary" style="width: 219px" onclick="applyRule();" value="应用设置"/></center></td>
+                                </tr>
+                            </table>
+                        </div>
 
+                        <div id="wnd_ss_ssl" style="display:none">
+						<table width="100%" cellpadding="4" cellspacing="0" class="table">
                                         <tr> <th colspan="2" style="background-color: #E3E3E3;"><#menu5_16_12#></th> </tr>
 
                                         <tr> <th width="50%"><#InetControl#></th>
@@ -421,7 +482,16 @@ function fill_ss_tunnel_status(status_code){
                                                 <input type="text" maxlength="6" class="input" size="15" name="ss_mtu" style="width: 145px" value="<% nvram_get_x("", "ss_mtu"); %>">
                                             </td>
                                         </tr>
+</table>
+                            <table class="table">
+                                <tr>
+                                    <td style="border: 0 none; padding: 0px;"><center><input name="button" type="button" class="btn btn-primary" style="width: 219px" onclick="applyRule();" value="应用设置"/></center></td>
+                                </tr>
+                            </table>
+                        </div>
 
+                        <div id="wnd_ss_cli" style="display:none">
+						<table width="100%" cellpadding="4" cellspacing="0" class="table">
                                         <tr> <th colspan="2" style="background-color: #E3E3E3;">Chnroute</th> </tr>
 
                                         <tr>
@@ -469,7 +539,22 @@ function fill_ss_tunnel_status(status_code){
                                                 </div>
                                             </td>
                                         </tr>
-
+										<tr>
+											<td colspan="3" >
+												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script9')"><span>强制走SS代理的域名:</span></a>
+												<div id="script9">
+													<textarea rows="8" wrap="off" spellcheck="false" maxlength="314571" class="span12" name="scripts.ss_dom.sh" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.ss_dom.sh",""); %></textarea>
+												</div>
+											</td>
+										</tr>
+												<tr>
+											<td colspan="3" >
+												<i class="icon-hand-right"></i> <a href="javascript:spoiler_toggle('script10')"><span>强制走SS代理的IP:</span></a>
+												<div id="script9">
+													<textarea rows="8" wrap="off" spellcheck="false" maxlength="314571" class="span12" name="scripts.ss_ip.sh" style="font-family:'Courier New'; font-size:12px;"><% nvram_dump("scripts.ss_ip.sh",""); %></textarea>
+												</div>
+											</td>
+										</tr>
                                         <tr>
                                             <td colspan="2">
                                                 <center><input class="btn btn-primary" style="width: 219px" type="button" value="<#CTL_apply#>" onclick="applyRule()" /></center>
