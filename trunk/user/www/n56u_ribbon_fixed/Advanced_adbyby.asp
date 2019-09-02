@@ -413,6 +413,7 @@ function changeBgColorrl(obj, num){
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="AdbybyConf;">
 	<input type="hidden" name="group_id" value="AdIPList">
+	<input type="hidden" name="group_id2" value="AdRULESList">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
     <input type="hidden" name="adbybyip_staticnum_x_0" value="<% nvram_get_x("AdIPList", "adbybyip_staticnum_x"); %>" readonly="1" />
