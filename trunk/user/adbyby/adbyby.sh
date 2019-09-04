@@ -8,6 +8,7 @@ http_username=`nvram get http_username`
 adbyby_update=`nvram get adbyby_update`
 adbyby_update_hour=`nvram get adbyby_update_hour`
 adbyby_update_min=`nvram get adbyby_update_min`
+nvram set adbyby_adb=0
 ipt_n="iptables -t nat"
 #adbyby_dir="/tmp/adbyby"
 PROG_PATH="/tmp/adbyby"
@@ -95,7 +96,7 @@ logger -t "adbyby" "Adbyby规则更新完成"
 nvram set adbyby_ltime=`head -1 /tmp/adbyby/data/lazy.txt | awk -F' ' '{print $3,$4}'`
 nvram set adbyby_vtime=`head -1 /tmp/adbyby/data/video.txt | awk -F' ' '{print $3,$4}'`
 #nvram set adbyby_rules=`grep -v '^!' /tmp/adbyby/data/rules.txt | wc -l`
-#nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
+
 #nvram set adbyby_utime=`cat /tmp/adbyby.updated 2>/dev/null`
 grep -v '^!' /etc/storage/adbyby_rules.sh | grep -v "^$" > $PROG_PATH/rules.txt
 grep -v '^!' /etc/storage/adbyby_blockip.sh | grep -v "^$" > $PROG_PATH/blockip.conf
@@ -104,6 +105,7 @@ grep -v '^!' /etc/storage/adbyby_adesc.sh | grep -v "^$" > $PROG_PATH/adesc.conf
 grep -v '^!' /etc/storage/adbyby_adhost.sh | grep -v "^$" > $PROG_PATH/adhost.conf
 logger -t "adbyby" "正在处理规则..."
 	rm -f $DATA_PATH/user.bin
+	rm -f $DATA_PATH/user.txt
 	  rulesnum=`nvram get adbybyrules_staticnum_x`
 	   if [ $adbyby_rules_x -eq 1 ]; then
 	 if [ $adbyby_update -ne 0 ]; then
@@ -124,6 +126,7 @@ logger -t "adbyby" "正在处理规则..."
 	fi
 	fi
 	grep -v ^! $PROG_PATH/rules.txt >> $DATA_PATH/user.txt
+	nvram set adbyby_user=`cat /tmp/adbyby/data/user.txt | wc -l`
 }
 
 
@@ -180,9 +183,8 @@ ip_rule()
 			;;
 		2)
 		    ipset -N adbyby_wan hash:ip
-			$ipt_n -A ADBYBY -m set ! --match-set adbyby_wan dst -j RETURN
-			$ipt_n -A ADBYBY -s $ip -p tcp -j REDIRECT --to-ports 8118
-			#$ipt_n -A ADBYBY -s $ip -j RETURN
+			$ipt_n -A ADBYBY -m set --match-set adbyby_wan dst -s $ip -p tcp -j REDIRECT --to-ports 8118
+			awk '!/^$/&&!/^#/{printf("ipset=/%s/'"adbyby_wan"'\n",$0)}' $PROG_PATH/adhost.conf > $WAN_FILE
 			logger -t "adbyby" "设置$ip走Plus+过滤。"
 			;;
 		esac
@@ -191,14 +193,14 @@ ip_rule()
 	fi
 	
 	case $wan_mode in
-		0)
+		0)  $ipt_n -A ADBYBY -p tcp -j REDIRECT --to-ports 8118
 			;;
 		1)
             ipset -N adbyby_wan hash:ip
-			$ipt_n -A ADBYBY -m set ! --match-set adbyby_wan dst -j RETURN
+			$ipt_n -A ADBYBY -m set --match-set adbyby_wan dst -p tcp -j REDIRECT --to-ports 8118
 			;;
 		2)
-			$ipt_n -I ADBYBY -j RETURN
+			$ipt_n -A ADBYBY -d 0.0.0.0/24 -j RETURN
 			;;
 	esac
 	
@@ -236,6 +238,8 @@ rm -rf /etc/storage/dnsmasq/dns;cd /etc
 mkdir -p /etc/storage/dnsmasq/dns/conf
 hosts_ad=`nvram get hosts_ad`
 tv_hosts=`nvram get tv_hosts`
+nvram set adbyby_hostsad=0
+nvram set adbyby_tvbox=0
 if [ "$adbyby_enable"="1" ] ; then
 if [ "$hosts_ad" = "1" ] ; then
 sed -i '/hosts/d' /etc/storage/dnsmasq/dnsmasq.conf
@@ -302,8 +306,13 @@ add_rule()
 	$ipt_n -A ADBYBY -d 240.0.0.0/4 -j RETURN
 	ip_rule
 	logger -t "adbyby" "添加8118透明代理端口。"
-	$ipt_n -A ADBYBY -p tcp -j REDIRECT --to-ports 8118
 	$ipt_n -I PREROUTING -p tcp --dport 80 -j ADBYBY
+	iptables-save | grep -E "ADBYBY|^\*|^COMMIT" | sed -e "s/^-A \(OUTPUT\|PREROUTING\)/-I \1 1/" > /tmp/adbyby.save
+	if [ -f "/tmp/adbyby.save" ]; then
+	logger -t "adbyby" "保存adbyby防火墙规则成功！"
+	else
+	logger -t "adbyby" "保存adbyby防火墙规则失败！可能会造成重启后过滤广告失效，需要手动关闭再打开ADBYBY！"
+	fi
 }
 
 del_rule()

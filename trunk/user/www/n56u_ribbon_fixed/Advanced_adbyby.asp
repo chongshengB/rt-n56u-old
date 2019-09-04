@@ -107,6 +107,7 @@ function textarea_scripts_enabled(v){
 function applyRule(){
 	//if(validForm()){
 		showLoading();
+		document.form.bkye.name = "group_id2";
 	if (document.form.adbyby_ip_x[0].checked||document.form.adbyby_rules_x[0].checked)
 		document.form.action_mode.value = " Restart ";
 	else
@@ -413,7 +414,7 @@ function changeBgColorrl(obj, num){
 	<input type="hidden" name="next_host" value="">
 	<input type="hidden" name="sid_list" value="AdbybyConf;">
 	<input type="hidden" name="group_id" value="AdIPList">
-	<input type="hidden" name="group_id2" value="AdRULESList">
+	<input type="hidden" name="bkye" value="AdRULESList">
 	<input type="hidden" name="action_mode" value="">
 	<input type="hidden" name="action_script" value="">
     <input type="hidden" name="adbybyip_staticnum_x_0" value="<% nvram_get_x("AdIPList", "adbybyip_staticnum_x"); %>" readonly="1" />
@@ -444,11 +445,10 @@ function changeBgColorrl(obj, num){
 									<div id="tabMenu" class="submenuBlock"></div>
 									<div class="alert alert-info" style="margin: 10px;">广告屏蔽大师 Plus + 可以全面过滤各种横幅、弹窗、视频广告，同时阻止跟踪、隐私窃取及各种恶意网站<br />
 									<div>Plus + 版本可以和 Adblock Plus Host 结合方式运行，过滤广告不损失带宽</div>
-									<div>静态规则：【<% nvram_get_x("", "adbyby_ltime"); %>】 </div>
-									<div>视频规则：【<% nvram_get_x("", "adbyby_vtime"); %>】 </div>
-									<div>Adb List：【<% nvram_get_x("", "adbyby_adb"); %>】条 </div>
-									<div>Hosts AD：【<% nvram_get_x("", "adbyby_hostsad"); %>】条 </div>
-									<div>TV box：【<% nvram_get_x("", "adbyby_tvbox"); %>】条 </div>
+									<div>静态规则：【<% nvram_get_x("", "adbyby_ltime"); %>】 |视频规则：【<% nvram_get_x("", "adbyby_vtime"); %>】</div>
+									<div>Adb List：【<% nvram_get_x("", "adbyby_adb"); %>】条 |第三方规则：【<% nvram_get_x("", "adbyby_user"); %>】条</div>
+									<div>Hosts AD：【<% nvram_get_x("", "adbyby_hostsad"); %>】条 |TV box：【<% nvram_get_x("", "adbyby_tvbox"); %>】条</div>
+									<div> </div>
 									</div>
 									<table width="100%" align="center" cellpadding="4" cellspacing="0" class="table">
 									<tr> <th>运行状态:</th>
