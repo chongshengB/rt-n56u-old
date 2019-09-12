@@ -65,7 +65,6 @@
 #define RCN_RESTART_VLMCSD		"restart_vlmcsd"
 #define RCN_RESTART_SHADOWSOCKS	"restart_shadowsocks"
 #define RCN_RESTART_CHNROUTE_UPD	"restart_chnroute_upd"
-#define RCN_RESTART_DNSFORWARDER	"restart_dns_forwarder"
 #define RCN_RESTART_SS_TUNNEL		"restart_ss_tunnel"
 #define RCN_RESTART_GFWLIST_UPD		"restart_gfwlist_upd"
 #define RCN_RESTART_KOOLPROXY		"restart_koolproxy"

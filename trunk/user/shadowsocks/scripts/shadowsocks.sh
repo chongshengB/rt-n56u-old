@@ -1,336 +1,626 @@
 #!/bin/sh
+#
+# Copyright (C) 2017 openwrt-ssr
+# Copyright (C) 2017 yushi studio <ywb94@qq.com>
+# Copyright (C) 2018 lean <coolsnowwolf@gmail.com>
+#
+# This is free software, licensed under the GNU General Public License v3.
+# See /LICENSE for more information.
+#
 
-ss_bin="ss-redir"
-ss_json_file="/tmp/ss-redir.json"
-ss_proc="/var/ss-redir"
+SERVICE_DAEMONIZE=1
+NAME=shadowsocksr
+EXTRA_COMMANDS=rules
+CONFIG_FILE=/tmp/${NAME}.json
+CONFIG_UDP_FILE=/tmp/${NAME}_u.json
+CONFIG_SOCK5_FILE=/tmp/${NAME}_s.json
+server_count=0
+redir_tcp=0
+redir_udp=0
+tunnel_enable=0
+local_enable=0
+kcp_enable_flag=0
+kcp_flag=0
+pdnsd_enable_flag=0
+switch_enable=0
+#switch_server=$1
+MAXFD=32768
+CRON_FILE=/etc/crontabs/root
+threads=1
+wan_bp_ips='/etc/storage/chinadns/chnroute.txt'
+wan_fw_ips="/tmp/whileip.txt"
+run_mode=`nvram get ss_run_mode`
 
-#/usr/bin/ss-redir -> /var/ss-redir -> /usr/bin/ss-orig-redir or /usr/bin/ssr-redir
-
-ss_type="$(nvram get ss_type)" #0=ss;1=ssr
-
-if [ "${ss_type:-0}" = "0" ]; then
-	ln -sf /usr/bin/ss-orig-redir $ss_proc
-elif [ "${ss_type:-0}" = "1" ]; then
-	ss_protocol=$(nvram get ss_protocol)
-	ss_proto_param=$(nvram get ss_proto_param)
-	ss_obfs=$(nvram get ss_obfs)
-	ss_obfs_param=$(nvram get ss_obfs_param)
-	ln -sf /usr/bin/ssr-redir $ss_proc
-fi
-
-ss_local_port=$(nvram get ss_local_port)
-ss_udp=$(nvram get ss_udp)
-ss_server=$(nvram get ss_server)
-
-ss_server_port=$(nvram get ss_server_port)
-ss_method=$(nvram get ss_method)
-ss_password=$(nvram get ss_key)
-ss_mtu=$(nvram get ss_mtu)
-ss_timeout=$(nvram get ss_timeout)
-
-ss_mode=$(nvram get ss_mode) #0:global;1:chnroute;2:gfwlist
-ss_router_proxy=$(nvram get ss_router_proxy)
-ss_lower_port_only=$(nvram get ss_lower_port_only)
-
-loger() {
-	logger -st "$1" "$2"
-}
-
-get_arg_udp() {
-	if [ "$ss_udp" = "1" ]; then
-		echo "-u"
-	fi
-}
-
-get_arg_out(){
-	if [ "$ss_router_proxy" = "1" ]; then
-		echo "-o"
-	fi
-}
-
-get_wan_bp_list(){
-	wanip="$(nvram get wan_ipaddr)"
-	[ -n "$wanip" ] && [ "$wanip" != "0.0.0.0" ] && bp="-b $wanip" || bp=""
-	if [ "$ss_mode" = "1" ]; then
-		bp=${bp}" -B /etc/storage/chinadns/chnroute.txt"
-		echo "$bp"
-fi
-}
-
-get_ipt_ext(){
-	if [ "$ss_lower_port_only" = "1" ]; then
-		echo '-e "--dport 22:1023"'
-	elif [ "$ss_lower_port_only" = "2" ]; then
-		echo '-e "-m multiport --dports 53,80,443"'
-	fi
-}
-
-func_start_ss_redir(){
-	sh -c "$ss_bin -c $ss_json_file $(get_arg_udp) & "
-	return $?
-}
-
-func_start_ss_rules(){
-	ss-rules -f
-	if [ "$ss_mode" = "1" ]; then
-	sh -c "ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
-	return $?
-	elif [ "$ss_mode" = "2" ]; then
-	cat /etc/storage/ss_dom.sh | grep -v '^!' | grep -v "^$" > /tmp/ss_dom.txt
-	awk '{printf("server=/%s/127.0.0.1#5353\nipset=/%s/gfwlist\n", $1, $1 )}' /tmp/ss_dom.txt > /etc/storage/gfwlist/m.gfwlist.conf
-	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
-cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
-conf-dir=/etc/storage/gfwlist
-EOF
-
-ipset -N gfwlist iphash
-iptables -t nat -A PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
-iptables -t nat -A OUTPUT -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
-
-  cat /etc/storage/ss_ip.sh | grep -v '^!' | grep -v "^$" > /tmp/whileip.txt
-  sed -e "s/^/add gfwlist /" /tmp/whileip.txt | ipset restore
-fi
-	#sh -c "/etc/storage/scripts/ss-rules -s $ss_server -l $ss_local_port $(get_wan_bp_list) -d SS_SPEC_WAN_AC $(get_ipt_ext) $(get_arg_out) $(get_arg_udp)"
-	#return $?
-}
-func_gen_ss_json(){
-cat > "$ss_json_file" <<EOF
+gen_config_file() {
+echo $2
+logger -t "SS" "正在创建json文件..."
+         host=`nvram get ssp_server_x$1`
+         if echo $host|grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null; then         
+         hostip=${host}
+         elif  [ "$host" != "${host#*:[0-9a-fA-F]}" ] ;then
+         hostip=${host}
+         else
+          hostip=`ping ${host} -s 1 -c 1 | grep PING | cut -d'(' -f 2 | cut -d')' -f1`
+          if echo $hostip|grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null; then
+          hostip=${hostip}
+         else
+          hostip=`cat /etc/storage/ssr_ip`
+          fi
+         fi
+         [ $2 = "0" -a  $kcp_flag = "1" ] && hostip="127.0.0.1"
+         
+         if [ $2 = "0" ] ;then
+         config_file=$CONFIG_FILE
+         elif [ $2 = "1" ]; then
+         config_file=$CONFIG_UDP_FILE
+         else
+         config_file=$CONFIG_SOCK5_FILE
+         fi
+         #if [ $(uci_get_by_name $1 fast_open 0) = "1" ] ;then
+         #fastopen="true";
+        # else
+         fastopen="false";
+        # fi
+stype=`nvram get ssp_type_x$1`
+echo $stype
+if [ "$stype" == "ss" ] ;then
+	cat <<-EOF >$config_file
 {
-    "server": "$ss_server",
-    "server_port": $ss_server_port,
-    "password": "$ss_password",
-    "method": "$ss_method",
-    "timeout": $ss_timeout,
-    "protocol": "$ss_protocol",
-    "protocol_param": "$ss_proto_param",
-    "obfs": "$ss_obfs",
-    "obfs_param": "$ss_obfs_param",
-    "local_address": "0.0.0.0",
-    "local_port": $ss_local_port,
-    "mtu": $ss_mtu
+		    "server": "$hostip",
+		    "server_port": $(nvram get ssp_prot_x$1),
+		    "local_address": "0.0.0.0",
+		    "local_port": $(nvram get ssp_local_port_x$1),
+		    "password": "$(nvram get ss_key_x$1)",
+		    "timeout": 60,
+		    "method": "$(nvram get ss_method_x$1)",
+			"plugin": "$(nvram get ss_plugin_x$1)",
+		    "reuse_port": true,
+		    "fast_open": $fastopen
 }
-
 EOF
+       elif [ "$stype" == "ssr" ] ;then
+	cat <<-EOF >$config_file
+{
+		    "server": "$hostip",
+		    "server_port": $(nvram get ssp_prot_x$1),
+		    "local_address": "0.0.0.0",
+		    "local_port": $(nvram get ssp_local_port_x$1),
+		    "password": "$(nvram get ss_key_x$1),",
+		    "timeout": 60,
+		    "method": "$(nvram get ss_method_x$1)",
+		    "protocol": "$(nvram get ss_protocol_x$1)",
+		    "protocol_param": "$(nvram get ss_proto_param_x$1)",
+		    "obfs": "$(nvram get ss_obfs_x$1)",
+		    "obfs_param": "$(nvram get ss_obfs_param_x$1)",
+		    "reuse_port": true,
+		    "fast_open": $fastopen
 }
-
-func_start(){
-addscripts
-	func_gen_ss_json && \
-	func_start_ss_redir && \
-	func_start_ss_rules && \
-	loger $ss_bin "start done" || { ss-rules -f && loger $ss_bin "start fail!";}
-	/sbin/restart_dhcpd
-	#sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
-#cat >> /etc/storage/post_wan_script.sh << EOF
-#/usr/bin/shadowsocks.sh restart
-#EOF
-}
-
-func_stop(){
-	killall -q $ss_bin
-	nvram set ss-tunnel_enable=0
-        sh /usr/bin/ss-tunnel.sh stop
-	ipset -F gfwlist 2>/dev/null
-	ipset -X gfwlist 2>/dev/null
-if [ "$ss_mode" = "2" ]; then
-iptables -t nat -D PREROUTING -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
-iptables -t nat -D OUTPUT -p tcp -m set --match-set gfwlist dst -j REDIRECT --to-port $ss_local_port
+EOF
+     # elif [ "$stype" == "v2ray" ] ;then
+       # lua /usr/share/shadowsocksr/genv2config.lua $GLOBAL_SERVER tcp $(uci_get_by_name $1 local_port) > /var/etc/v2-ssr-retcp.json
+       # sed -i 's/\\//g' /var/etc/v2-ssr-retcp.json
 fi
-	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
-	/sbin/restart_dhcpd
-	ss-rules -f && loger $ss_bin "stop"
-	#sed -i '/shadowsocks/d' /etc/storage/post_wan_script.sh
+}
+
+get_arg_out() {
+	case $router_proxy in
+		1) echo "-o";;
+		2) echo "-O";;
+	esac
+}
+
+start_rules() {
+logger -t "SS" "正在添加防火墙规则..."
+	server=`nvram get ssp_server_x$1`
+	cat /etc/storage/ss_ip.sh | grep -v '^!' | grep -v "^$" > /tmp/whileip.txt
+	#resolve name
+	if echo $server|grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null; then         
+	server=${server}
+	elif  [ "$server" != "${server#*:[0-9a-fA-F]}" ] ;then
+	server=${server}
+	else
+	server=`ping ${server} -s 1 -c 1 | grep PING | cut -d'(' -f 2 | cut -d')' -f1`
+	 if echo $server|grep -E "^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$">/dev/null; then
+	  echo $server >/etc/storage/ssr_ip
+	 else
+	  server=`cat /etc/storage/ssr_ip`
+	 fi
+	fi
 	
+	kcp_server=$server
+	
+	kcp_enable=$(nvram get kcp_enable)
+	if [ $kcp_enable = "1" ] ;then
+    kcp_flag=1
+	fi	
+	
+	local_port=$(nvram get ssp_local_port_x$1)
+	lan_ac_ips=$lan_ac_ips
+	lan_ac_mode="b"
+	router_proxy="1"
+	if [ "$UDP_RELAY_SERVER" != "nil" ]; then
+	if [ "$GLOBAL_SERVER" = "$UDP_RELAY_SERVER" -a $kcp_flag = 0 ]; then
+		ARG_UDP="-u"
+	elif [ -n "$UDP_RELAY_SERVER" ]; then
+		ARG_UDP="-U"
+		udp_server=`nvram get ssp_server_x$UDP_RELAY_SERVER`
+		udp_local_port=`nvram get ssp_local_port_x$UDP_RELAY_SERVER`
+	fi
+	fi
+	if [ -n "$lan_ac_ips" ]; then
+		case "$lan_ac_mode" in
+			w|W|b|B) ac_ips="$lan_ac_mode$lan_ac_ips";;
+		esac
+	fi
+	echo $ac_ips
+	#ac_ips="b"
+#deal	gfw firewall rule
+	gfwmode="" 
+	if [ "$run_mode" = "gfw" ]; then
+	gfwmode="-g"
+	elif [ "$run_mode" = "router" ]; then
+	gfwmode="-r"
+	elif [ "$run_mode" = "oversea" ]; then
+	gfwmode="-c"
+	elif [ "$run_mode" = "all" ]; then
+	gfwmode="-z"
+	fi
+	echo $gfwmode
+	echo "create china hash:net family inet hashsize 1024 maxelem 65536" > /tmp/china.ipset
+awk '!/^$/&&!/^#/{printf("add china %s'" "'\n",$0)}' /etc/storage/chinadns/chnroute.txt >> /tmp/china.ipset
+ipset -! flush china
+ipset -! restore < /tmp/china.ipset 2>/dev/null
+rm -f /tmp/china.ipset
+
+	 /usr/bin/ss-rules \
+		-s "$server" \
+		-l "$local_port" \
+		-S "$udp_server" \
+		-L "$udp_local_port" \
+		-a "$ac_ips" \
+		-i "" \
+		-b "$wan_bp_ips" \
+		-w "$wan_fw_ips" \
+		-p "$lan_fp_ips" \
+		-G "$lan_gm_ips" \
+		$(get_arg_out) $gfwmode $ARG_UDP
+			
+	return $?
 }
 
-addscripts()
-{
-ss_dom="/etc/storage/ss_dom.sh"
-if [ ! -f "$ss_dom" ] || [ ! -s "$ss_dom" ] ; then
-	cat > "$ss_dom" <<-\EEE
-!  ------------------------------ 强制走SS代理的域名---------------------------------
-	EEE
-	chmod 755 "$ss_dom"
-fi
+start_pdnsd() {
+logger -t "SS" "正在启动pdnsd..."
+	usr_dns="$1"
+    usr_port="$2"
 
-ss_ip="/etc/storage/ss_ip.sh"
-if [ ! -f "$ss_ip" ] || [ ! -s "$ss_ip" ] ; then
-	cat > "$ss_ip" <<-\EEE
-91.108.56.0/22
-91.108.4.0/22
-109.239.140.0/24
-149.154.160.0/20
-31.13.64.51/32
-31.13.65.49/32
-31.13.66.49/32
-31.13.67.51/32
-31.13.68.52/32
-31.13.69.240/32
-31.13.70.49/32
-31.13.71.49/32
-31.13.72.52/32
-31.13.73.49/32
-31.13.74.49/32
-31.13.75.52/32
-31.13.76.81/32
-31.13.77.49/32
-31.13.78.53/32
-31.13.79.195/32
-31.13.80.53/32
-31.13.81.53/32
-31.13.82.51/32
-31.13.83.51/32
-31.13.84.51/32
-31.13.85.51/32
-31.13.86.51/32
-31.13.87.51/32
-31.13.88.49/32
-31.13.90.51/32
-31.13.91.51/32
-31.13.92.52/32
-31.13.93.51/32
-31.13.94.52/32
-31.13.95.63/32
-50.22.198.204/30
-50.22.210.32/30
-50.22.210.128/27
-50.22.225.64/27
-50.22.235.248/30
-50.22.240.160/27
-50.23.90.128/27
-50.97.57.128/27
-75.126.39.32/27
-108.168.174.0/27
-108.168.176.192/26
-108.168.177.0/27
-108.168.180.96/27
-108.168.254.65/32
-108.168.255.224/32
-108.168.255.227/32
-158.85.0.96/27
-158.85.5.192/27
-158.85.46.128/27
-158.85.48.224/27
-158.85.58.0/25
-158.85.61.192/27
-158.85.224.160/27
-158.85.233.32/27
-158.85.249.128/27
-158.85.249.224/27
-158.85.254.64/27
-169.44.36.0/25
-169.44.57.64/27
-169.44.58.64/27
-169.44.80.0/26
-169.44.82.96/27
-169.44.82.128/27
-169.44.82.192/26
-169.44.83.0/26
-169.44.83.96/27
-169.44.83.128/27
-169.44.83.192/26
-169.44.84.0/24
-169.44.85.64/27
-169.45.71.32/27
-169.45.71.96/27
-169.45.87.128/26
-169.45.169.192/27
-169.45.182.96/27
-169.45.210.64/27
-169.45.214.224/27
-169.45.219.224/27
-169.45.237.192/27
-169.45.238.32/27
-169.45.248.96/27
-169.45.248.160/27
-169.53.29.128/27
-169.53.48.32/27
-169.53.71.224/27
-169.53.250.128/26
-169.53.252.64/27
-169.53.255.64/27
-169.54.2.160/27
-169.54.44.224/27
-169.54.51.32/27
-169.54.55.192/27
-169.54.193.160/27
-169.54.210.0/27
-169.54.222.128/27
-169.55.69.128/26
-169.55.74.32/27
-169.55.126.64/26
-169.55.210.96/27
-169.55.235.160/27
-173.192.162.32/27
-173.192.219.128/27
-173.192.222.160/27
-173.192.231.32/27
-173.193.205.0/27
-173.193.230.96/27
-173.193.230.128/27
-173.193.230.192/27
-173.193.239.0/27
-174.36.208.128/27
-174.36.210.32/27
-174.36.251.192/27
-174.37.199.192/27
-174.37.217.64/27
-174.37.231.64/27
-174.37.243.64/27
-174.37.251.0/27
-179.60.192.51/32
-179.60.193.51/32
-179.60.195.51/32
-184.173.136.64/27
-184.173.147.32/27
-184.173.161.64/32
-184.173.161.160/27
-184.173.173.116/32
-184.173.179.32/27
-185.60.216.53/32
-192.155.212.192/27
-198.11.193.182/31
-198.11.251.32/27
-198.23.80.0/27
-208.43.115.192/27
-208.43.117.79/32
-208.43.122.128/27
-31.13.0.0/16
-50.22.0.0/15
-50.97.0.0/16
-75.126.0.0/16
-108.168.0.0/16
-158.85.0.0/16
-169.32.0.0/11
-173.192.0.0/15
-174.36.0.0/15
-179.60.0.0/16
-184.173.0.0/16
-192.155.212.0/24
-198.11.0.0/16
-198.22.0.0/16
-208.43.0.0/16
-	EEE
-	chmod 755 "$ss_ip"
+	tcp_dns_list="208.67.222.222, 208.67.220.220"
+	[ -z "$usr_dns" ] && usr_dns="8.8.4.4"
+	[ -z "$usr_port" ] && usr_port="53"
+ dnsd_enable=`nvram get pdnsd_enable`
+ echo $dnsd_enable
+if [ $dnsd_enable = 0 ]; then
+   if [ ! -d /tmp/pdnsd ];then
+       mkdir -p /tmp/pdnsd
+       echo -ne "pd13\000\000\000\000" >/tmp/pdnsd/pdnsd.cache
+       chown -R nobody:nogroup /tmp/pdnsd
+   fi
+	cat > /tmp/pdnsd.conf <<EOF
+global {
+perm_cache=2048;
+cache_dir="/tmp/pdnsd";
+pid_file = /tmp/pdnsd.pid;
+run_as="nobody";
+server_port = 5335;
+server_ip = 127.0.0.1;
+status_ctl = on;
+query_method=tcp_only;
+min_ttl=1m;
+max_ttl=1w;
+timeout=5;
+}
+server {
+	label= "ssr-usrdns";
+	ip = $usr_dns;
+	port = $usr_port;
+	timeout=6;
+	uptest=none;
+	interval=10m;
+	purge_cache=off;
+}
+server {
+	label= "ssr-pdnsd";
+	ip = $tcp_dns_list;
+	port = 5353;
+	timeout=6;
+	uptest=none;
+	interval=10m;
+	purge_cache=off;
+}
+EOF
+chmod 600 /tmp/pdnsd.conf
+/usr/bin/pdnsd -c /tmp/pdnsd.conf -d
+	
+elif [ $dnsd_enable = 1 ]; then
+
+/usr/bin/dnsproxy -T -p 5335 -R $usr_dns &
+#sh -c "dnsproxy -T -p 5335 -R $usr_dns & "
+
+elif [ $dnsd_enable = 2 ]; then
+/usr/bin/dns-forwarder -b 127.0.0.1 -p 5335 -s $usr_dns:$usr_port &
 fi
 }
 
-case "$1" in
+
+start_redir() {
+logger -t "SS" "正在启动SS程序..."
+	#case "$(uci_get_by_name $GLOBAL_SERVER auth_enable)" in
+	#	1|on|true|yes|enabled) ARG_OTA="-A";;
+	#	*) ARG_OTA="";;
+	#esac
+	ARG_OTA=""
+	#deal kcp
+	kcp_enable=0
+	if [ $kcp_enable = "1" ] ;then
+		[ ! -f "/usr/bin/kcptun-client" ]  &&  return 1
+		
+		kcp_str=`/usr/bin/kcptun-client -v |grep kcptun|wc -l`
+		[ "0" = $kcp_str ] && return 1
+		kcp_port=$(uci_get_by_name $GLOBAL_SERVER kcp_port)
+		server_port=$(uci_get_by_name $GLOBAL_SERVER server_port)
+		password=$(uci_get_by_name $GLOBAL_SERVER kcp_password)
+		kcp_param=$(uci_get_by_name $GLOBAL_SERVER kcp_param)
+		[ "$password" != "" ] && password="--key "${password}
+		service_start /usr/bin/kcptun-client \
+			-r $kcp_server:$kcp_port \
+			-l :$server_port $password $kcp_param 
+		kcp_enable_flag=1
+	fi
+  gen_config_file $1 0
+  stype=`nvram get ssp_type_x$1`
+  echo $stype
+    if [ "$stype" == "ss" ] ;then
+        sscmd="ss-redir"
+       elif [ "$stype" == "ssr" ] ;then
+        sscmd="ssr-redir"
+       elif [ "$stype" == "v2ray" ] ;then
+        sscmd="v2ray"
+    fi
+	UDP_RELAY_SERVER=$(nvram get udp_relay_server)
+	utype=`nvram get ssp_type_x$UDP_RELAY_SERVER`
+    if [ "$utype" == "ss" ] ;then
+        ucmd="ss-redir"
+       elif [ "$utype" == "ssr" ] ;then
+        ucmd="ssr-redir"
+       elif [ "$utype" == "v2ray" ] ;then
+        ucmd="v2ray"
+     fi
+  
+  if [ "$(nvram get ss_threads)" = "0" ] ;then
+    threads=$(cat /proc/cpuinfo | grep 'processor' | wc -l)
+  else
+    threads=$(nvram get ss_threads)
+  fi
+
+	redir_tcp=1
+	if [ "$stype" == "ss" -o "$stype" == "ssr" ] ;then
+    last_config_file=$CONFIG_FILE
+     pid_file="/tmp/ssr-retcp.pid"
+    for i in $(seq 1 $threads)  
+    do 
+      $sscmd -c $CONFIG_FILE $ARG_OTA -f /tmp/ssr-retcp_$i.pid >/dev/null 2>&1
+	  #sh -c "$sscmd -c $CONFIG_FILE & "
+    done
+    echo "$(date "+%Y-%m-%d %H:%M:%S") Shadowsocks/ShadowsocksR $threads 线程启动成功!" >> /tmp/ssrplus.log  
+  elif [ "$stype" == "v2ray" ] ;then
+    $sscmd -config /var/etc/v2-ssr-retcp.json >/dev/null 2>&1 &
+    echo "$(date "+%Y-%m-%d %H:%M:%S") $($sscmd -version | head -1) Started!" >> /tmp/ssrplus.log
+	fi
+	
+	if [ "$UDP_RELAY_SERVER" != "nil" ] ;then
+    redir_udp=1
+    if [ "$utype" == "ss" -o "$utype" == "ssr" ] ;then
+      case "$(uci_get_by_name $UDP_RELAY_SERVER auth_enable)" in
+        1|on|true|yes|enabled) ARG_OTA="-A";;
+        *) ARG_OTA="";;
+      esac		
+      gen_config_file $UDP_RELAY_SERVER 1
+      last_config_file=$CONFIG_UDP_FILE
+      pid_file="/tmp/ssr-reudp.pid"
+      $ucmd -c $last_config_file $ARG_OTA -U -f /tmp/ssr-reudp.pid >/dev/null 2>&1
+    elif [ "$utype" == "v2ray" ] ; then
+        lua /usr/share/shadowsocksr/genv2config.lua $UDP_RELAY_SERVER udp $(uci_get_by_name $UDP_RELAY_SERVER local_port) > /var/etc/v2-ssr-reudp.json
+        sed -i 's/\\//g' /var/etc/v2-ssr-reudp.json
+        $ucmd -config /var/etc/v2-ssr-reudp.json >/dev/null 2>&1 &   
+    fi
+   fi
+
+
+
+	#deal with dns
+      if [ "$(nvram get pdnsd_enable)" != "3" ] ;then
+    dnsstr="$(nvram get tunnel_forward)"
+    dnsserver=`echo "$dnsstr"|awk -F ':'  '{print $1}'`
+    dnsport=`echo "$dnsstr"|awk -F ':'  '{print $2}'`
+    if [ "$run_mode" = "gfw" ]; then
+	echo $dnsserver
+	ipset -N gfwlist hash:net 2>/dev/null
+        ipset add gfwlist $dnsserver 2>/dev/null
+    elif [ "$run_mode" = "oversea" ]; then
+	ipset -N oversea hash:net 2>/dev/null
+        ipset add oversea $dnsserver 2>/dev/null
+    else
+	ipset -N ss_spec_wan_ac hash:net 2>/dev/null
+        ipset add ss_spec_wan_ac $dnsserver 2>/dev/null  
+    fi
+	start_pdnsd $dnsserver $dnsport
+    pdnsd_enable_flag=1
+fi
+	ss_turn=`nvram get ss_turn`
+	ss_switch=`nvram get switch_enable_x$1`
+	if [ $ss_turn = "1" ] ;then
+		if [ $ss_switch = "1" ] ;then
+			if [ -z "$switch_server" ] ;then
+				switch_time=$(nvram get ss_turn_s)
+				switch_timeout=$(nvram get ss_turn_ss)
+			/usr/bin/ssr-switch start $switch_time $switch_timeout &
+				#switch_enable=1
+			fi
+		fi
+	fi
+	#add_cron 
+
+	return $?
+}
+
+gen_service_file() {
+	if [ $(uci_get_by_name $1 fast_open) = "1" ] ;then
+	fastopen="true";
+	else
+	fastopen="false";
+	fi       
+	cat <<-EOF >$2
+		{
+		    "server": "0.0.0.0",
+		    "server_port": $(uci_get_by_name $1 server_port),
+		    "password": "$(uci_get_by_name $1 password)",
+		    "timeout": $(uci_get_by_name $1 timeout 60),
+		    "method": "$(uci_get_by_name $1 encrypt_method)",
+		    "protocol": "$(uci_get_by_name $1 protocol)",
+		    "protocol_param": "$(uci_get_by_name $1 protocol_param)",
+		    "obfs": "$(uci_get_by_name $1 obfs)",
+		    "obfs_param": "$(uci_get_by_name $1 obfs_param)",
+		    "fast_open": $fastopen
+		}
+EOF
+}
+
+start_service() {
+[ $(uci_get_by_name $1 enable) = "0"  ]  && return 1
+let server_count=server_count+1
+if [ $server_count = 1 ] ;then
+iptables -N SSR-SERVER-RULE && \
+iptables -t filter -I INPUT  -j SSR-SERVER-RULE
+fi
+
+gen_service_file $1 /var/etc/${NAME}_${server_count}.json
+/usr/bin/ssr-server -c /var/etc/${NAME}_${server_count}.json -u -f /var/run/ssr-server${server_count}.pid >/dev/null 2>&1
+iptables -t filter -A SSR-SERVER-RULE -p tcp --dport $(uci_get_by_name $1 server_port) -j ACCEPT
+iptables -t filter -A SSR-SERVER-RULE -p udp --dport $(uci_get_by_name $1 server_port) -j ACCEPT
+return 0
+}
+gen_serv_include() {
+FWI=$(uci get firewall.shadowsocksr.path 2>/dev/null) 
+[ -n "$FWI" ] || return 0
+if [ ! -f $FWI ] ;then
+echo '#!/bin/sh' >$FWI
+fi
+extract_rules() {
+echo "*filter"
+iptables-save -t filter | grep SSR-SERVER-RULE|sed -e "s/^-A INPUT/-I INPUT/" 
+echo 'COMMIT'
+}
+	cat <<-EOF >>$FWI
+	iptables-save -c | grep -v "SSR-SERVER" | iptables-restore -c
+	iptables-restore -n <<-EOT
+	$(extract_rules)
+	EOT
+EOF
+
+}
+
+
+start_local() {
+	local_server=$(nvram get socks5_proxy)
+	[ "$local_server" = "nil" ] && return 1
+	mkdir -p /var/run /var/etc
+	gen_config_file $local_server 2
+	/usr/bin/ssr-local -c $CONFIG_SOCK5_FILE -u  \
+		-l $(nvram get socks5_proxy_prot) \
+		-b 0.0.0.0 \
+		-f /tmp/ssr-local.pid >/dev/null 2>&1
+	local_enable=1	
+}
+
+rules() {
+	[ "$GLOBAL_SERVER" = "-1" ] && return 1
+	mkdir -p /var/run /var/etc
+	#UDP_RELAY_SERVER=$(uci_get_by_type global udp_relay_server)
+	[ "$UDP_RELAY_SERVER" = "same" ] && UDP_RELAY_SERVER=$GLOBAL_SERVER
+	if start_rules $GLOBAL_SERVER;then
+	return 0
+	else
+	return 1
+	fi
+}
+
+ssp_start() { 
+	#if [ -z "$switch_server" ] ;then
+	GLOBAL_SERVER=`nvram get global_server`
+	echo $GLOBAL_SERVER
+	ss_enable=`nvram get ss_enable`
+	#else
+	#GLOBAL_SERVER=$switch_server
+	#switch_enable=1
+	#fi
+	#if rules ;then
+if [ $ss_enable != "0" ] && [ $GLOBAL_SERVER != "nil" ]; then
+	
+	start_redir $GLOBAL_SERVER
+	start_rules $GLOBAL_SERVER
+	#start_rules $GLOBAL_SERVER
+  
+  
+	if [ "$run_mode" = "gfw" ] ;then
+	mkdir -p /etc/storage/dnsmasq-ss.d
+		cat /etc/storage/ss_dom.sh | grep -v '^!' | grep -v "^$" > /tmp/ss_dom.txt
+	awk '{printf("server=/%s/127.0.0.1#5353\nipset=/%s/gfwlist\n", $1, $1 )}' /tmp/ss_dom.txt > /etc/storage/gfwlist/m.gfwlist.conf
+	rm -f /tmp/ss_dom.txt
+	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
+	sed -i '/dnsmasq.oversea/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/gfwlist/
+EOF
+  elif [ "$run_mode" = "oversea" ] ;then
+  mkdir -p /etc/storage/dnsmasq.oversea
+  	sed -i '/dnsmasq-ss/d' /etc/storage/dnsmasq/dnsmasq.conf
+	sed -i '/dnsmasq.oversea/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/dnsmasq.oversea
+EOF
+	fi
+/sbin/restart_dhcpd
+	start_local
+	
+if [ $(nvram get ss_watchcat) = 1 ] ;then
+	let total_count=server_count+redir_tcp+redir_udp+tunnel_enable+kcp_enable_flag+local_enable+pdnsd_enable_flag+switch_enable
+    if [ $total_count -gt 0 ]
+    then
+    #param:server(count) redir_tcp(0:no,1:yes)  redir_udp tunnel kcp local gfw
+    /usr/bin/ssr-monitor $server_count $redir_tcp $redir_udp $tunnel_enable $kcp_enable_flag $local_enable $pdnsd_enable_flag $switch_enable >/dev/null 2>&1 &
+    fi
+	fi
+	
+	ENABLE_SERVER=$(nvram get global_server)
+	[ "$ENABLE_SERVER" = "-1" ] && return 1
+	logger -t "SS" "启动成功。"
+	fi
+}
+
+boot() {
+	(/usr/share/shadowsocksr/chinaipset.sh && sleep 5 && start >/dev/null 2>&1) &
+}
+
+ssp_close() {
+    #killall -q -9 ssr-monitor
+	#killall -q -9 ssr-switch
+	/usr/bin/ss-rules -f
+	srulecount=`iptables -L|grep SSR-SERVER-RULE|wc -l`
+	if [ $srulecount -gt 0 ] ;then
+	iptables -F SSR-SERVER-RULE
+	iptables -t filter -D INPUT  -j SSR-SERVER-RULE
+	iptables -X SSR-SERVER-RULE 2>/dev/null
+	fi
+	#if [ -z "$switch_server" ] ;then
+    kill -9 $(ps | grep ssr-switch | grep -v grep | awk '{print $1}') >/dev/null 2>&1
+	#fi
+	#if [ $(nvram get monitor_enable) = 1 ] ;then
+    kill -9 $(ps | grep ssr-monitor | grep -v grep | awk '{print $1}') >/dev/null 2>&1
+	#fi
+	
+	killall -q -9 ss-redir
+	killall -q -9 ssr-redir
+	killall -q -9 v2ray
+	killall -9 dnsproxy
+	killall -9 dns-forwarder
+	killall -q -9 ssr-server
+	killall -q -9 kcptun-client
+	killall -q -9 ssr-local
+	
+	if [ -f /tmp/pdnsd.pid ] ;then
+    kill $(cat /tmp/pdnsd.pid) >/dev/null 2>&1
+  else 
+    kill -9 $(ps | grep pdnsd | grep -v grep | awk '{print $1}') >/dev/null 2>&1 
+	fi
+	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
+	sed -i '/dnsmasq.oversea/d' /etc/storage/dnsmasq/dnsmasq.conf
+	if [ -f "/etc/storage/dnsmasq-ss.d" ]; then
+		rm -f /etc/storage/dnsmasq-ss.d
+		
+  fi 
+  /sbin/restart_dhcpd
+}
+
+ressp() {
+	#if [ -z "$switch_server" ] ;then
+	GLOBAL_SERVER=`nvram get global_server`
+	echo $GLOBAL_SERVER
+	ss_enable=`nvram get ss_enable`
+	#else
+	#GLOBAL_SERVER=$switch_server
+	#switch_enable=1
+	#fi
+	#if rules ;then
+if [ $ss_enable != "0" ] && [ $GLOBAL_SERVER != "nil" ]; then
+    start_redir $1
+	start_rules $1
+	#start_rules $GLOBAL_SERVER
+  
+  
+	if [ "$run_mode" = "gfw" ] ;then
+	#mkdir -p /etc/storage/dnsmasq-ss.d
+		cat /etc/storage/ss_dom.sh | grep -v '^!' | grep -v "^$" > /tmp/ss_dom.txt
+	awk '{printf("server=/%s/127.0.0.1#5353\nipset=/%s/gfwlist\n", $1, $1 )}' /tmp/ss_dom.txt > /etc/storage/gfwlist/m.gfwlist.conf
+	rm -f /tmp/ss_dom.txt
+	sed -i '/gfwlist/d' /etc/storage/dnsmasq/dnsmasq.conf
+	sed -i '/dnsmasq.oversea/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/gfwlist/
+EOF
+  elif [ "$run_mode" = "oversea" ] ;then
+  mkdir -p /etc/storage/dnsmasq.oversea
+  	sed -i '/dnsmasq-ss/d' /etc/storage/dnsmasq/dnsmasq.conf
+	sed -i '/dnsmasq.oversea/d' /etc/storage/dnsmasq/dnsmasq.conf
+cat >> /etc/storage/dnsmasq/dnsmasq.conf << EOF
+conf-dir=/etc/storage/dnsmasq.oversea
+EOF
+
+	fi
+/sbin/restart_dhcpd
+	start_local
+	
+if [ $(nvram get ss_watchcat) = 1 ] ;then
+	let total_count=server_count+redir_tcp+redir_udp+tunnel_enable+kcp_enable_flag+local_enable+pdnsd_enable_flag+switch_enable
+    if [ $total_count -gt 0 ]
+    then
+    #param:server(count) redir_tcp(0:no,1:yes)  redir_udp tunnel kcp local gfw
+    /usr/bin/ssr-monitor $server_count $redir_tcp $redir_udp $tunnel_enable $kcp_enable_flag $local_enable $pdnsd_enable_flag $switch_enable >/dev/null 2>&1 &
+    fi
+	fi
+	
+	ENABLE_SERVER=$(nvram get global_server)
+	[ "$ENABLE_SERVER" = "-1" ] && return 1
+	logger -t "SS" "启动成功。"
+	fi
+}
+
+case $1 in
 start)
-	func_start
+	ssp_start
 	;;
 stop)
-	func_stop
+	killall -q -9 ssr-switch
+	ssp_close
 	;;
 restart)
-	func_stop
-	func_start
+    ssp_close
+    ssp_start
 	;;
-G)
-    addscripts
-	;;
+reserver)
+   ssp_close
+   ressp $2
+   ;;
 *)
-	echo "Usage: $0 { start | stop | restart }"
-	exit 1
+	echo "check"
+	#exit 0
 	;;
 esac

@@ -1,4 +1,10 @@
-
+20190912更新内容:
+增加ss plus的部分功能（取自lean https://github.com/coolsnowwolf/lede ）
+升级ss 3.3.1版本
+增加dnsproxy
+增加pdnsd
+dns-forwarder不在是单独页面显示，现附属在ss下面
+等等...
 20190831更新内容:
 增加adbyby plus+ 单独内网IP控制过滤模式。
 
@@ -6,6 +12,7 @@
 * 源码来自 https://github.com/hanwckf/rt-n56u.git
 在原固件基础上增加以下功能:
 >-  增加MT7615 5.0.3.0驱动```CONFIG_FIRMWARE_WIFI_DRIVER=5.0.3.0```
+>- [SS Plus]```CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS``` （取自lean https://github.com/coolsnowwolf/lede ）
 >- [Adbyby Plus+]```CONFIG_FIRMWARE_INCLUDE_ADBYBY``` （取自lean https://github.com/coolsnowwolf/lede ）
 >- [koolproxy]```CONFIG_FIRMWARE_INCLUDE_KOOLPROXY```
 >- [aliddns]```CONFIG_FIRMWARE_INCLUDE_ALIDDNS```

@@ -6,7 +6,7 @@ if [ ! -f configs/templates/$1.config ] ; then
 	echo "configs/templates/$1.config not found "
 	exit 1
 fi
-
+sed -i '/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER/d' configs/templates/$1.config
 cp -f configs/templates/$1.config .config
 
 ROOTDIR=`pwd`
