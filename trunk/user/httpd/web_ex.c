@@ -1235,7 +1235,7 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 						nvram_set_int_temp(group_id, 0);
 						nvram_clr_group_temp(v);
 					}
-					
+
 					if (v->name && nvram_get_int(group_id2) > 0) {
 						restart_needed_bits |= (v->event_mask & ~(EVM_BLOCK_UNSAFE));
 						dbG("group restart_needed_bits: 0x%llx\n", restart_needed_bits);
@@ -1250,6 +1250,7 @@ update_variables_ex(int eid, webs_t wp, int argc, char **argv)
 						nvram_set_int_temp(group_id2, 0);
 						nvram_clr_group_temp(v);
 					}
+					
 					
 					if (nvram_modified)
 						websWrite(wp, "<script>done_committing();</script>\n");
@@ -1993,6 +1994,9 @@ static int shadowsocks_action_hook(int eid, webs_t wp, int argc, char **argv)
 static int shadowsocks_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
 	int ss_status_code = pids("ss-redir");
+	if (ss_status_code == 0){
+		ss_status_code = pids("ssr-redir");
+	}
 	websWrite(wp, "function shadowsocks_status() { return %d;}\n", ss_status_code);
 	int ss_tunnel_status_code = pids("ss-local");
 	websWrite(wp, "function shadowsocks_tunnel_status() { return %d;}\n", ss_tunnel_status_code);
@@ -2032,11 +2036,23 @@ static int rules_count_hook(int eid, webs_t wp, int argc, char **argv)
 
 #endif
 
-#if defined(APP_DNSFORWARDER)
+#if defined(APP_SHADOWSOCKS)
 static int dnsforwarder_status_hook(int eid, webs_t wp, int argc, char **argv)
 {
 	int status_code = pids("dns-forwarder");
 	websWrite(wp, "function dnsforwarder_status() { return %d;}\n", status_code);
+	return 0;
+}
+static int pdnsd_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int status_code = pids("pdnsd");
+	websWrite(wp, "function pdnsd_status() { return %d;}\n", status_code);
+	return 0;
+}
+static int dnsproxy_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int status_code = pids("dnsproxy");
+	websWrite(wp, "function dnsproxy_status() { return %d;}\n", status_code);
 	return 0;
 }
 #endif
@@ -2262,11 +2278,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_shadowsocks = 0;
 #endif
-#if defined(APP_DNSFORWARDER)
-	int found_app_dnsforwarder = 1;
-#else
-	int found_app_dnsforwarder = 0;
-#endif
 #if defined(APP_KOOLPROXY)
 	int found_app_koolproxy = 1;
 #else
@@ -2444,7 +2455,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_ttyd() { return %d;}\n"
 		"function found_app_vlmcsd() { return %d;}\n"
 		"function found_app_napt66() { return %d;}\n"
-		"function found_app_dnsforwarder() { return %d;}\n"
 		"function found_app_shadowsocks() { return %d;}\n"
 		"function found_app_koolproxy() { return %d;}\n"
 		"function found_app_adbyby() { return %d;}\n"
@@ -2468,7 +2478,6 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_ttyd,
 		found_app_vlmcsd,
 		found_app_napt66,
-		found_app_dnsforwarder,
 		found_app_shadowsocks,
 		found_app_koolproxy,
 		found_app_adbyby,
@@ -4116,10 +4125,10 @@ struct ej_handler ej_handlers[] =
 #if defined (APP_SHADOWSOCKS)
 	{ "shadowsocks_action", shadowsocks_action_hook},
 	{ "shadowsocks_status", shadowsocks_status_hook},
-	{ "rules_count", rules_count_hook},
-#endif
-#if defined (APP_DNSFORWARDER)
 	{ "dnsforwarder_status", dnsforwarder_status_hook},
+	{ "pdnsd_status", pdnsd_status_hook},
+	{ "dnsproxy_status", dnsproxy_status_hook},
+	{ "rules_count", rules_count_hook},
 #endif
 #if defined (APP_KOOLPROXY)
 	{ "koolproxy_action", koolproxy_action_hook},

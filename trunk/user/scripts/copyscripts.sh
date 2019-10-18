@@ -43,6 +43,11 @@ cp -rf /etc_ro/ss_dom.sh /etc/storage/
 chmod 755 "/etc/storage/ss_dom.sh"
 fi
 if [ ! -f "/etc/storage/ss_ip.sh" ] ; then
-cp -rf /etc_ro/ss_ip..sh /etc/storage/
+cp -rf /etc_ro/ss_ip.sh /etc/storage/
 chmod 755 "/etc/storage/ss_ip..sh"
+fi
+if [ ! -f "/etc/storage/dnsmasq.oversea/oversea_list.conf" ] ; then
+mkdir -p /etc/storage/dnsmasq.oversea
+cp -rf /etc_ro/oversea_list.conf /etc/storage/dnsmasq.oversea/
+chmod 755 "/etc/storage/dnsmasq.oversea/oversea_list.conf"
 fi

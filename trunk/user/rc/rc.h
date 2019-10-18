@@ -541,11 +541,6 @@ void restart_vlmcsd(void);
 #if defined(APP_NAPT66)
 void start_napt66(void);
 #endif
-#if defined(APP_DNSFORWARDER)
-void stop_dnsforwarder(void);
-void start_dnsforwarder(void);
-void restart_dnsforwarder(void);
-#endif
 #if defined(APP_KOOLPROXY)
 void stop_koolproxy(void);
 void start_koolproxy(void);

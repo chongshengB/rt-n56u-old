@@ -547,15 +547,22 @@ struct nvram_pair router_defaults[] = {
 	
 	/* vlmcsd */
 	{ "vlmcsd_enable", "0" },
-
-	/* dns-forwarder */
-	{ "dns_forwarder_enable", "0" },
-	{ "dns_forwarder_port", "5353" },
-	{ "dns_forwarder_bind", "0.0.0.0" },
-	{ "dns_forwarder_server", "8.8.4.4:53" },
 	
 	/* shadowsocks */
 	{ "ss_type", "0" }, //0=ss, 1=ssr
+	{ "global_server", "nil" },
+	{ "udp_relay_server", "nil" },
+	{ "ss_threads", "0" },
+	{ "ss_run_mode", "gfw" },
+	{ "pdnsd_enable", "0" },
+	{ "tunnel_forward", "8.8.4.4:53" },
+	{ "socks5_proxy", "nil" },
+	{ "socks5_proxy_port", "1080" },
+	{ "ss_turn", "1" },
+	{ "ss_watchcat", "1" },
+	{ "ss_turn_s", "600" },
+	{ "ss_turn_ss", "5" },
+
 	{ "ss_enable", "0" },
 	{ "ss_mode", "1" }, 	//0=全局代理,1=绕过大陆,2=gfwlist
 	{ "ss_server", "127.0.0.1" },
@@ -572,15 +579,18 @@ struct nvram_pair router_defaults[] = {
 	{ "ss_proto_param", ""},
 	{ "ss_obfs", "plain"},
 	{ "ss_obfs_param", ""},
+	
 
 	{ "ss-tunnel_enable", "0" },
 	{ "ss-tunnel_local_port", "5353" },
 	{ "ss-tunnel_remote", "8.8.4.4:53" },
 	{ "ss-tunnel_mtu", "1492" },
 	
-	{ "ss_watchcat", "1" },
+
 	{ "ss_update_chnroute", "0" },
 	{ "ss_update_gfwlist", "0" },
+	
+	{ "ssp_staticnum_x", "0" },
 	
 	/* DHCP server parameters */
 	{ "dhcp_start", DEF_LAN_DHCP_BEG },	/* First assignable DHCP address */
@@ -875,6 +885,25 @@ struct nvram_pair tables_defaults[] = {
 	{ "sr_matric_x", "" },
 	{ "sr_if_x", "" },
 
+	{ "ssp_type_x", "" },
+	{ "ssp_name_x", "" },
+	{ "ssp_server_x", "" },
+	{ "ssp_prot_x", "" },
+	{ "switch_enable_x", "1" },
+	{ "ss_key_x", "" },
+	{ "ss_method_x", "" },
+	{ "ss_protocol_x", "" },
+	{ "ss_proto_param_x", "" },
+	{ "ss_obfs_x", "" },
+	{ "ss_obfs_param_x", "" },
+	{ "ssp_local_port_x", "" },
+	{ "v2_aid_x", "" },
+	{ "v2_vid_x", "" },
+	{ "v2_security_x", "" },
+	{ "v2_net_x", "" },
+	{ "v2_type_x", "" },
+	{ "v2_tls_x", "" },
+	
 	{ "dhcp_staticmac_x", "" },
 	{ "dhcp_staticip_x", "" },
 	{ "dhcp_staticname_x", "" },

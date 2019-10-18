@@ -394,9 +394,6 @@ if (found_app_koolproxy()){
 	tabtitle[10] = new Array("", "<#menu5_18_1#>");
 	}
 }
-if (found_app_dnsforwarder()){
-	tabtitle[11] = new Array("", "<#menu5_1_1#>");
-}
 if (found_app_shadowsocks()){
 	tabtitle[12] = new Array("", "<#menu5_1_1#>","<#menu5_16_20#>");
 }
@@ -432,10 +429,6 @@ if (found_app_koolproxy()){
 }
 }
 
-if (found_app_dnsforwarder()){
-	dns_forwarder_array = new Array("", "dns-forwarder.asp");
-	tablink[11] = (dns_forwarder_array);
-}
 if (found_app_shadowsocks()){
 	shadowsocks_array = new Array("","Shadowsocks.asp","Shadowsocks_log.asp");
 	tablink[12] = (shadowsocks_array);
@@ -459,10 +452,6 @@ if (found_app_koolproxy()){
 	menuL2_title.push("去广告设置");
 } else menuL2_title.push("");
 
-if (found_app_dnsforwarder()){
-	menuL2_title.push("<#menu5_15#>");
-} else menuL2_title.push("");
-
 if (found_app_shadowsocks()){
 	menuL2_title.push("<#menu5_16#>");
 } else menuL2_title.push("");
@@ -482,9 +471,6 @@ if (found_app_adbyby()){
 	menuL2_link.push(ad_array[1]);
 } else menuL2_link.push("");
 
-if (found_app_dnsforwarder()){
-	menuL2_link.push(dns_forwarder_array[1]);
-} else menuL2_link.push("");
 
 if (found_app_shadowsocks()){
 	menuL2_link.push(shadowsocks_array[1]);

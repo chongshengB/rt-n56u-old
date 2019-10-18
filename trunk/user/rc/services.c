@@ -283,8 +283,8 @@ void stop_ss(void){
 }
 
 void start_ss(void){
-	int ss_enable = nvram_get_int("ss_enable");
-	if ( ss_enable == 1)
+	int ss_enable = nvram_get_int("global_server");
+	if ( ss_enable != -1 || ss_enable != -2 )
 		eval("/usr/bin/shadowsocks.sh","start");
 }
 
@@ -332,23 +332,6 @@ void start_vlmcsd(void){
 void restart_vlmcsd(void){
 	stop_vlmcsd();
 	start_vlmcsd();
-}
-#endif
-
-#if defined(APP_DNSFORWARDER)
-void stop_dnsforwarder(void){
-	eval("/usr/bin/dns-forwarder.sh","stop");
-}
-
-void start_dnsforwarder(void){
-	int dnsforwarder_mode = nvram_get_int("dns_forwarder_enable");
-	if (dnsforwarder_mode == 1)
-		eval("/usr/bin/dns-forwarder.sh","start");
-}
-
-void restart_dnsforwarder(void){
-	stop_dnsforwarder();
-	start_dnsforwarder();
 }
 #endif
 
@@ -628,9 +611,6 @@ start_services_once(int is_ap_mode)
 
 #if defined(APP_SCUT)
 	start_scutclient();
-#endif
-#if defined(APP_DNSFORWARDER)
-	start_dnsforwarder();
 #endif
 #if defined(APP_SHADOWSOCKS)
 	start_ss();
